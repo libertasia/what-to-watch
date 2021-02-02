@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Anastasiia Erokhina](https://up.htmlacademy.ru/react/6/user/1424545).
-* Наставник: `Неизвестно`.
+* Наставник: [Dmitry Markov](https://htmlacademy.ru/profile/damarkov).
 
 ---
 
