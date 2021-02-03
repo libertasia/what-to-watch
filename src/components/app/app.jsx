@@ -1,6 +1,6 @@
 import React from 'react';
 import Main from '../main/main';
-import PropTypes from 'prop-types';
+import {FilmsShape, PromoFilmShape} from '../../shapes';
 
 const App = (props) => {
   const {films, promo} = props;
@@ -11,8 +11,8 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  films: PropTypes.array.isRequired,
-  promo: PropTypes.object.isRequired
+  films: FilmsShape,
+  promo: PromoFilmShape
 };
 
 export default App;
