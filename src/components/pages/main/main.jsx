@@ -1,5 +1,5 @@
 import React from 'react';
-import {FilmsShape, PromoFilmShape} from '../../shapes';
+import {FilmsShape, PromoFilmShape} from '../../../shapes';
 import MovieCard from './movie-card';
 
 const Main = (props) => {
