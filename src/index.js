@@ -5,8 +5,8 @@ import App from './components/app/app';
 const mockFilms = new Array(20).fill().map((val, index) => ({id: index}));
 
 const promoFilm = {
-  name: `The Grand Budapest Hotel`,
   genre: `Drama`,
+  name: `The Grand Budapest Hotel`,
   released: 2014
 };
 

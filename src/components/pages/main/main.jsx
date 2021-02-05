@@ -1,6 +1,6 @@
 import React from 'react';
+import {FilmsShape, PromoFilmShape} from '../../../shapes';
 import MovieCard from './movie-card';
-import PropTypes from 'prop-types';
 
 const Main = (props) => {
   const {films, promo} = props;
@@ -115,8 +115,8 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  films: PropTypes.array.isRequired,
-  promo: PropTypes.object.isRequired
+  films: FilmsShape,
+  promo: PromoFilmShape
 };
 
 export default Main;
