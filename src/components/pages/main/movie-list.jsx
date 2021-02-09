@@ -4,10 +4,10 @@ import {FilmsShape} from '../../../shapes';
 
 const MovieList = (props) => {
   const {films} = props;
-  const [activeFilmId, setActiveFilmId] = useState(null);
+  const [activeFilm, setActiveFilmId] = useState({id: null});
 
   const handleActiveFilmChange = (target) => {
-    setActiveFilmId(target.parentElement.id);
+    setActiveFilmId({...activeFilm, id: target.parentElement.id});
   };
 
   return (
