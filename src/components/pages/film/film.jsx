@@ -1,10 +1,22 @@
 import React from 'react';
+import {useParams, Link} from "react-router-dom";
 import PageFooter from '../../shared/page-footer/page-footer';
 import PageLogo from '../../shared/page-logo/page-logo';
-import {FilmShape} from '../../../shapes';
+import MovieList from '../../shared/movie-list/movie-list';
+import {FilmsShape} from '../../../shapes';
+
+const MAX_SIMILAR_FILMS_COUNT = 4;
 
 const Film = (props) => {
-  const {film} = props;
+  const {films} = props;
+
+  const id = parseInt(useParams().id, 10);
+
+  const film = films.find((currentFilm) => currentFilm.id === id);
+
+  const similarFilms = films.filter((f) => f.genre === film.genre && f.id !== film.id).slice(0, MAX_SIMILAR_FILMS_COUNT);
+
+  const hrefToAddReviewPage = `/films/${film.id}/review`;
 
   return (
     <React.Fragment>
@@ -42,7 +54,7 @@ const Film = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <Link to={hrefToAddReviewPage} className="btn movie-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -85,40 +97,7 @@ const Film = (props) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <div className="catalog__movies-list">
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width={280} height={175} />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-              </h3>
-            </article>
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width={280} height={175} />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Bohemian Rhapsody</a>
-              </h3>
-            </article>
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width={280} height={175} />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
-              </h3>
-            </article>
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width={280} height={175} />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
-              </h3>
-            </article>
-          </div>
+          <MovieList films={similarFilms}/>
         </section>
         <PageFooter />
       </div>
@@ -127,7 +106,7 @@ const Film = (props) => {
 };
 
 Film.propTypes = {
-  film: FilmShape
+  films: FilmsShape
 };
 
 export default Film;

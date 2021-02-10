@@ -1,8 +1,11 @@
 import React from 'react';
 import {MovieCardShape, onActiveFilmChangeShape} from '../../../shapes';
+import {Link} from 'react-router-dom';
 
 const MovieCard = (props) => {
   const {film, onActiveFilmChange} = props;
+
+  const hrefToFilmPage = `/films/${film.id}`;
 
   const handleMouseEnter = ({target}) => {
     onActiveFilmChange(target);
@@ -10,11 +13,13 @@ const MovieCard = (props) => {
 
   return (
     <article className="small-movie-card catalog__movies-card" onMouseEnter={handleMouseEnter} id={film.id}>
-      <div className="small-movie-card__image">
-        <img src={film.previewImage} alt={film.name} width={280} height={175}/>
-      </div>
+      <Link to={hrefToFilmPage}>
+        <div className="small-movie-card__image">
+          <img src={film.previewImage} alt={film.name} width={280} height={175}/>
+        </div>
+      </Link>
       <h3 className="small-movie-card__title">
-        <a className="small-movie-card__link" href="movie-page.html">{film.name}</a>
+        <Link className="small-movie-card__link" to={hrefToFilmPage}>{film.name}</Link>
       </h3>
     </article>
   );

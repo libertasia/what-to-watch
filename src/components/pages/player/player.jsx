@@ -1,8 +1,13 @@
 import React from 'react';
-import {FilmShape} from '../../../shapes';
+import {useParams} from "react-router-dom";
+import {FilmsShape} from '../../../shapes';
 
 const Player = (props) => {
-  const {film} = props;
+  const {films} = props;
+
+  const id = parseInt(useParams().id, 10);
+
+  const film = films.find((currentFilm)=>currentFilm.id === id);
 
   return (
     <div className="player">
@@ -39,7 +44,7 @@ const Player = (props) => {
 };
 
 Player.propTypes = {
-  film: FilmShape
+  films: FilmsShape
 };
 
 export default Player;
