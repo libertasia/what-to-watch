@@ -1,9 +1,14 @@
 import React from 'react';
+import {FilmShape} from '../../../shapes';
 
-const Player = () => {
+const Player = (props) => {
+  const {film} = props;
+
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg" />
+      <video src="#" className="player__video" poster="img/player-poster.jpg">
+        <source src={film.videoLink} />
+      </video>
       <button type="button" className="player__exit">Exit</button>
       <div className="player__controls">
         <div className="player__controls-row">
@@ -31,6 +36,10 @@ const Player = () => {
       </div>
     </div>
   );
+};
+
+Player.propTypes = {
+  film: FilmShape
 };
 
 export default Player;

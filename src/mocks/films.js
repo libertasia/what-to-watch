@@ -111,7 +111,7 @@ export default [
     runTime: 128,
     genre: `Thriller`,
     released: 1973,
-    isFavorite: false
+    isFavorite: true
   },
   {
     id: 7,
@@ -130,7 +130,7 @@ export default [
     runTime: 81,
     genre: `Kids and Family`,
     released: 1996,
-    isFavorite: false
+    isFavorite: true
   },
   {
     id: 8,
@@ -149,6 +149,6 @@ export default [
     runTime: 128,
     genre: `Romance`,
     released: 2016,
-    isFavorite: false
+    isFavorite: true
   },
 ];

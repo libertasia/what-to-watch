@@ -1,6 +1,6 @@
 import React from 'react';
 import {FilmsShape, PromoFilmShape} from '../../../shapes';
-import MovieList from './movie-list';
+import MovieList from '../../shared/movie-list/movie-list';
 
 const Main = (props) => {
   const {films, promo} = props;

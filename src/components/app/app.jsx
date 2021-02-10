@@ -22,16 +22,16 @@ const App = (props) => {
           <SignIn />
         </Route>
         <Route exact path="/mylist">
-          <MyList />
+          <MyList films={films} />
         </Route>
         <Route exact path="/films/:id">
-          <Film />
+          <Film film={films[0]} />
         </Route>
         <Route exact path="/films/:id/review">
-          <AddReview />
+          <AddReview film={films[0]} />
         </Route>
         <Route exact path="/player/:id">
-          <Player />
+          <Player film={films[0]} />
         </Route>
         <Route>
           <NotFoundScreen />

@@ -1,5 +1,6 @@
 import React from 'react';
 import PageLogo from '../../shared/page-logo/page-logo';
+import {FilmShape} from '../../../shapes';
 
 const AddReview = (props) => {
   const {film} = props;
@@ -69,6 +70,10 @@ const AddReview = (props) => {
       </div>
     </section>
   );
+};
+
+AddReview.propTypes = {
+  film: FilmShape
 };
 
 export default AddReview;
