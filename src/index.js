@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
-
-const mockFilms = new Array(20).fill().map((val, index) => ({id: index}));
+import mockFilms from './mocks/films';
 
 const promoFilm = {
   genre: `Drama`,

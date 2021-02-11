@@ -1,4 +1,5 @@
 import React from 'react';
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import Main from '../pages/main/main';
 import SignIn from '../pages/sign-in/sign-in';
 import MyList from '../pages/my-list/my-list';
@@ -7,7 +8,6 @@ import AddReview from '../pages/add-review/add-review';
 import Player from '../pages/player/player';
 import NotFoundScreen from '../pages/not-found-screen/not-found-screen';
 import {FilmsShape, PromoFilmShape} from '../../shapes';
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
 
 const App = (props) => {
   const {films, promo} = props;
@@ -22,16 +22,16 @@ const App = (props) => {
           <SignIn />
         </Route>
         <Route exact path="/mylist">
-          <MyList />
+          <MyList films={films} />
         </Route>
         <Route exact path="/films/:id">
-          <Film />
+          <Film films={films} />
         </Route>
         <Route exact path="/films/:id/review">
-          <AddReview />
+          <AddReview films={films} />
         </Route>
         <Route exact path="/player/:id">
-          <Player />
+          <Player films={films} />
         </Route>
         <Route>
           <NotFoundScreen />

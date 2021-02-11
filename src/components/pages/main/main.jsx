@@ -1,6 +1,6 @@
 import React from 'react';
 import {FilmsShape, PromoFilmShape} from '../../../shapes';
-import MovieCard from './movie-card';
+import MovieList from '../../shared/movie-list/movie-list';
 
 const Main = (props) => {
   const {films, promo} = props;
@@ -90,9 +90,7 @@ const Main = (props) => {
               <a href="#" className="catalog__genres-link">Thrillers</a>
             </li>
           </ul>
-          <div className="catalog__movies-list">
-            {films.map((film) => <MovieCard key={film.id} />)}
-          </div>
+          <MovieList films={films} />
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
