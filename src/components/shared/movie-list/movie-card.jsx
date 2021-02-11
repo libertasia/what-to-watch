@@ -7,12 +7,12 @@ const MovieCard = (props) => {
 
   const hrefToFilmPage = `/films/${film.id}`;
 
-  const handleMouseEnter = ({target}) => {
-    onActiveFilmChange(target);
+  const handleMouseOver = ({currentTarget}) => {
+    onActiveFilmChange(currentTarget);
   };
 
   return (
-    <article className="small-movie-card catalog__movies-card" onMouseEnter={handleMouseEnter} id={film.id}>
+    <article className="small-movie-card catalog__movies-card" onMouseOver={handleMouseOver} data-id={film.id}>
       <Link to={hrefToFilmPage}>
         <div className="small-movie-card__image">
           <img src={film.previewImage} alt={film.name} width={280} height={175}/>

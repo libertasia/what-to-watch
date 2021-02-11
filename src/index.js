@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import App from './components/app/app';
 import mockFilms from './mocks/films';
 
-// const mockFilms = new Array(20).fill().map((val, index) => ({id: index}));
-
 const promoFilm = {
   genre: `Drama`,
   name: `The Grand Budapest Hotel`,

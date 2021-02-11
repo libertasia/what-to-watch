@@ -1,5 +1,5 @@
 import React from 'react';
-import {useParams} from "react-router-dom";
+import {useParams, Link} from "react-router-dom";
 import PageLogo from '../../shared/page-logo/page-logo';
 import AddReviewForm from './add-review-form';
 import {FilmsShape} from '../../../shapes';
@@ -10,6 +10,8 @@ const AddReview = (props) => {
   const id = parseInt(useParams().id, 10);
 
   const film = films.find((currentFilm)=>currentFilm.id === id);
+
+  const hrefToPlayerPage = `/player/${film.id}`;
 
   return (
     <section className="movie-card movie-card--full">
@@ -23,7 +25,7 @@ const AddReview = (props) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">{film.name}</a>
+                <Link to={hrefToPlayerPage} className="breadcrumbs__link">{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
