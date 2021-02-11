@@ -20,6 +20,8 @@ const Film = (props) => {
 
   const hrefToPlayerPage = `/player/${film.id}`;
 
+  const imgAltText = `${film.name} poster`;
+
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
@@ -64,7 +66,7 @@ const Film = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={film.posterImage} alt={film.name + ` poster`} width={218} height={327} />
+              <img src={film.posterImage} alt={imgAltText} width={218} height={327} />
             </div>
             <div className="movie-card__desc">
               <nav className="movie-nav movie-card__nav">

@@ -11,7 +11,9 @@ const AddReview = (props) => {
 
   const film = films.find((currentFilm)=>currentFilm.id === id);
 
-  const hrefToPlayerPage = `/player/${film.id}`;
+  const hrefToFilmPage = `/films/${film.id}`;
+
+  const imgAltText = `${film.name} poster`;
 
   return (
     <section className="movie-card movie-card--full">
@@ -25,7 +27,7 @@ const AddReview = (props) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={hrefToPlayerPage} className="breadcrumbs__link">{film.name}</Link>
+                <Link to={hrefToFilmPage} className="breadcrumbs__link">{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -39,7 +41,7 @@ const AddReview = (props) => {
           </div>
         </header>
         <div className="movie-card__poster movie-card__poster--small">
-          <img src={film.posterImage} alt={film.name + ` poster`} width={218} height={327} />
+          <img src={film.posterImage} alt={imgAltText} width={218} height={327} />
         </div>
       </div>
       <div className="add-review">

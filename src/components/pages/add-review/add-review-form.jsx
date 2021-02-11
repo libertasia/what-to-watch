@@ -11,23 +11,20 @@ const AddReviewForm = () => {
   const setRating = (evt) => setReview({...review, rating: evt.target.value});
   const setComment = (evt) => setReview({...review, comment: evt.target.value});
 
-  const ratings = [];
-  for (let index = 1; index <= RATINGS_COUNT; index++) {
-    ratings.push(
-        (
-          <React.Fragment>
-            <input className="rating__input" id={`star-` + index} type="radio" name="rating" defaultValue={index} />
-            <label className="rating__label" htmlFor={`star-` + index}>Rating {index}</label>
-          </React.Fragment>
-        )
-    );
-  }
+  const ratingValues = Array.from({length: RATINGS_COUNT}, (_, i) => i + 1);
 
   return (
     <form action="#" className="add-review__form">
       <div className="rating">
         <div className="rating__stars" onChange={setRating}>
-          {ratings}
+          {
+            ratingValues.map((value) => (
+              <React.Fragment key={`star-${value}`}>
+                <input className="rating__input" id={`star-${value}`} type="radio" name="rating" defaultValue={value} />
+                <label className="rating__label" htmlFor={`star-${value}`}>Rating {value}</label>
+              </React.Fragment>
+            ))
+          }
         </div>
       </div>
       <div className="add-review__text">
