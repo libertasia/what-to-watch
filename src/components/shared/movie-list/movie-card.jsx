@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 import {MovieCardShape, onActiveFilmChangeShape} from '../../../shapes';
 import {Link} from 'react-router-dom';
 import PreviewVideoPlayer from '../../shared/video-player/preview-video-player';
