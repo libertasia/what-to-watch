@@ -6,8 +6,8 @@ const MovieList = (props) => {
   const {films} = props;
   const [activeFilm, setActiveFilmId] = useState({id: null});
 
-  const handleActiveFilmChange = (target) => {
-    setActiveFilmId({...activeFilm, id: target.dataset.id});
+  const handleActiveFilmChange = (film) => {
+    setActiveFilmId({...activeFilm, id: film.id});
   };
 
   return (
