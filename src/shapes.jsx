@@ -55,4 +55,13 @@ const FilmShape = PropTypes.shape({
 
 const onActiveFilmChangeShape = PropTypes.func.isRequired;
 
-export {FilmsShape, FilmShape, PromoFilmShape, MovieCardShape, onActiveFilmChangeShape};
+const PreviewVideoPlayerShape = PropTypes.shape({
+  alt: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  posterImage: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
+}).isRequired;
+
+export {FilmsShape, FilmShape, PromoFilmShape, MovieCardShape, onActiveFilmChangeShape, PreviewVideoPlayerShape};

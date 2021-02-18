@@ -1,21 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {MovieCardShape, onActiveFilmChangeShape} from '../../../shapes';
 import {Link} from 'react-router-dom';
+import PreviewVideoPlayer from '../../shared/video-player/preview-video-player';
 
 const MovieCard = (props) => {
   const {film, onActiveFilmChange} = props;
 
+  const [isPreviewPlaying, setIsPreviewPlaying] = useState(false);
+  const [playbackTimer, setPlaybackTimer] = useState(null);
+
   const hrefToFilmPage = `/films/${film.id}`;
 
-  const handleMouseOver = ({currentTarget}) => {
-    onActiveFilmChange(currentTarget);
+  const handleMouseOver = () => {
+    onActiveFilmChange(film);
+    setPlaybackTimer(setTimeout(() => setIsPreviewPlaying(true), 1000));
+  };
+
+  const handleMouseLeave = () => {
+    onActiveFilmChange({id: null});
+    clearTimeout(playbackTimer);
+    setIsPreviewPlaying(false);
   };
 
   return (
-    <article className="small-movie-card catalog__movies-card" onMouseOver={handleMouseOver} data-id={film.id}>
+    <article className="small-movie-card catalog__movies-card" onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} data-id={film.id}>
       <Link to={hrefToFilmPage}>
         <div className="small-movie-card__image">
-          <img src={film.previewImage} alt={film.name} width={280} height={175}/>
+          <PreviewVideoPlayer
+            isPlaying={isPreviewPlaying}
+            src={film.previewVideoLink}
+            posterImage={film.previewImage}
+            width={280} height={175}
+            alt={film.name}>
+          </PreviewVideoPlayer>
         </div>
       </Link>
       <h3 className="small-movie-card__title">
