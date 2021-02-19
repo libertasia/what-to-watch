@@ -64,4 +64,17 @@ const PreviewVideoPlayerShape = PropTypes.shape({
   width: PropTypes.number.isRequired,
 }).isRequired;
 
-export {FilmsShape, FilmShape, PromoFilmShape, MovieCardShape, onActiveFilmChangeShape, PreviewVideoPlayerShape};
+const ReviewsShape = PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      rating: PropTypes.number.isRequired,
+      comment: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      user: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      })
+    })
+).isRequired;
+
+export {FilmsShape, FilmShape, PromoFilmShape, MovieCardShape, onActiveFilmChangeShape, PreviewVideoPlayerShape, ReviewsShape};

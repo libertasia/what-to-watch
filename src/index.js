@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
 import mockFilms from './mocks/films';
+import mockReviews from './mocks/reviews';
 
 const promoFilm = {
   genre: `Drama`,
@@ -13,6 +14,7 @@ ReactDOM.render(
     <App
       films={mockFilms}
       promo={promoFilm}
+      reviews={mockReviews}
     />,
     document.querySelector(`#root`)
 );

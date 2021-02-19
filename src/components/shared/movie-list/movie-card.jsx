@@ -3,6 +3,8 @@ import {MovieCardShape, onActiveFilmChangeShape} from '../../../shapes';
 import {Link} from 'react-router-dom';
 import PreviewVideoPlayer from '../../shared/video-player/preview-video-player';
 
+const PREVIEW_DELAY = 1000;
+
 const MovieCard = (props) => {
   const {film, onActiveFilmChange} = props;
 
@@ -13,12 +15,15 @@ const MovieCard = (props) => {
 
   const handleMouseOver = () => {
     onActiveFilmChange(film);
-    setPlaybackTimer(setTimeout(() => setIsPreviewPlaying(true), 1000));
+    if (playbackTimer === null) {
+      setPlaybackTimer(setTimeout(() => setIsPreviewPlaying(true), PREVIEW_DELAY));
+    }
   };
 
   const handleMouseLeave = () => {
     onActiveFilmChange({id: null});
     clearTimeout(playbackTimer);
+    setPlaybackTimer(null);
     setIsPreviewPlaying(false);
   };
 
@@ -30,7 +35,8 @@ const MovieCard = (props) => {
             isPlaying={isPreviewPlaying}
             src={film.previewVideoLink}
             posterImage={film.previewImage}
-            width={280} height={175}
+            width={280}
+            height={175}
             alt={film.name}>
           </PreviewVideoPlayer>
         </div>
