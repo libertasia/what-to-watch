@@ -1,14 +1,16 @@
 import React from 'react';
 import {useParams, Link} from "react-router-dom";
+import Tabs from './tabs';
 import PageFooter from '../../shared/page-footer/page-footer';
 import PageLogo from '../../shared/page-logo/page-logo';
 import MovieList from '../../shared/movie-list/movie-list';
-import {FilmsShape} from '../../../shapes';
+import {FilmsShape, ReviewsShape} from '../../../shapes';
+
 
 const MAX_SIMILAR_FILMS_COUNT = 4;
 
 const Film = (props) => {
-  const {films} = props;
+  const {films, reviews} = props;
 
   const id = parseInt(useParams().id, 10);
 
@@ -68,33 +70,9 @@ const Film = (props) => {
             <div className="movie-card__poster movie-card__poster--big">
               <img src={film.posterImage} alt={imgAltText} width={218} height={327} />
             </div>
-            <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">Overview</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Details</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-              <div className="movie-rating">
-                <div className="movie-rating__score">{film.rating}</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">{film.scoresCount} ratings</span>
-                </p>
-              </div>
-              <div className="movie-card__text">
-                <p>{film.description}</p>
-                <p className="movie-card__director"><strong>Director: {film.director}</strong></p>
-                <p className="movie-card__starring"><strong>Starring: {film.starring.join(`, `)} and other</strong></p>
-              </div>
-            </div>
+            <Tabs
+              film={film}
+              reviews={reviews}/>
           </div>
         </div>
       </section>
@@ -110,7 +88,8 @@ const Film = (props) => {
 };
 
 Film.propTypes = {
-  films: FilmsShape
+  films: FilmsShape,
+  reviews: ReviewsShape
 };
 
 export default Film;
