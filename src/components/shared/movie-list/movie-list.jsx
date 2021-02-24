@@ -3,7 +3,7 @@ import MovieCard from './movie-card';
 import {FilmsShape} from '../../../shapes';
 
 const MovieList = (props) => {
-  const {films} = props;
+  const {visibleFilms} = props;
   const [activeFilm, setActiveFilmId] = useState({id: null});
 
   const handleActiveFilmChange = (film) => {
@@ -12,7 +12,7 @@ const MovieList = (props) => {
 
   return (
     <div className="catalog__movies-list">
-      {films.map((film) =>
+      {visibleFilms.map((film) =>
         <MovieCard
           key={film.id}
           film={film}
@@ -23,7 +23,7 @@ const MovieList = (props) => {
 };
 
 MovieList.propTypes = {
-  films: FilmsShape
+  visibleFilms: FilmsShape,
 };
 
 export default MovieList;

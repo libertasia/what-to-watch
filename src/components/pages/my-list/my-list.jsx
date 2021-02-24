@@ -22,7 +22,7 @@ const MyList = (props) => {
       </header>
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <MovieList films={favouriteFilms} />
+        <MovieList visibleFilms={favouriteFilms} />
       </section>
       <PageFooter />
     </div>

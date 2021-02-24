@@ -77,4 +77,7 @@ const ReviewsShape = PropTypes.arrayOf(
     })
 ).isRequired;
 
-export {FilmsShape, FilmShape, PromoFilmShape, MovieCardShape, onActiveFilmChangeShape, PreviewVideoPlayerShape, ReviewsShape};
+const GenreShape = PropTypes.string.isRequired;
+const onGenreClickShape = PropTypes.func.isRequired;
+
+export {FilmsShape, FilmShape, PromoFilmShape, MovieCardShape, onActiveFilmChangeShape, PreviewVideoPlayerShape, ReviewsShape, GenreShape, onGenreClickShape};

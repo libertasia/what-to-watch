@@ -1,48 +1,45 @@
 import React from 'react';
-import {FilmsShape} from '../../../shapes';
+import {connect} from 'react-redux';
+import {FilmsShape, GenreShape, onGenreClickShape} from '../../../shapes';
+import {getGenreList} from '../../../film-utils';
+import {ActionCreator} from '../../../store/action';
 
 const GenresList = (props) => {
-  const {films} = props;
+  const {films, activeGenre, onGenreClick} = props;
 
-  const genres = new Array(count).fill(``);
+  const genres = getGenreList(films);
+
+  const handleGenreClick = ({currentTarget}) => {
+    onGenreClick(currentTarget.dataset.genre);
+  };
 
   return (
     <ul className="catalog__genres-list">
-      <li className="catalog__genres-item catalog__genres-item--active">
-        <a href="#" className="catalog__genres-link">All genres</a>
-      </li>
-      <li className="catalog__genres-item">
-        <a href="#" className="catalog__genres-link">Comedies</a>
-      </li>
-      <li className="catalog__genres-item">
-        <a href="#" className="catalog__genres-link">Crime</a>
-      </li>
-      <li className="catalog__genres-item">
-        <a href="#" className="catalog__genres-link">Documentary</a>
-      </li>
-      <li className="catalog__genres-item">
-        <a href="#" className="catalog__genres-link">Dramas</a>
-      </li>
-      <li className="catalog__genres-item">
-        <a href="#" className="catalog__genres-link">Horror</a>
-      </li>
-      <li className="catalog__genres-item">
-        <a href="#" className="catalog__genres-link">Kids &amp; Family</a>
-      </li>
-      <li className="catalog__genres-item">
-        <a href="#" className="catalog__genres-link">Romance</a>
-      </li>
-      <li className="catalog__genres-item">
-        <a href="#" className="catalog__genres-link">Sci-Fi</a>
-      </li>
-      <li className="catalog__genres-item">
-        <a href="#" className="catalog__genres-link">Thrillers</a>
-      </li>
+      {genres.map((item, index) =>
+        <li onClick={handleGenreClick} key={`genre-${index}`} data-genre={item} className={`catalog__genres-item ${item === activeGenre ? `catalog__genres-item--active` : ``}`}>
+          <a href="#" className="catalog__genres-link">{item}</a>
+        </li>
+      )}
     </ul>
   );
 };
 
 GenresList.propTypes = {
-  films: FilmsShape
+  films: FilmsShape,
+  activeGenre: GenreShape,
+  onGenreClick: onGenreClickShape,
 };
-export default GenresList;
+
+const mapStateToProps = (state) => ({
+  films: state.films,
+  activeGenre: state.activeGenre,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenreClick(genre) {
+    dispatch(ActionCreator.changeGenre(genre));
+  },
+});
+
+export {GenresList};
+export default connect(mapStateToProps, mapDispatchToProps)(GenresList);

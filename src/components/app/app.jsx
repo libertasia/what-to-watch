@@ -7,16 +7,16 @@ import Film from '../pages/film/film';
 import AddReview from '../pages/add-review/add-review';
 import Player from '../pages/player/player';
 import NotFoundScreen from '../pages/not-found-screen/not-found-screen';
-import {FilmsShape, PromoFilmShape, ReviewsShape} from '../../shapes';
+import {FilmsShape, ReviewsShape} from '../../shapes';
 
 const App = (props) => {
-  const {films, promo, reviews} = props;
+  const {films, reviews} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main films={films} promo={promo} />
+          <Main />
         </Route>
         <Route exact path="/login">
           <SignIn />
@@ -43,7 +43,6 @@ const App = (props) => {
 
 App.propTypes = {
   films: FilmsShape,
-  promo: PromoFilmShape,
   reviews: ReviewsShape
 };
 
