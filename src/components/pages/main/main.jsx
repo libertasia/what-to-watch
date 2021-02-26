@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {FilmsShape, PromoFilmShape} from '../../../shapes';
 import MovieList from '../../shared/movie-list/movie-list';
 import GenresList from './genres-list';
+import ShowMoreBtn from './show-more-btn';
 import {getVisibleFilms} from '../../../selectors';
 
 const Main = (props) => {
@@ -64,7 +65,7 @@ const Main = (props) => {
           <GenresList />
           <MovieList visibleFilms={visibleFilms}/>
           <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
+            <ShowMoreBtn />
           </div>
         </section>
         <footer className="page-footer">
