@@ -8,13 +8,9 @@ const getFilmsByGenre = (films, genre) => {
 };
 
 const getGenreList = (films) => {
-  let genres = films.map((film) => film.genre);
-  genres.sort();
-  genres = [...new Set(genres)];
-  genres = genres.slice(0, MAX_GENRES_COUNT);
-  genres.unshift(DEFAULT_GENRE);
+  const genres = films.map((film) => film.genre).sort();
 
-  return genres;
+  return [DEFAULT_GENRE, ...new Set(genres)].slice(0, MAX_GENRES_COUNT);
 };
 
 export {getFilmsByGenre, getGenreList};
