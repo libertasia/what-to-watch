@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {FilmsShape, GenreShape, onGenreClickShape} from '../../../shapes';
+import PropTypes from 'prop-types';
+import {FilmsShape} from '../../../shapes';
 import {getGenreList} from '../../../film-utils';
 import {ActionCreator} from '../../../store/action';
 
@@ -15,9 +16,9 @@ const GenresList = (props) => {
 
   return (
     <ul className="catalog__genres-list">
-      {genres.map((item, index) =>
-        <li onClick={handleGenreClick} key={`genre-${index}`} data-genre={item} className={`catalog__genres-item ${item === activeGenre ? `catalog__genres-item--active` : ``}`}>
-          <a href="#" className="catalog__genres-link">{item}</a>
+      {genres.map((genre, index) =>
+        <li onClick={handleGenreClick} key={`genre-${index}`} data-genre={genre} className={`catalog__genres-item ${genre === activeGenre ? `catalog__genres-item--active` : ``}`}>
+          <a href="#" className="catalog__genres-link">{genre}</a>
         </li>
       )}
     </ul>
@@ -26,8 +27,8 @@ const GenresList = (props) => {
 
 GenresList.propTypes = {
   films: FilmsShape,
-  activeGenre: GenreShape,
-  onGenreClick: onGenreClickShape,
+  activeGenre: PropTypes.string.isRequired,
+  onGenreClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

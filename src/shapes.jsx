@@ -53,8 +53,6 @@ const FilmShape = PropTypes.shape({
   videoLink: PropTypes.string.isRequired
 }).isRequired;
 
-const onActiveFilmChangeShape = PropTypes.func.isRequired;
-
 const PreviewVideoPlayerShape = PropTypes.shape({
   alt: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
@@ -77,7 +75,4 @@ const ReviewsShape = PropTypes.arrayOf(
     })
 ).isRequired;
 
-const GenreShape = PropTypes.string.isRequired;
-const onGenreClickShape = PropTypes.func.isRequired;
-
-export {FilmsShape, FilmShape, PromoFilmShape, MovieCardShape, onActiveFilmChangeShape, PreviewVideoPlayerShape, ReviewsShape, GenreShape, onGenreClickShape};
+export {FilmsShape, FilmShape, PromoFilmShape, MovieCardShape, PreviewVideoPlayerShape, ReviewsShape};

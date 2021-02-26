@@ -14,12 +14,13 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_GENRE:
       return {
         ...state,
-        activeGenre: action.payload
+        activeGenre: action.payload,
       };
 
     case ActionType.RESET_GENRE:
       return {
-        ...initialState
+        ...state,
+        activeGenre: DEFAULT_GENRE,
       };
   }
 
