@@ -4,7 +4,7 @@ const getFilmsByGenre = (films, genre) => {
   if (genre === DEFAULT_GENRE) {
     return films;
   }
-  return films.filter((f) => f.genre === genre);
+  return films.filter((film) => film.genre === genre);
 };
 
 const getGenreList = (films) => {
