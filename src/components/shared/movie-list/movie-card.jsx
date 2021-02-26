@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {MovieCardShape, onActiveFilmChangeShape} from '../../../shapes';
+import PropTypes from 'prop-types';
+import {MovieCardShape} from '../../../shapes';
 import {Link} from 'react-router-dom';
 import PreviewVideoPlayer from '../../shared/video-player/preview-video-player';
 
@@ -50,7 +51,7 @@ const MovieCard = (props) => {
 
 MovieCard.propTypes = {
   film: MovieCardShape,
-  onActiveFilmChange: onActiveFilmChangeShape
+  onActiveFilmChange: PropTypes.func.isRequired,
 };
 
 export default MovieCard;
