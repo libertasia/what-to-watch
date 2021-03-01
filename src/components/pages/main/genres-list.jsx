@@ -26,19 +26,20 @@ const GenresList = (props) => {
 };
 
 GenresList.propTypes = {
-  films: FilmsShape,
   activeGenre: PropTypes.string.isRequired,
+  films: FilmsShape,
   onGenreClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  films: state.films,
   activeGenre: state.activeGenre,
+  films: state.films,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreClick(genre) {
     dispatch(ActionCreator.changeGenre(genre));
+    dispatch(ActionCreator.resetVisibleFilmsCount());
   },
 });
 
