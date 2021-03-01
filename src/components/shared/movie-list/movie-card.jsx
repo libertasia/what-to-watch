@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {MovieCardShape} from '../../../shapes';
 import {Link} from 'react-router-dom';
@@ -20,6 +20,12 @@ const MovieCard = (props) => {
       setPlaybackTimer(setTimeout(() => setIsPreviewPlaying(true), PREVIEW_DELAY));
     }
   };
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(playbackTimer);
+    };
+  });
 
   const handleMouseLeave = () => {
     onActiveFilmChange({id: null});
