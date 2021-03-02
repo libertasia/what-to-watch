@@ -15,10 +15,7 @@ const ShowMoreBtn = (props) => {
   const isHidden = visibleFilmsCount >= allFilms.length;
 
   return (
-    <React.Fragment>
-      <button onClick={handleButtonClick} className={`${isHidden ? `visually-hidden` : `catalog__button`}`} type="button">Show more</button>
-    </React.Fragment>
-
+    <button onClick={handleButtonClick} className={`${isHidden ? `visually-hidden` : `catalog__button`}`} type="button">Show more</button>
   );
 };
 
