@@ -25,7 +25,7 @@ const MovieCard = (props) => {
     return () => {
       clearTimeout(playbackTimer);
     };
-  });
+  }, [playbackTimer]);
 
   const handleMouseLeave = () => {
     onActiveFilmChange({id: null});

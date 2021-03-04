@@ -15,10 +15,7 @@ const ShowMoreBtn = (props) => {
   const isHidden = visibleFilmsCount >= allFilms.length;
 
   return (
-    <React.Fragment>
-      <button onClick={handleButtonClick} className={`${isHidden ? `visually-hidden` : `catalog__button`}`} type="button">Show more</button>
-    </React.Fragment>
-
+    <button onClick={handleButtonClick} className={`${isHidden ? `visually-hidden` : `catalog__button`}`} type="button">Show more</button>
   );
 };
 
@@ -29,9 +26,9 @@ ShowMoreBtn.propTypes = {
 };
 
 
-const mapStateToProps = (state) => ({
-  allFilms: getAllFilmsByGenre(state),
-  visibleFilmsCount: state.visibleFilmsCount,
+const mapStateToProps = ({FILMS}) => ({
+  allFilms: getAllFilmsByGenre(FILMS),
+  visibleFilmsCount: FILMS.visibleFilmsCount,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -5,21 +5,37 @@ import {FilmsShape, PromoFilmShape} from '../../../shapes';
 import MovieList from '../../shared/movie-list/movie-list';
 import GenresList from './genres-list';
 import ShowMoreBtn from './show-more-btn';
+import LoadingScreen from '../../loading-screen/loading-screen';
 import {getVisibleFilms} from '../../../selectors';
 import {ActionCreator} from '../../../store/action';
+import {fetchFilmsList, fetchPromoFilm} from "../../../store/api-actions";
 
 const Main = (props) => {
-  const {promo, visibleFilms, onLoad} = props;
+  const {promo, visibleFilms, onLoad, isDataLoaded, onLoadData} = props;
 
   useEffect(() => {
     onLoad();
   }, []);
 
+  useEffect(() => {
+    if (!isDataLoaded) {
+      onLoadData();
+    }
+  }, [isDataLoaded]);
+
+  if (!isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
+  const imgAltText = `${promo.name} poster`;
+
   return (
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={promo.backgroundImage} alt={promo.name} />
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header movie-card__head">
@@ -39,7 +55,7 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width={218} height={327} />
+              <img src={promo.posterImage} alt={imgAltText} width={218} height={327} />
             </div>
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{promo.name}</h2>
@@ -92,19 +108,26 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  visibleFilms: FilmsShape,
+  isDataLoaded: PropTypes.bool.isRequired,
+  onLoad: PropTypes.func.isRequired,
+  onLoadData: PropTypes.func.isRequired,
   promo: PromoFilmShape,
-  onLoad: PropTypes.func.isRequired
+  visibleFilms: FilmsShape,
 };
 
-const mapStateToProps = (state) => ({
-  visibleFilms: getVisibleFilms(state),
-  promo: state.promo,
+const mapStateToProps = ({FILMS}) => ({
+  isDataLoaded: FILMS.isDataLoaded,
+  promo: FILMS.promo,
+  visibleFilms: getVisibleFilms(FILMS),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onLoad() {
     dispatch(ActionCreator.resetVisibleFilmsCount());
+  },
+  onLoadData() {
+    dispatch(fetchPromoFilm());
+    dispatch(fetchFilmsList());
   },
 });
 

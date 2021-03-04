@@ -23,9 +23,11 @@ const FilmsShape = PropTypes.arrayOf(
 ).isRequired;
 
 const PromoFilmShape = PropTypes.shape({
+  backgroundImage: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  released: PropTypes.number.isRequired
+  posterImage: PropTypes.string.isRequired,
+  released: PropTypes.number.isRequired,
 }).isRequired;
 
 const MovieCardShape = PropTypes.shape({
