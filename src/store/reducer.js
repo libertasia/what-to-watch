@@ -6,7 +6,13 @@ const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   isDataLoaded: false,
   films: [],
-  promo: {},
+  promo: {
+    backgroundImage: ``,
+    genre: ``,
+    name: ``,
+    posterImage: ``,
+    released: 0,
+  },
   visibleFilmsCount: DEFAULT_VISIBLE_FILMS_COUNT,
 };
 
@@ -25,14 +31,14 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_FILMS:
       return {
         ...state,
-        films: action.payload,
-        isDataLoaded: true,
+        films: action.payload.films,
+        isDataLoaded: action.payload.isDataLoaded,
       };
     case ActionType.LOAD_PROMO_FILM:
       return {
         ...state,
-        promo: action.payload,
-        isDataLoaded: true,
+        promo: action.payload.film,
+        isDataLoaded: action.payload.isDataLoaded,
       };
     case ActionType.REQUIRED_AUTHORIZATION:
       return {
@@ -54,5 +60,19 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
+const errorInitialState = {
+  error: null,
+};
 
-export {reducer};
+const errorReducer = (state = errorInitialState, action) => {
+  const {error} = action;
+
+  if (error) {
+    return {
+      error
+    };
+  }
+  return state;
+};
+
+export {reducer, errorReducer};

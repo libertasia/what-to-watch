@@ -13,8 +13,6 @@ import {fetchFilmsList, fetchPromoFilm} from "../../../store/api-actions";
 const Main = (props) => {
   const {promo, visibleFilms, onLoad, isDataLoaded, onLoadData} = props;
 
-  const imgAltText = `${promo.name} poster`;
-
   useEffect(() => {
     onLoad();
   }, []);
@@ -30,6 +28,8 @@ const Main = (props) => {
       <LoadingScreen />
     );
   }
+
+  const imgAltText = `${promo.name} poster`;
 
   return (
     <React.Fragment>
@@ -115,10 +115,10 @@ Main.propTypes = {
   visibleFilms: FilmsShape,
 };
 
-const mapStateToProps = (state) => ({
-  isDataLoaded: state.isDataLoaded,
-  promo: state.promo,
-  visibleFilms: getVisibleFilms(state),
+const mapStateToProps = ({FILMS}) => ({
+  isDataLoaded: FILMS.isDataLoaded,
+  promo: FILMS.promo,
+  visibleFilms: getVisibleFilms(FILMS),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -126,8 +126,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.resetVisibleFilmsCount());
   },
   onLoadData() {
-    dispatch(fetchFilmsList());
     dispatch(fetchPromoFilm());
+    dispatch(fetchFilmsList());
   },
 });
 

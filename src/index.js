@@ -6,7 +6,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from "redux-thunk";
 import {createAPI} from "./services/api";
 import App from './components/app/app';
-import {reducer} from './store/reducer';
+import rootReducer from './store/root-reducer';
 import {ActionCreator} from './store/action';
 import {checkAuth} from "./store/api-actions";
 import {AuthorizationStatus} from "./const";
@@ -18,7 +18,7 @@ const api = createAPI(
 );
 
 const store = createStore(
-    reducer,
+    rootReducer,
     composeWithDevTools(
         applyMiddleware(thunk.withExtraArgument(api))
     )
