@@ -6,6 +6,7 @@ import MovieList from '../../shared/movie-list/movie-list';
 import GenresList from './genres-list';
 import ShowMoreBtn from './show-more-btn';
 import LoadingScreen from '../../loading-screen/loading-screen';
+import UserBlock from './user-block';
 import {getVisibleFilms} from '../../../selectors';
 import {ActionCreator} from '../../../store/action';
 import {fetchFilmsList, fetchPromoFilm} from "../../../store/api-actions";
@@ -47,9 +48,7 @@ const Main = (props) => {
             </a>
           </div>
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
-            </div>
+            <UserBlock />
           </div>
         </header>
         <div className="movie-card__wrap">
