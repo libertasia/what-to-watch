@@ -1,16 +1,14 @@
 import React, {useRef} from 'react';
-import {useHistory} from 'react-router-dom';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {login} from "../../../store/api-actions";
 import PageFooter from '../../shared/page-footer/page-footer';
 import PageLogo from '../../shared/page-logo/page-logo';
+import {AuthorizationStatus} from '../../../const';
 
-const SignIn = ({onSubmit}) => {
+const SignIn = ({onSubmit, authorizationStatus}) => {
   const loginRef = useRef();
   const passwordRef = useRef();
-
-  const history = useHistory();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -29,6 +27,11 @@ const SignIn = ({onSubmit}) => {
       </header>
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form" onSubmit={handleSubmit}>
+          {authorizationStatus === AuthorizationStatus.AUTH_ERROR &&
+            <div className="sign-in__message">
+              <p>We can’t recognize this email <br /> and password combination. Please try again.</p>
+            </div>
+          }
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input ref={loginRef} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
@@ -51,8 +54,12 @@ const SignIn = ({onSubmit}) => {
 
 SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired
 };
 
+const mapStateToProps = ({FILMS}) => ({
+  authorizationStatus: FILMS.authorizationStatus
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {
@@ -61,4 +68,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {SignIn};
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

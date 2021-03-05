@@ -11,12 +11,16 @@ const UserBlock = (props) => {
   const hrefToSignInPage = `/login`;
 
   if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-    return (<Link to={hrefToSignInPage} className="user-block__link">Sign in</Link>);
+    return (
+      <Link to={hrefToSignInPage} className="user-block__link">Sign in</Link>
+    );
   } else {
     return (
-      <Link to={hrefToMyListPage} className="user-block__avatar">
-        <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
-      </Link>
+      <div className="user-block__avatar">
+        <Link to={hrefToMyListPage}>
+          <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
+        </Link>
+      </div>
     );
   }
 };

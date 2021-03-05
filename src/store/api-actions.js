@@ -16,12 +16,25 @@ export const fetchPromoFilm = () => (dispatch, _getState, api) => (
     .catch(({error}) => dispatch(ActionCreator.fetchPromoFilmError(error)))
 );
 
-// export const fetchFavoriteFilmsList = () => (dispatch, _getState, api) => (
-//   api.get(`/favorite`)
-//     .then(({data}) => adaptFilmToClient(data))
-//     .then((film) => dispatch(ActionCreator.loadFavoriteFilmsList(film, true)))
-//     .catch(({error}) => dispatch(ActionCreator.fetchFavoriteFilmsListError(error)))
-// );
+export const fetchFavoriteFilmsList = () => (dispatch, _getState, api) => (
+  api.get(`/favorite`)
+    .then(({data}) => data.map(adaptFilmToClient))
+    .then((films) => dispatch(ActionCreator.loadFavoriteFilmsList(films)))
+    .catch(({error}) => dispatch(ActionCreator.fetchFavoriteFilmsListError(error)))
+);
+
+export const fetchFilmById = (id) => (dispatch, _getState, api) => (
+  api.get(`/films/${id}`)
+    .then(({data}) => adaptFilmToClient(data))
+    .then((film) => dispatch(ActionCreator.loadFilm(film)))
+    .catch(({error}) => dispatch(ActionCreator.fetchFilmByIdError(error)))
+);
+
+export const fetchReviewsById = (id) => (dispatch, _getState, api) => (
+  api.get(`/comments/${id}`)
+    .then((reviews) => dispatch(ActionCreator.loadReviewsById(reviews)))
+    .catch(({error}) => dispatch(ActionCreator.fetchReviewsByIdError(error)))
+);
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
@@ -32,5 +45,12 @@ export const checkAuth = () => (dispatch, _getState, api) => (
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
   api.post(`/login`, {email, password})
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(ActionCreator.redirectToRoute(`/`)))
+    .catch(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH_ERROR)))
+);
+
+export const logout = () => (dispatch, _getState, api) => (
+  api.get(`/logout`)
+    .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)))
     .catch(() => {})
 );

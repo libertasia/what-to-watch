@@ -6,6 +6,9 @@ const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   isDataLoaded: false,
   films: [],
+  film: null,
+  reviews: [],
+  favoriteFilms: [],
   promo: {
     backgroundImage: ``,
     genre: ``,
@@ -39,6 +42,21 @@ const reducer = (state = initialState, action) => {
         ...state,
         promo: action.payload.film,
         isDataLoaded: action.payload.isDataLoaded,
+      };
+    case ActionType.LOAD_FAVORITE_FILMS_LIST:
+      return {
+        ...state,
+        favoriteFilms: action.payload,
+      };
+    case ActionType.LOAD_FILM:
+      return {
+        ...state,
+        film: action.payload,
+      };
+    case ActionType.LOAD_REVIEWS_BY_ID:
+      return {
+        ...state,
+        reviews: action.payload,
       };
     case ActionType.REQUIRED_AUTHORIZATION:
       return {

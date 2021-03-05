@@ -12,7 +12,7 @@ import {FilmsShape, ReviewsShape} from '../../shapes';
 import browserHistory from "../../browser-history";
 
 const App = (props) => {
-  const {films, reviews} = props;
+  const {films} = props;
 
   return (
     <BrowserRouter history={browserHistory}>
@@ -25,11 +25,11 @@ const App = (props) => {
         </Route>
         <PrivateRoute exact
           path="/mylist"
-          render={() => <MyList films={films} />}
+          render={() => <MyList />}
         >
         </PrivateRoute>
         <Route exact path="/films/:id">
-          <Film films={films} reviews={reviews} />
+          <Film />
         </Route>
         <PrivateRoute exact
           path="/films/:id/review"
