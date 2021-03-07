@@ -8,7 +8,6 @@ import AddReview from '../pages/add-review/add-review';
 import Player from '../pages/player/player';
 import NotFoundScreen from '../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
-import {FilmsShape, ReviewsShape} from '../../shapes';
 import browserHistory from "../../browser-history";
 
 const App = () => {
@@ -43,11 +42,6 @@ const App = () => {
       </Switch>
     </BrowserRouter>
   );
-};
-
-App.propTypes = {
-  films: FilmsShape,
-  reviews: ReviewsShape
 };
 
 export default App;

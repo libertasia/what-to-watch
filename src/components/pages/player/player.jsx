@@ -1,9 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
+import {useParams} from "react-router-dom";
+import PropTypes from 'prop-types';
 import {FilmShape} from '../../../shapes';
+import LoadingScreen from '../../loading-screen/loading-screen';
+import {fetchFilmById} from '../../../store/api-actions';
 
 const Player = (props) => {
-  const {film} = props;
+  const {film, isFilmLoaded, onLoad} = props;
+
+  const id = parseInt(useParams().id, 10);
+
+  useEffect(() => {
+    onLoad(id);
+  }, []);
+
+  if (!isFilmLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <div className="player">
@@ -41,11 +57,20 @@ const Player = (props) => {
 
 Player.propTypes = {
   film: FilmShape,
+  isFilmLoaded: PropTypes.bool.isRequired,
+  onLoad: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({FILMS}) => ({
   film: FILMS.film,
+  isFilmLoaded: FILMS.isFilmLoaded,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoad(id) {
+    dispatch(fetchFilmById(id));
+  },
 });
 
 export {Player};
-export default connect(mapStateToProps, null)(Player);
+export default connect(mapStateToProps, mapDispatchToProps)(Player);

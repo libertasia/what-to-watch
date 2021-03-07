@@ -13,7 +13,7 @@ import {checkAuth} from "./store/api-actions";
 import {AuthorizationStatus} from "./const";
 
 const api = createAPI(
-    () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
+    () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.INIT))
 );
 
 const store = createStore(

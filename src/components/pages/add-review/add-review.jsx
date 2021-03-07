@@ -1,12 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import {Link} from "react-router-dom";
+import PropTypes from 'prop-types';
+import {Link, useParams} from "react-router-dom";
 import PageLogo from '../../shared/page-logo/page-logo';
 import AddReviewForm from './add-review-form';
 import {FilmShape} from '../../../shapes';
+import {fetchFilmById} from '../../../store/api-actions';
+import LoadingScreen from '../../loading-screen/loading-screen';
 
 const AddReview = (props) => {
-  const {film} = props;
+  const {film, isFilmLoaded, onLoad} = props;
+
+  const id = parseInt(useParams().id, 10);
+
+  useEffect(() => {
+    onLoad(id);
+  }, []);
+
+  if (!isFilmLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   const hrefToFilmPage = `/films/${film.id}`;
 
@@ -50,11 +65,20 @@ const AddReview = (props) => {
 
 AddReview.propTypes = {
   film: FilmShape,
+  isFilmLoaded: PropTypes.bool.isRequired,
+  onLoad: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({FILMS}) => ({
   film: FILMS.film,
+  isFilmLoaded: FILMS.isFilmLoaded,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoad(id) {
+    dispatch(fetchFilmById(id));
+  },
 });
 
 export {AddReview};
-export default connect(mapStateToProps, null)(AddReview);
+export default connect(mapStateToProps, mapDispatchToProps)(AddReview);

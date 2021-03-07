@@ -3,9 +3,16 @@ import PropTypes from 'prop-types';
 import {Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {AuthorizationStatus} from '../../const';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 
 const PrivateRoute = ({render, path, exact, authorizationStatus}) => {
+  if (authorizationStatus === AuthorizationStatus.INIT) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <Route
       path={path}
