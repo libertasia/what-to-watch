@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import dayjs from 'dayjs';
 import {FilmShape, ReviewsShape} from '../../../shapes';
 
@@ -155,4 +156,10 @@ Tabs.propTypes = {
   reviews: ReviewsShape
 };
 
-export default Tabs;
+const mapStateToProps = ({FILMS}) => ({
+  film: FILMS.film,
+  reviews: FILMS.reviews,
+});
+
+export {Tabs};
+export default connect(mapStateToProps, null)(Tabs);

@@ -1,20 +1,32 @@
-import React from 'react';
-import {useParams, Link} from "react-router-dom";
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {Link, useParams} from "react-router-dom";
+import PropTypes from 'prop-types';
 import Tabs from './tabs';
 import PageFooter from '../../shared/page-footer/page-footer';
 import PageLogo from '../../shared/page-logo/page-logo';
 import MovieList from '../../shared/movie-list/movie-list';
-import {FilmsShape, ReviewsShape} from '../../../shapes';
+import {FilmShape, FilmsShape} from '../../../shapes';
+import {fetchFilmById, fetchReviewsById} from '../../../store/api-actions';
+import LoadingScreen from '../../loading-screen/loading-screen';
 
 
 const MAX_SIMILAR_FILMS_COUNT = 4;
 
 const Film = (props) => {
-  const {films, reviews} = props;
+  const {films, film, isFilmLoaded, isReviewsLoaded, onLoad} = props;
 
   const id = parseInt(useParams().id, 10);
 
-  const film = films.find((currentFilm) => currentFilm.id === id);
+  useEffect(() => {
+    onLoad(id);
+  }, []);
+
+  if (!isFilmLoaded || !isReviewsLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   const similarFilms = films.filter((f) => f.genre === film.genre && f.id !== film.id).slice(0, MAX_SIMILAR_FILMS_COUNT);
 
@@ -70,9 +82,7 @@ const Film = (props) => {
             <div className="movie-card__poster movie-card__poster--big">
               <img src={film.posterImage} alt={imgAltText} width={218} height={327} />
             </div>
-            <Tabs
-              film={film}
-              reviews={reviews}/>
+            <Tabs />
           </div>
         </div>
       </section>
@@ -89,7 +99,25 @@ const Film = (props) => {
 
 Film.propTypes = {
   films: FilmsShape,
-  reviews: ReviewsShape
+  film: FilmShape,
+  isFilmLoaded: PropTypes.bool.isRequired,
+  isReviewsLoaded: PropTypes.bool.isRequired,
+  onLoad: PropTypes.func.isRequired,
 };
 
-export default Film;
+const mapStateToProps = ({FILMS}) => ({
+  films: FILMS.films,
+  film: FILMS.film,
+  isFilmLoaded: FILMS.isFilmLoaded,
+  isReviewsLoaded: FILMS.isReviewsLoaded,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoad(id) {
+    dispatch(fetchFilmById(id));
+    dispatch(fetchReviewsById(id));
+  },
+});
+
+export {Film};
+export default connect(mapStateToProps, mapDispatchToProps)(Film);

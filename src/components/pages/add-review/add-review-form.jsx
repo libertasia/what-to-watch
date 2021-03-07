@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 
 const RATINGS_COUNT = 10;
 
@@ -37,4 +38,9 @@ const AddReviewForm = () => {
   );
 };
 
-export default AddReviewForm;
+const mapStateToProps = ({FILMS}) => ({
+  film: FILMS.film,
+});
+
+export {AddReviewForm};
+export default connect(mapStateToProps, null)(AddReviewForm);

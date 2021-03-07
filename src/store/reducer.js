@@ -3,9 +3,32 @@ import {DEFAULT_GENRE, DEFAULT_VISIBLE_FILMS_COUNT, AuthorizationStatus} from '.
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
-  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  authorizationStatus: AuthorizationStatus.INIT,
   isDataLoaded: false,
   films: [],
+  film: {
+    backgroundColor: ``,
+    backgroundImage: ``,
+    description: ``,
+    director: ``,
+    genre: ``,
+    id: -1,
+    isFavorite: false,
+    name: ``,
+    posterImage: ``,
+    previewImage: ``,
+    previewVideoLink: ``,
+    rating: 0,
+    released: 0,
+    runTime: 0,
+    scoresCount: 0,
+    starring: [``],
+    videoLink: ``
+  },
+  isFilmLoaded: false,
+  reviews: [],
+  isReviewsLoaded: false,
+  favoriteFilms: [],
   promo: {
     backgroundImage: ``,
     genre: ``,
@@ -39,6 +62,23 @@ const reducer = (state = initialState, action) => {
         ...state,
         promo: action.payload.film,
         isDataLoaded: action.payload.isDataLoaded,
+      };
+    case ActionType.LOAD_FAVORITE_FILMS_LIST:
+      return {
+        ...state,
+        favoriteFilms: action.payload,
+      };
+    case ActionType.LOAD_FILM:
+      return {
+        ...state,
+        film: action.payload.film,
+        isFilmLoaded: action.payload.isFilmLoaded,
+      };
+    case ActionType.LOAD_REVIEWS:
+      return {
+        ...state,
+        reviews: action.payload.reviews,
+        isReviewsLoaded: action.payload.isReviewsLoaded,
       };
     case ActionType.REQUIRED_AUTHORIZATION:
       return {
