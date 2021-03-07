@@ -26,13 +26,13 @@ export const fetchFavoriteFilmsList = () => (dispatch, _getState, api) => (
 export const fetchFilmById = (id) => (dispatch, _getState, api) => (
   api.get(`/films/${id}`)
     .then(({data}) => adaptFilmToClient(data))
-    .then((film) => dispatch(ActionCreator.loadFilm(film)))
+    .then((film) => dispatch(ActionCreator.loadFilm(film, true)))
     .catch(({error}) => dispatch(ActionCreator.fetchFilmByIdError(error)))
 );
 
 export const fetchReviewsById = (id) => (dispatch, _getState, api) => (
   api.get(`/comments/${id}`)
-    .then((reviews) => dispatch(ActionCreator.loadReviewsById(reviews)))
+    .then(({data}) => dispatch(ActionCreator.loadReviews(data, true)))
     .catch(({error}) => dispatch(ActionCreator.fetchReviewsByIdError(error)))
 );
 

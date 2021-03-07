@@ -10,7 +10,7 @@ export const ActionType = {
   LOAD_PROMO_FILM: `data/loadPromoFilm`,
   LOAD_FAVORITE_FILMS_LIST: `data/loadFavoriteFilmsList`,
   LOAD_FILM: `data/loadFilm`,
-  LOAD_REVIEWS_BY_ID: `data/loadReviewsById`,
+  LOAD_REVIEWS: `data/loadReviews`,
   REDIRECT_TO_ROUTE: `app/redirectToRoute`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   RESET_GENRE: `genre/reset`,
@@ -57,13 +57,13 @@ export const ActionCreator = {
     type: ActionType.LOAD_FAVORITE_FILMS_LIST,
     payload: films,
   }),
-  loadFilm: (film) => ({
-    type: ActionType.LOAD_FILM_BY_ID,
-    payload: film,
+  loadFilm: (film, isFilmLoaded) => ({
+    type: ActionType.LOAD_FILM,
+    payload: {film, isFilmLoaded},
   }),
-  loadReviewsById: (id) => ({
-    type: ActionType.LOAD_REVIEWS_BY_ID,
-    payload: id,
+  loadReviews: (reviews, isReviewsLoaded) => ({
+    type: ActionType.LOAD_REVIEWS,
+    payload: {reviews, isReviewsLoaded},
   }),
   redirectToRoute: (url) => ({
     type: ActionType.REDIRECT_TO_ROUTE,

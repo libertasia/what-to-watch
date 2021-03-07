@@ -1,25 +1,32 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {Link, useParams} from "react-router-dom";
-import {PropTypes} from 'prop-types';
+import PropTypes from 'prop-types';
 import Tabs from './tabs';
 import PageFooter from '../../shared/page-footer/page-footer';
 import PageLogo from '../../shared/page-logo/page-logo';
 import MovieList from '../../shared/movie-list/movie-list';
-import {FilmShape, FilmsShape, ReviewsShape} from '../../../shapes';
+import {FilmShape, FilmsShape} from '../../../shapes';
 import {fetchFilmById, fetchReviewsById} from '../../../store/api-actions';
+import LoadingScreen from '../../loading-screen/loading-screen';
 
 
 const MAX_SIMILAR_FILMS_COUNT = 4;
 
 const Film = (props) => {
-  const {films, film, reviews, onLoad} = props;
+  const {films, film, isFilmLoaded, isReviewsLoaded, onLoad} = props;
 
   const id = parseInt(useParams().id, 10);
 
   useEffect(() => {
     onLoad(id);
   }, []);
+
+  if (!isFilmLoaded || !isReviewsLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   const similarFilms = films.filter((f) => f.genre === film.genre && f.id !== film.id).slice(0, MAX_SIMILAR_FILMS_COUNT);
 
@@ -75,9 +82,7 @@ const Film = (props) => {
             <div className="movie-card__poster movie-card__poster--big">
               <img src={film.posterImage} alt={imgAltText} width={218} height={327} />
             </div>
-            <Tabs
-              film={film}
-              reviews={reviews}/>
+            <Tabs />
           </div>
         </div>
       </section>
@@ -95,14 +100,16 @@ const Film = (props) => {
 Film.propTypes = {
   films: FilmsShape,
   film: FilmShape,
-  reviews: ReviewsShape,
+  isFilmLoaded: PropTypes.bool.isRequired,
+  isReviewsLoaded: PropTypes.bool.isRequired,
   onLoad: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({FILMS}) => ({
   films: FILMS.films,
   film: FILMS.film,
-  reviews: FILMS.reviews,
+  isFilmLoaded: FILMS.isFilmLoaded,
+  isReviewsLoaded: FILMS.isReviewsLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({
