@@ -7,14 +7,14 @@ import PageFooter from '../../shared/page-footer/page-footer';
 import PageLogo from '../../shared/page-logo/page-logo';
 import MovieList from '../../shared/movie-list/movie-list';
 import {FilmShape, FilmsShape} from '../../../shapes';
-import {fetchFilmById, fetchReviewsById} from '../../../store/api-actions';
+import {fetchFilmById, fetchFilmsList, fetchReviewsById} from '../../../store/api-actions';
 import LoadingScreen from '../../loading-screen/loading-screen';
 
 
 const MAX_SIMILAR_FILMS_COUNT = 4;
 
 const Film = (props) => {
-  const {films, film, isFilmLoaded, isReviewsLoaded, onLoad} = props;
+  const {films, film, isDataLoaded, isFilmLoaded, isReviewsLoaded, onLoad} = props;
 
   const id = parseInt(useParams().id, 10);
 
@@ -22,7 +22,7 @@ const Film = (props) => {
     onLoad(id);
   }, []);
 
-  if (!isFilmLoaded || !isReviewsLoaded) {
+  if (!isFilmLoaded || !isReviewsLoaded || !isDataLoaded) {
     return (
       <LoadingScreen />
     );
@@ -100,6 +100,7 @@ const Film = (props) => {
 Film.propTypes = {
   films: FilmsShape,
   film: FilmShape,
+  isDataLoaded: PropTypes.bool.isRequired,
   isFilmLoaded: PropTypes.bool.isRequired,
   isReviewsLoaded: PropTypes.bool.isRequired,
   onLoad: PropTypes.func.isRequired,
@@ -108,12 +109,14 @@ Film.propTypes = {
 const mapStateToProps = ({FILMS}) => ({
   films: FILMS.films,
   film: FILMS.film,
+  isDataLoaded: FILMS.isDataLoaded,
   isFilmLoaded: FILMS.isFilmLoaded,
   isReviewsLoaded: FILMS.isReviewsLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onLoad(id) {
+    dispatch(fetchFilmsList());
     dispatch(fetchFilmById(id));
     dispatch(fetchReviewsById(id));
   },

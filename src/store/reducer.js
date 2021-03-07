@@ -1,5 +1,6 @@
 import {ActionType} from './action';
 import {DEFAULT_GENRE, DEFAULT_VISIBLE_FILMS_COUNT, AuthorizationStatus} from '../const';
+import browserHistory from "../browser-history";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
@@ -105,11 +106,22 @@ const errorInitialState = {
 };
 
 const errorReducer = (state = errorInitialState, action) => {
-  const {error} = action;
+  switch (action.type) {
+    case ActionType.FETCH_FILM_BY_ID_ERROR:
+      browserHistory.push(`/404`);
+      return state;
+  }
+
+  if (!action.payload) {
+    return state;
+  }
+
+  const {error} = action.payload;
 
   if (error) {
     return {
-      error
+      ...state,
+      error,
     };
   }
   return state;

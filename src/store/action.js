@@ -24,23 +24,23 @@ export const ActionCreator = {
   }),
   fetchFilmsListError: (error) => ({
     type: ActionType.FETCH_FILMS_LIST_ERROR,
-    payload: error,
+    payload: {error},
   }),
   fetchPromoFilmError: (error) => ({
     type: ActionType.FETCH_PROMO_FILM_ERROR,
-    payload: error,
+    payload: {error},
   }),
   fetchFavoriteFilmsListError: (error) => ({
     type: ActionType.FETCH_FAVORITE_FILMS_LIST_ERROR,
-    payload: error,
+    payload: {error},
   }),
   fetchFilmByIdError: (error) => ({
     type: ActionType.FETCH_FILM_BY_ID_ERROR,
-    payload: error,
+    payload: {error},
   }),
   fetchReviewsByIdError: (error) => ({
     type: ActionType.FETCH_REVIEWS_BY_ID_ERROR,
-    payload: error,
+    payload: {error},
   }),
   increaseVisibleFilmsCount: () => ({
     type: ActionType.INCREASE_VISIBLE_FILMS_COUNT,
