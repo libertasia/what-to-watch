@@ -1,13 +1,9 @@
 import React from 'react';
-import {useParams} from "react-router-dom";
-import {FilmsShape} from '../../../shapes';
+import {connect} from 'react-redux';
+import {FilmShape} from '../../../shapes';
 
 const Player = (props) => {
-  const {films} = props;
-
-  const id = parseInt(useParams().id, 10);
-
-  const film = films.find((currentFilm)=>currentFilm.id === id);
+  const {film} = props;
 
   return (
     <div className="player">
@@ -44,7 +40,12 @@ const Player = (props) => {
 };
 
 Player.propTypes = {
-  films: FilmsShape
+  film: FilmShape,
 };
 
-export default Player;
+const mapStateToProps = ({FILMS}) => ({
+  film: FILMS.film,
+});
+
+export {Player};
+export default connect(mapStateToProps, null)(Player);

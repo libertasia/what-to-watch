@@ -11,9 +11,7 @@ import PrivateRoute from '../private-route/private-route';
 import {FilmsShape, ReviewsShape} from '../../shapes';
 import browserHistory from "../../browser-history";
 
-const App = (props) => {
-  const {films} = props;
-
+const App = () => {
   return (
     <BrowserRouter history={browserHistory}>
       <Switch>
@@ -37,7 +35,7 @@ const App = (props) => {
         >
         </PrivateRoute>
         <Route exact path="/player/:id">
-          <Player films={films} />
+          <Player />
         </Route>
         <Route>
           <NotFoundScreen />

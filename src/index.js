@@ -11,8 +11,6 @@ import {ActionCreator} from './store/action';
 import {redirect} from "./store/middlewares/redirect";
 import {checkAuth} from "./store/api-actions";
 import {AuthorizationStatus} from "./const";
-import mockReviews from './mocks/reviews';
-import films from './mocks/films';
 
 const api = createAPI(
     () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
@@ -30,10 +28,7 @@ store.dispatch(checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>
-      <App
-        films={films}
-        reviews={mockReviews}
-      />
+      <App />
     </Provider>,
     document.querySelector(`#root`)
 );
