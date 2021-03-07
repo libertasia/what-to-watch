@@ -33,7 +33,7 @@ const App = (props) => {
         </Route>
         <PrivateRoute exact
           path="/films/:id/review"
-          render={() => <AddReview films={films} />}
+          render={() => <AddReview />}
         >
         </PrivateRoute>
         <Route exact path="/player/:id">

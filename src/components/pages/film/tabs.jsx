@@ -161,12 +161,5 @@ const mapStateToProps = ({FILMS}) => ({
   reviews: FILMS.reviews,
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-//   onLoad(id) {
-//     dispatch(fetchFilmById(id));
-//     dispatch(fetchReviewsById(id));
-//   },
-// });
-
 export {Tabs};
 export default connect(mapStateToProps, null)(Tabs);

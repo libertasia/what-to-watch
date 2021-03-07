@@ -1,15 +1,12 @@
 import React from 'react';
-import {useParams, Link} from "react-router-dom";
+import {connect} from 'react-redux';
+import {Link} from "react-router-dom";
 import PageLogo from '../../shared/page-logo/page-logo';
 import AddReviewForm from './add-review-form';
-import {FilmsShape} from '../../../shapes';
+import {FilmShape} from '../../../shapes';
 
 const AddReview = (props) => {
-  const {films} = props;
-
-  const id = parseInt(useParams().id, 10);
-
-  const film = films.find((currentFilm)=>currentFilm.id === id);
+  const {film} = props;
 
   const hrefToFilmPage = `/films/${film.id}`;
 
@@ -52,7 +49,12 @@ const AddReview = (props) => {
 };
 
 AddReview.propTypes = {
-  films: FilmsShape
+  film: FilmShape,
 };
 
-export default AddReview;
+const mapStateToProps = ({FILMS}) => ({
+  film: FILMS.film,
+});
+
+export {AddReview};
+export default connect(mapStateToProps, null)(AddReview);
