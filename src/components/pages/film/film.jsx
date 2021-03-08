@@ -9,12 +9,13 @@ import MovieList from '../../shared/movie-list/movie-list';
 import {FilmShape, FilmsShape} from '../../../shapes';
 import {fetchFilmById, fetchFilmsList, fetchReviewsById} from '../../../store/api-actions';
 import LoadingScreen from '../../loading-screen/loading-screen';
+import {AuthorizationStatus} from '../../../const';
 
 
 const MAX_SIMILAR_FILMS_COUNT = 4;
 
 const Film = (props) => {
-  const {films, film, isDataLoaded, isFilmLoaded, isReviewsLoaded, onLoad} = props;
+  const {films, film, isDataLoaded, isFilmLoaded, isReviewsLoaded, onLoad, authorizationStatus} = props;
 
   const id = parseInt(useParams().id, 10);
 
@@ -72,7 +73,9 @@ const Film = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to={hrefToAddReviewPage} className="btn movie-card__button">Add review</Link>
+                {authorizationStatus === AuthorizationStatus.AUTH &&
+                  <Link to={hrefToAddReviewPage} className="btn movie-card__button">Add review</Link>
+                }
               </div>
             </div>
           </div>
@@ -98,6 +101,7 @@ const Film = (props) => {
 };
 
 Film.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   films: FilmsShape,
   film: FilmShape,
   isDataLoaded: PropTypes.bool.isRequired,
@@ -107,6 +111,7 @@ Film.propTypes = {
 };
 
 const mapStateToProps = ({FILMS}) => ({
+  authorizationStatus: FILMS.authorizationStatus,
   films: FILMS.films,
   film: FILMS.film,
   isDataLoaded: FILMS.isDataLoaded,
