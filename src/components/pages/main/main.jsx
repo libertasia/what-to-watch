@@ -47,9 +47,7 @@ const Main = (props) => {
               <span className="logo__letter logo__letter--3">W</span>
             </a>
           </div>
-          <div className="user-block">
-            <UserBlock />
-          </div>
+          <UserBlock />
         </header>
         <div className="movie-card__wrap">
           <div className="movie-card__info">
