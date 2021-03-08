@@ -15,6 +15,7 @@ export const ActionType = {
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   RESET_GENRE: `genre/reset`,
   RESET_VISIBLE_FILMS_COUNT: `films/resetVisibleFilmsCount`,
+  COMMENT_POST_ERROR: `data/commentPostError`
 };
 
 export const ActionCreator = {
@@ -49,9 +50,9 @@ export const ActionCreator = {
     type: ActionType.LOAD_FILMS,
     payload: {films, isDataLoaded},
   }),
-  loadPromoFilm: (film, isDataLoaded) => ({
+  loadPromoFilm: (film, isPromoLoaded) => ({
     type: ActionType.LOAD_PROMO_FILM,
-    payload: {film, isDataLoaded},
+    payload: {film, isPromoLoaded},
   }),
   loadFavoriteFilmsList: (films) => ({
     type: ActionType.LOAD_FAVORITE_FILMS_LIST,
@@ -79,4 +80,8 @@ export const ActionCreator = {
   resetVisibleFilmsCount: () => ({
     type: ActionType.RESET_VISIBLE_FILMS_COUNT,
   }),
+  commentPostError: (error) => ({
+    type: ActionType.COMMENT_POST_ERROR,
+    payload: {error}
+  })
 };

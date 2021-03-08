@@ -6,6 +6,7 @@ const initialState = {
   activeGenre: DEFAULT_GENRE,
   authorizationStatus: AuthorizationStatus.INIT,
   isDataLoaded: false,
+  isPromoLoaded: false,
   films: [],
   film: {
     backgroundColor: ``,
@@ -62,7 +63,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         promo: action.payload.film,
-        isDataLoaded: action.payload.isDataLoaded,
+        isPromoLoaded: action.payload.isPromoLoaded,
       };
     case ActionType.LOAD_FAVORITE_FILMS_LIST:
       return {

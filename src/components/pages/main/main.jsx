@@ -12,19 +12,19 @@ import {ActionCreator} from '../../../store/action';
 import {fetchFilmsList, fetchPromoFilm} from "../../../store/api-actions";
 
 const Main = (props) => {
-  const {promo, visibleFilms, onLoad, isDataLoaded, onLoadData} = props;
+  const {promo, visibleFilms, onLoad, isDataLoaded, isPromoLoaded, onLoadData} = props;
 
   useEffect(() => {
     onLoad();
   }, []);
 
   useEffect(() => {
-    if (!isDataLoaded) {
+    if (!isDataLoaded || !isPromoLoaded) {
       onLoadData();
     }
-  }, [isDataLoaded]);
+  }, [isDataLoaded, isPromoLoaded]);
 
-  if (!isDataLoaded) {
+  if (!isDataLoaded || !isPromoLoaded) {
     return (
       <LoadingScreen />
     );
@@ -106,6 +106,7 @@ const Main = (props) => {
 
 Main.propTypes = {
   isDataLoaded: PropTypes.bool.isRequired,
+  isPromoLoaded: PropTypes.bool.isRequired,
   onLoad: PropTypes.func.isRequired,
   onLoadData: PropTypes.func.isRequired,
   promo: PromoFilmShape,
@@ -114,6 +115,7 @@ Main.propTypes = {
 
 const mapStateToProps = ({FILMS}) => ({
   isDataLoaded: FILMS.isDataLoaded,
+  isPromoLoaded: FILMS.isPromoLoaded,
   promo: FILMS.promo,
   visibleFilms: getVisibleFilms(FILMS),
 });
