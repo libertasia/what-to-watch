@@ -1,23 +1,23 @@
 import {ActionCreator} from "./action";
-import {AuthorizationStatus} from "../const";
+import {AuthorizationStatus, APIRoute} from "../const";
 import {adaptFilmToClient} from "../film-utils";
 
 export const fetchFilmsList = () => (dispatch, _getState, api) => (
-  api.get(`/films`)
+  api.get(APIRoute.FILMS)
     .then(({data}) => data.map(adaptFilmToClient))
     .then((films) => dispatch(ActionCreator.loadFilms(films, true)))
     .catch((error) => dispatch(ActionCreator.fetchFilmsListError(error)))
 );
 
 export const fetchPromoFilm = () => (dispatch, _getState, api) => (
-  api.get(`/films/promo`)
+  api.get(APIRoute.PROMO_FILM)
     .then(({data}) => adaptFilmToClient(data))
     .then((film) => dispatch(ActionCreator.loadPromoFilm(film, true)))
     .catch((error) => dispatch(ActionCreator.fetchPromoFilmError(error)))
 );
 
 export const fetchFavoriteFilmsList = () => (dispatch, _getState, api) => (
-  api.get(`/favorite`)
+  api.get(APIRoute.FAVORITE_FILMS)
     .then(({data}) => data.map(adaptFilmToClient))
     .then((films) => dispatch(ActionCreator.loadFavoriteFilmsList(films)))
     .catch((error) => dispatch(ActionCreator.fetchFavoriteFilmsListError(error)))
@@ -37,20 +37,20 @@ export const fetchReviewsById = (id) => (dispatch, _getState, api) => (
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (
-  api.get(`/login`)
+  api.get(APIRoute.LOGIN)
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
     .catch(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)))
 );
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
-  api.post(`/login`, {email, password})
+  api.post(APIRoute.LOGIN, {email, password})
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
     .then(() => dispatch(ActionCreator.redirectToRoute(`/`)))
     .catch(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH_ERROR)))
 );
 
 export const logout = () => (dispatch, _getState, api) => (
-  api.get(`/logout`)
+  api.get(APIRoute.LOGOUT)
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)))
     .catch(() => {})
 );

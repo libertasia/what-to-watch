@@ -26,4 +26,21 @@ const RatingLevel = {
   AWESOME: `Awesome`,
 };
 
-export {DEFAULT_GENRE, MAX_GENRES_COUNT, DEFAULT_VISIBLE_FILMS_COUNT, AuthorizationStatus, Rating, RatingLevel};
+const AppRoute = {
+  ADD_REVIEW: `/films/:id/review`,
+  FILM: `/films/:id`,
+  LOGIN: `/login`,
+  MY_LIST: `/mylist`,
+  PLAYER: `/player/:id`,
+  ROOT: `/`,
+};
+
+const APIRoute = {
+  FAVORITE_FILMS: `/favorite`,
+  FILMS: `/films`,
+  LOGIN: `/login`,
+  LOGOUT: `/logout`,
+  PROMO_FILM: `/films/promo`,
+};
+
+export {DEFAULT_GENRE, MAX_GENRES_COUNT, DEFAULT_VISIBLE_FILMS_COUNT, AuthorizationStatus, Rating, RatingLevel, APIRoute, AppRoute};

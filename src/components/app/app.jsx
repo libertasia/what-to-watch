@@ -9,31 +9,32 @@ import Player from '../pages/player/player';
 import NotFoundScreen from '../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import browserHistory from "../../browser-history";
+import {AppRoute} from '../../const';
 
 const App = () => {
   return (
     <BrowserRouter history={browserHistory}>
       <Switch>
-        <Route exact path="/">
+        <Route exact path={AppRoute.ROOT}>
           <Main />
         </Route>
-        <Route exact path="/login">
+        <Route exact path={AppRoute.LOGIN}>
           <SignIn />
         </Route>
         <PrivateRoute exact
-          path="/mylist"
+          path={AppRoute.MY_LIST}
           render={() => <MyList />}
         >
         </PrivateRoute>
-        <Route exact path="/films/:id">
+        <Route exact path={AppRoute.FILM}>
           <Film />
         </Route>
         <PrivateRoute exact
-          path="/films/:id/review"
+          path={AppRoute.ADD_REVIEW}
           render={() => <AddReview />}
         >
         </PrivateRoute>
-        <Route exact path="/player/:id">
+        <Route exact path={AppRoute.PLAYER}>
           <Player />
         </Route>
         <Route>
