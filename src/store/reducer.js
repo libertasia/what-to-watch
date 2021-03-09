@@ -39,6 +39,7 @@ const initialState = {
     released: 0,
   },
   visibleFilmsCount: DEFAULT_VISIBLE_FILMS_COUNT,
+  isReviewFormDisabled: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -96,6 +97,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         visibleFilmsCount: DEFAULT_VISIBLE_FILMS_COUNT,
+      };
+    case ActionType.SET_IS_REVIEW_FORM_DISABLED:
+      return {
+        ...state,
+        isReviewFormDisabled: action.payload
       };
   }
 

@@ -55,8 +55,15 @@ export const logout = () => (dispatch, _getState, api) => (
     .catch(() => {})
 );
 
-export const commentPost = (id, rating, comment) => (dispatch, _getState, api) => (
+export const commentPost = (id, rating, comment) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.setIsReviewFormDisabled(true));
   api.post(`/comments/${id}`, {rating, comment})
-    .then(() => dispatch(ActionCreator.redirectToRoute(`/films/${id}`)))
-    .catch((error) => dispatch(ActionCreator.commentPostError(error)))
-);
+    .then(() => {
+      dispatch(ActionCreator.redirectToRoute(`/films/${id}`));
+      dispatch(ActionCreator.setIsReviewFormDisabled(false));
+    })
+    .catch((error) => {
+      dispatch(ActionCreator.commentPostError(error));
+      dispatch(ActionCreator.setIsReviewFormDisabled(false));
+    });
+};

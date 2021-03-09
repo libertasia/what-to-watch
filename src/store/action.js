@@ -15,7 +15,8 @@ export const ActionType = {
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   RESET_GENRE: `genre/reset`,
   RESET_VISIBLE_FILMS_COUNT: `films/resetVisibleFilmsCount`,
-  COMMENT_POST_ERROR: `data/commentPostError`
+  COMMENT_POST_ERROR: `data/commentPostError`,
+  SET_IS_REVIEW_FORM_DISABLED: `review/setIsReviewFormDisabled`
 };
 
 export const ActionCreator = {
@@ -83,5 +84,9 @@ export const ActionCreator = {
   commentPostError: (error) => ({
     type: ActionType.COMMENT_POST_ERROR,
     payload: {error}
+  }),
+  setIsReviewFormDisabled: (isDisabled) => ({
+    type: ActionType.SET_IS_REVIEW_FORM_DISABLED,
+    payload: isDisabled
   })
 };

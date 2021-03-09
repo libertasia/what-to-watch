@@ -9,7 +9,7 @@ const MIN_REVIEW_LENGTH = 5;
 const MAX_REVIEW_LENGTH = 400;
 
 const AddReviewForm = (props) => {
-  const {film, onReviewSubmit, errorMessage} = props;
+  const {film, onReviewSubmit, errorMessage, isReviewFormDisabled} = props;
 
   const [review, setReview] = useState({
     rating: 0,
@@ -20,7 +20,7 @@ const AddReviewForm = (props) => {
 
   useEffect(() => {
     if (review.rating === 0 || review.comment.length < MIN_REVIEW_LENGTH || review.comment.length > MAX_REVIEW_LENGTH) {
-      setIsPostDisabled(false);
+      setIsPostDisabled(true);
     } else {
       setIsPostDisabled(false);
     }
@@ -43,7 +43,7 @@ const AddReviewForm = (props) => {
           {
             ratingValues.map((value) => (
               <React.Fragment key={`star-${value}`}>
-                <input className="rating__input" id={`star-${value}`} type="radio" name="rating" value={value}/>
+                <input className="rating__input" id={`star-${value}`} type="radio" name="rating" value={value} disabled={isReviewFormDisabled}/>
                 <label className="rating__label" htmlFor={`star-${value}`}>Rating {value}</label>
               </React.Fragment>
             ))
@@ -51,9 +51,9 @@ const AddReviewForm = (props) => {
         </div>
       </div>
       <div className="add-review__text">
-        <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" onChange={setComment} minLength={MIN_REVIEW_LENGTH} maxLength={MAX_REVIEW_LENGTH} required/>
+        <textarea disabled={isReviewFormDisabled} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" onChange={setComment} minLength={MIN_REVIEW_LENGTH} maxLength={MAX_REVIEW_LENGTH} required/>
         <div className="add-review__submit">
-          <button className="add-review__btn" type="submit" disabled={isPostDisabled}>Post</button>
+          <button className="add-review__btn" type="submit" disabled={isPostDisabled || isReviewFormDisabled}>Post</button>
         </div>
       </div>
       {errorMessage && `${errorMessage}`}
@@ -65,11 +65,13 @@ AddReviewForm.propTypes = {
   film: FilmShape,
   onReviewSubmit: PropTypes.func.isRequired,
   errorMessage: PropTypes.string,
+  isReviewFormDisabled: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = ({FILMS, ERRORS}) => ({
   film: FILMS.film,
   errorMessage: ERRORS.errorMessage,
+  isReviewFormDisabled: FILMS.isReviewFormDisabled
 });
 
 const mapDispatchToProps = (dispatch) => ({
