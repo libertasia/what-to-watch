@@ -4,6 +4,7 @@ import {PropTypes} from 'prop-types';
 import PageFooter from '../../shared/page-footer/page-footer';
 import PageLogo from '../../shared/page-logo/page-logo';
 import MovieList from '../../shared/movie-list/movie-list';
+import UserBlock from '../../shared/user-block/user-block';
 import {FilmsShape} from '../../../shapes';
 import {fetchFavoriteFilmsList} from '../../../store/api-actions';
 
@@ -19,11 +20,7 @@ const MyList = (props) => {
       <header className="page-header user-page__head">
         <PageLogo />
         <h1 className="page-title user-page__title">My list</h1>
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
-          </div>
-        </div>
+        <UserBlock />
       </header>
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>

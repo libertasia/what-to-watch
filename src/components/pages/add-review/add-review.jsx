@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Link, useParams} from "react-router-dom";
 import PageLogo from '../../shared/page-logo/page-logo';
+import UserBlock from '../../shared/user-block/user-block';
 import AddReviewForm from './add-review-form';
 import {FilmShape} from '../../../shapes';
 import {fetchFilmById} from '../../../store/api-actions';
@@ -46,11 +47,7 @@ const AddReview = (props) => {
               </li>
             </ul>
           </nav>
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
-            </div>
-          </div>
+          <UserBlock />
         </header>
         <div className="movie-card__poster movie-card__poster--small">
           <img src={film.posterImage} alt={imgAltText} width={218} height={327} />

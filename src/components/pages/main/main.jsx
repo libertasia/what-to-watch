@@ -6,25 +6,25 @@ import MovieList from '../../shared/movie-list/movie-list';
 import GenresList from './genres-list';
 import ShowMoreBtn from './show-more-btn';
 import LoadingScreen from '../../loading-screen/loading-screen';
-import UserBlock from './user-block';
+import UserBlock from '../../shared/user-block/user-block';
 import {getVisibleFilms} from '../../../selectors';
 import {ActionCreator} from '../../../store/action';
 import {fetchFilmsList, fetchPromoFilm} from "../../../store/api-actions";
 
 const Main = (props) => {
-  const {promo, visibleFilms, onLoad, isDataLoaded, onLoadData} = props;
+  const {promo, visibleFilms, onLoad, isDataLoaded, isPromoLoaded, onLoadData} = props;
 
   useEffect(() => {
     onLoad();
   }, []);
 
   useEffect(() => {
-    if (!isDataLoaded) {
+    if (!isDataLoaded || !isPromoLoaded) {
       onLoadData();
     }
-  }, [isDataLoaded]);
+  }, [isDataLoaded, isPromoLoaded]);
 
-  if (!isDataLoaded) {
+  if (!isDataLoaded || !isPromoLoaded) {
     return (
       <LoadingScreen />
     );
@@ -47,9 +47,7 @@ const Main = (props) => {
               <span className="logo__letter logo__letter--3">W</span>
             </a>
           </div>
-          <div className="user-block">
-            <UserBlock />
-          </div>
+          <UserBlock />
         </header>
         <div className="movie-card__wrap">
           <div className="movie-card__info">
@@ -108,6 +106,7 @@ const Main = (props) => {
 
 Main.propTypes = {
   isDataLoaded: PropTypes.bool.isRequired,
+  isPromoLoaded: PropTypes.bool.isRequired,
   onLoad: PropTypes.func.isRequired,
   onLoadData: PropTypes.func.isRequired,
   promo: PromoFilmShape,
@@ -116,6 +115,7 @@ Main.propTypes = {
 
 const mapStateToProps = ({FILMS}) => ({
   isDataLoaded: FILMS.isDataLoaded,
+  isPromoLoaded: FILMS.isPromoLoaded,
   promo: FILMS.promo,
   visibleFilms: getVisibleFilms(FILMS),
 });

@@ -1,10 +1,12 @@
 import {ActionType} from './action';
 import {DEFAULT_GENRE, DEFAULT_VISIBLE_FILMS_COUNT, AuthorizationStatus} from '../const';
+import browserHistory from "../browser-history";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
   authorizationStatus: AuthorizationStatus.INIT,
   isDataLoaded: false,
+  isPromoLoaded: false,
   films: [],
   film: {
     backgroundColor: ``,
@@ -37,6 +39,7 @@ const initialState = {
     released: 0,
   },
   visibleFilmsCount: DEFAULT_VISIBLE_FILMS_COUNT,
+  isReviewFormDisabled: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -61,7 +64,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         promo: action.payload.film,
-        isDataLoaded: action.payload.isDataLoaded,
+        isPromoLoaded: action.payload.isPromoLoaded,
       };
     case ActionType.LOAD_FAVORITE_FILMS_LIST:
       return {
@@ -95,6 +98,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         visibleFilmsCount: DEFAULT_VISIBLE_FILMS_COUNT,
       };
+    case ActionType.SET_IS_REVIEW_FORM_DISABLED:
+      return {
+        ...state,
+        isReviewFormDisabled: action.payload
+      };
   }
 
   return state;
@@ -105,14 +113,31 @@ const errorInitialState = {
 };
 
 const errorReducer = (state = errorInitialState, action) => {
-  const {error} = action;
+  switch (action.type) {
+    case ActionType.FETCH_FILM_BY_ID_ERROR:
+      browserHistory.push(`/404`);
+      return state;
+  }
+
+  if (!action.payload) {
+    return state;
+  }
+
+  const {error} = action.payload;
 
   if (error) {
     return {
-      error
+      ...state,
+      error,
+      errorMessage: error.message,
+    };
+  } else {
+    return {
+      ...state,
+      error: null,
+      errorMessage: null,
     };
   }
-  return state;
 };
 
 export {reducer, errorReducer};

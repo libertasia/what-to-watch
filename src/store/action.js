@@ -15,6 +15,8 @@ export const ActionType = {
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   RESET_GENRE: `genre/reset`,
   RESET_VISIBLE_FILMS_COUNT: `films/resetVisibleFilmsCount`,
+  COMMENT_POST_ERROR: `data/commentPostError`,
+  SET_IS_REVIEW_FORM_DISABLED: `review/setIsReviewFormDisabled`
 };
 
 export const ActionCreator = {
@@ -24,23 +26,23 @@ export const ActionCreator = {
   }),
   fetchFilmsListError: (error) => ({
     type: ActionType.FETCH_FILMS_LIST_ERROR,
-    payload: error,
+    payload: {error},
   }),
   fetchPromoFilmError: (error) => ({
     type: ActionType.FETCH_PROMO_FILM_ERROR,
-    payload: error,
+    payload: {error},
   }),
   fetchFavoriteFilmsListError: (error) => ({
     type: ActionType.FETCH_FAVORITE_FILMS_LIST_ERROR,
-    payload: error,
+    payload: {error},
   }),
   fetchFilmByIdError: (error) => ({
     type: ActionType.FETCH_FILM_BY_ID_ERROR,
-    payload: error,
+    payload: {error},
   }),
   fetchReviewsByIdError: (error) => ({
     type: ActionType.FETCH_REVIEWS_BY_ID_ERROR,
-    payload: error,
+    payload: {error},
   }),
   increaseVisibleFilmsCount: () => ({
     type: ActionType.INCREASE_VISIBLE_FILMS_COUNT,
@@ -49,9 +51,9 @@ export const ActionCreator = {
     type: ActionType.LOAD_FILMS,
     payload: {films, isDataLoaded},
   }),
-  loadPromoFilm: (film, isDataLoaded) => ({
+  loadPromoFilm: (film, isPromoLoaded) => ({
     type: ActionType.LOAD_PROMO_FILM,
-    payload: {film, isDataLoaded},
+    payload: {film, isPromoLoaded},
   }),
   loadFavoriteFilmsList: (films) => ({
     type: ActionType.LOAD_FAVORITE_FILMS_LIST,
@@ -79,4 +81,12 @@ export const ActionCreator = {
   resetVisibleFilmsCount: () => ({
     type: ActionType.RESET_VISIBLE_FILMS_COUNT,
   }),
+  commentPostError: (error) => ({
+    type: ActionType.COMMENT_POST_ERROR,
+    payload: {error}
+  }),
+  setIsReviewFormDisabled: (isDisabled) => ({
+    type: ActionType.SET_IS_REVIEW_FORM_DISABLED,
+    payload: isDisabled
+  })
 };
