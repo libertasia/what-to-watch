@@ -8,7 +8,22 @@ const AuthorizationStatus = {
   INIT: `INIT`,
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
-  AUTH_ERROR: `AUTH_ERROR`
+  AUTH_ERROR: `AUTH_ERROR`,
 };
 
-export {DEFAULT_GENRE, MAX_GENRES_COUNT, DEFAULT_VISIBLE_FILMS_COUNT, AuthorizationStatus};
+const Rating = {
+  BAD: 3,
+  NORMAL: 5,
+  GOOD: 8,
+  AWESOME: 10,
+};
+
+const RatingLevel = {
+  BAD: `Bad`,
+  NORMAL: `Normal`,
+  GOOD: `Good`,
+  VERY_GOOD: `Very good`,
+  AWESOME: `Awesome`,
+};
+
+export {DEFAULT_GENRE, MAX_GENRES_COUNT, DEFAULT_VISIBLE_FILMS_COUNT, AuthorizationStatus, Rating, RatingLevel};

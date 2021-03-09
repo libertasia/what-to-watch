@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import dayjs from 'dayjs';
 import {FilmShape, ReviewsShape} from '../../../shapes';
+import {Rating, RatingLevel} from '../../../const';
 
 export const TabTypes = {
   OVERVIEW: `overview`,
@@ -44,6 +45,22 @@ const getDuration = (film) => {
   }
 };
 
+const getMovieRatingLevel = (film) => {
+  const rating = film.rating;
+
+  if (rating < Rating.BAD) {
+    return RatingLevel.BAD;
+  } else if (rating < Rating.NORMAL) {
+    return RatingLevel.NORMAL;
+  } else if (rating < Rating.GOOD) {
+    return RatingLevel.GOOD;
+  } else if (rating < Rating.AWESOME) {
+    return RatingLevel.VERY_GOOD;
+  } else {
+    return RatingLevel.AWESOME;
+  }
+};
+
 const Tabs = (props) => {
   const {film, reviews} = props;
 
@@ -65,7 +82,7 @@ const Tabs = (props) => {
           <div className="movie-rating">
             <div className="movie-rating__score">{film.rating}</div>
             <p className="movie-rating__meta">
-              <span className="movie-rating__level">Very good</span>
+              <span className="movie-rating__level">{getMovieRatingLevel(film)}</span>
               <span className="movie-rating__count">{film.scoresCount} ratings</span>
             </p>
           </div>
