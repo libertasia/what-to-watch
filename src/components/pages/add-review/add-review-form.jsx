@@ -5,11 +5,11 @@ import {commentPost} from '../../../store/api-actions';
 import {FilmShape} from '../../../shapes';
 
 const RATINGS_COUNT = 10;
-const MIN_REVIEW_LENGTH = 50;
+const MIN_REVIEW_LENGTH = 5;
 const MAX_REVIEW_LENGTH = 400;
 
 const AddReviewForm = (props) => {
-  const {film, onReviewSubmit} = props;
+  const {film, onReviewSubmit, errorMessage} = props;
 
   const [review, setReview] = useState({
     rating: 0,
@@ -20,7 +20,7 @@ const AddReviewForm = (props) => {
 
   useEffect(() => {
     if (review.rating === 0 || review.comment.length < MIN_REVIEW_LENGTH || review.comment.length > MAX_REVIEW_LENGTH) {
-      setIsPostDisabled(true);
+      setIsPostDisabled(false);
     } else {
       setIsPostDisabled(false);
     }
@@ -56,6 +56,7 @@ const AddReviewForm = (props) => {
           <button className="add-review__btn" type="submit" disabled={isPostDisabled}>Post</button>
         </div>
       </div>
+      {errorMessage && `${errorMessage}`}
     </form>
   );
 };
@@ -63,10 +64,12 @@ const AddReviewForm = (props) => {
 AddReviewForm.propTypes = {
   film: FilmShape,
   onReviewSubmit: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string,
 };
 
-const mapStateToProps = ({FILMS}) => ({
+const mapStateToProps = ({FILMS, ERRORS}) => ({
   film: FILMS.film,
+  errorMessage: ERRORS.errorMessage,
 });
 
 const mapDispatchToProps = (dispatch) => ({

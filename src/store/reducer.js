@@ -123,9 +123,15 @@ const errorReducer = (state = errorInitialState, action) => {
     return {
       ...state,
       error,
+      errorMessage: error.message,
+    };
+  } else {
+    return {
+      ...state,
+      error: null,
+      errorMessage: null,
     };
   }
-  return state;
 };
 
 export {reducer, errorReducer};

@@ -9,6 +9,7 @@ import MovieList from '../../shared/movie-list/movie-list';
 import {FilmShape, FilmsShape} from '../../../shapes';
 import {fetchFilmById, fetchFilmsList, fetchReviewsById} from '../../../store/api-actions';
 import LoadingScreen from '../../loading-screen/loading-screen';
+import UserBlock from '../../shared/user-block/user-block';
 import {AuthorizationStatus} from '../../../const';
 
 
@@ -47,11 +48,7 @@ const Film = (props) => {
           <h1 className="visually-hidden">WTW</h1>
           <header className="page-header movie-card__head">
             <PageLogo />
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
-              </div>
-            </div>
+            <UserBlock />
           </header>
           <div className="movie-card__wrap">
             <div className="movie-card__desc">

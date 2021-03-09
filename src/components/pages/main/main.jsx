@@ -6,7 +6,7 @@ import MovieList from '../../shared/movie-list/movie-list';
 import GenresList from './genres-list';
 import ShowMoreBtn from './show-more-btn';
 import LoadingScreen from '../../loading-screen/loading-screen';
-import UserBlock from './user-block';
+import UserBlock from '../../shared/user-block/user-block';
 import {getVisibleFilms} from '../../../selectors';
 import {ActionCreator} from '../../../store/action';
 import {fetchFilmsList, fetchPromoFilm} from "../../../store/api-actions";
