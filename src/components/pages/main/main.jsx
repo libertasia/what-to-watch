@@ -113,7 +113,8 @@ Main.propTypes = {
   isPromoLoaded: PropTypes.bool.isRequired,
   isPromoLoading: PropTypes.bool.isRequired,
   onLoad: PropTypes.func.isRequired,
-  onLoadData: PropTypes.func.isRequired,
+  loadFilmsList: PropTypes.func.isRequired,
+  loadPromoFilm: PropTypes.func.isRequired,
   promo: PromoFilmShape,
   visibleFilms: FilmsShape,
 };
