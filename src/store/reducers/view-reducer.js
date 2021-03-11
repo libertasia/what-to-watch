@@ -1,8 +1,9 @@
 import {ActionType} from '../action';
-import {DEFAULT_GENRE, DEFAULT_VISIBLE_FILMS_COUNT} from '../../const';
+import {DEFAULT_GENRE, DEFAULT_VISIBLE_FILMS_COUNT, TabTypes} from '../../const';
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
+  activeTab: TabTypes.OVERVIEW,
   visibleFilmsCount: DEFAULT_VISIBLE_FILMS_COUNT,
   isReviewFormDisabled: false,
 };
@@ -23,6 +24,16 @@ const viewReducer = (state = initialState, action) => {
       return {
         ...state,
         activeGenre: DEFAULT_GENRE,
+      };
+    case ActionType.RESET_ACTIVE_TAB:
+      return {
+        ...state,
+        activeTab: TabTypes.OVERVIEW,
+      };
+    case ActionType.SET_ACTIVE_TAB:
+      return {
+        ...state,
+        activeTab: action.payload,
       };
     case ActionType.RESET_VISIBLE_FILMS_COUNT:
       return {

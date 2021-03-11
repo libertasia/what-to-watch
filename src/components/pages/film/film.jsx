@@ -8,6 +8,7 @@ import PageLogo from '../../shared/page-logo/page-logo';
 import MovieList from '../../shared/movie-list/movie-list';
 import {FilmShape, FilmsShape} from '../../../shapes';
 import {fetchFilmById, fetchFilmsList, fetchReviewsById} from '../../../store/api-actions';
+import {ActionCreator} from '../../../store/action';
 import LoadingScreen from '../../loading-screen/loading-screen';
 import UserBlock from '../../shared/user-block/user-block';
 import {AuthorizationStatus} from '../../../const';
@@ -119,6 +120,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onLoad(id) {
+    dispatch(ActionCreator.resetActiveTab());
     dispatch(fetchFilmsList());
     dispatch(fetchFilmById(id));
     dispatch(fetchReviewsById(id));

@@ -4,7 +4,9 @@ import {AuthorizationStatus} from '../../const';
 const initialState = {
   authorizationStatus: AuthorizationStatus.INIT,
   isDataLoaded: false,
+  isDataLoading: false,
   isPromoLoaded: false,
+  isPromoLoading: false,
   isFilmLoaded: false,
   isReviewsLoaded: false,
   films: [],
@@ -46,11 +48,21 @@ const dataReducer = (state = initialState, action) => {
         films: action.payload.films,
         isDataLoaded: action.payload.isDataLoaded,
       };
+    case ActionType.SET_IS_FILMS_LIST_LOADING:
+      return {
+        ...state,
+        isFilmsListLoading: action.payload,
+      };
     case ActionType.LOAD_PROMO_FILM:
       return {
         ...state,
         promo: action.payload.film,
         isPromoLoaded: action.payload.isPromoLoaded,
+      };
+    case ActionType.SET_IS_PROMO_LOADING:
+      return {
+        ...state,
+        isPromoLoading: action.payload,
       };
     case ActionType.LOAD_FAVORITE_FILMS_LIST:
       return {
