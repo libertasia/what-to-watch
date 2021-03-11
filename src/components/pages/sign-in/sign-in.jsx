@@ -5,6 +5,7 @@ import {login} from "../../../store/api-actions";
 import PageFooter from '../../shared/page-footer/page-footer';
 import PageLogo from '../../shared/page-logo/page-logo';
 import {AuthorizationStatus} from '../../../const';
+import {getAuthorizationStatus} from '../../../store/selectors';
 
 const SignIn = ({onSubmit, authorizationStatus}) => {
   const loginRef = useRef();
@@ -57,8 +58,8 @@ SignIn.propTypes = {
   authorizationStatus: PropTypes.string.isRequired
 };
 
-const mapStateToProps = ({FILMS}) => ({
-  authorizationStatus: FILMS.authorizationStatus
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

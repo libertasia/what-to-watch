@@ -7,6 +7,7 @@ import MovieList from '../../shared/movie-list/movie-list';
 import UserBlock from '../../shared/user-block/user-block';
 import {FilmsShape} from '../../../shapes';
 import {fetchFavoriteFilmsList} from '../../../store/api-actions';
+import {getFavoriteFilms} from '../../../store/selectors';
 
 const MyList = (props) => {
   const {favoriteFilms, onLoadData} = props;
@@ -36,8 +37,8 @@ MyList.propTypes = {
   onLoadData: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({FILMS}) => ({
-  favoriteFilms: FILMS.favoriteFilms,
+const mapStateToProps = (state) => ({
+  favoriteFilms: getFavoriteFilms(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

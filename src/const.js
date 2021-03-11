@@ -36,6 +36,7 @@ const AppRoute = {
 };
 
 const APIRoute = {
+  ERROR_404: `/404`,
   FAVORITE_FILMS: `/favorite`,
   FILMS: `/films`,
   LOGIN: `/login`,
@@ -43,4 +44,10 @@ const APIRoute = {
   PROMO_FILM: `/films/promo`,
 };
 
-export {DEFAULT_GENRE, MAX_GENRES_COUNT, DEFAULT_VISIBLE_FILMS_COUNT, AuthorizationStatus, Rating, RatingLevel, APIRoute, AppRoute};
+const TabTypes = {
+  OVERVIEW: `overview`,
+  DETAILS: `details`,
+  REVIEWS: `reviews`
+};
+
+export {DEFAULT_GENRE, MAX_GENRES_COUNT, DEFAULT_VISIBLE_FILMS_COUNT, AuthorizationStatus, Rating, RatingLevel, APIRoute, AppRoute, TabTypes};

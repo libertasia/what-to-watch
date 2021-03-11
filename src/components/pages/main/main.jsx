@@ -7,22 +7,25 @@ import GenresList from './genres-list';
 import ShowMoreBtn from './show-more-btn';
 import LoadingScreen from '../../loading-screen/loading-screen';
 import UserBlock from '../../shared/user-block/user-block';
-import {getVisibleFilms} from '../../../selectors';
+import {getDataLoadedStatus, getFilmsListLoadingStatus, getPromo, getPromoLoadedStatus, getPromoLoadingStatus, getVisibleFilms} from '../../../store/selectors';
 import {ActionCreator} from '../../../store/action';
 import {fetchFilmsList, fetchPromoFilm} from "../../../store/api-actions";
 
 const Main = (props) => {
-  const {promo, visibleFilms, onLoad, isDataLoaded, isPromoLoaded, onLoadData} = props;
+  const {promo, visibleFilms, onLoad, isDataLoaded, isFilmsListLoading, isPromoLoaded, isPromoLoading, loadFilmsList, loadPromoFilm} = props;
 
   useEffect(() => {
     onLoad();
   }, []);
 
   useEffect(() => {
-    if (!isDataLoaded || !isPromoLoaded) {
-      onLoadData();
+    if (!isDataLoaded && !isFilmsListLoading) {
+      loadFilmsList();
     }
-  }, [isDataLoaded, isPromoLoaded]);
+    if (!isPromoLoaded && !isPromoLoading) {
+      loadPromoFilm();
+    }
+  }, [isDataLoaded, isPromoLoaded, isFilmsListLoading, isPromoLoading]);
 
   if (!isDataLoaded || !isPromoLoaded) {
     return (
@@ -106,28 +109,35 @@ const Main = (props) => {
 
 Main.propTypes = {
   isDataLoaded: PropTypes.bool.isRequired,
+  isFilmsListLoading: PropTypes.bool.isRequired,
   isPromoLoaded: PropTypes.bool.isRequired,
+  isPromoLoading: PropTypes.bool.isRequired,
   onLoad: PropTypes.func.isRequired,
-  onLoadData: PropTypes.func.isRequired,
+  loadFilmsList: PropTypes.func.isRequired,
+  loadPromoFilm: PropTypes.func.isRequired,
   promo: PromoFilmShape,
   visibleFilms: FilmsShape,
 };
 
-const mapStateToProps = ({FILMS}) => ({
-  isDataLoaded: FILMS.isDataLoaded,
-  isPromoLoaded: FILMS.isPromoLoaded,
-  promo: FILMS.promo,
-  visibleFilms: getVisibleFilms(FILMS),
+const mapStateToProps = (state) => ({
+  isDataLoaded: getDataLoadedStatus(state),
+  isPromoLoaded: getPromoLoadedStatus(state),
+  isFilmsListLoading: getFilmsListLoadingStatus(state),
+  isPromoLoading: getPromoLoadingStatus(state),
+  promo: getPromo(state),
+  visibleFilms: getVisibleFilms(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onLoad() {
     dispatch(ActionCreator.resetVisibleFilmsCount());
   },
-  onLoadData() {
-    dispatch(fetchPromoFilm());
+  loadFilmsList() {
     dispatch(fetchFilmsList());
   },
+  loadPromoFilm() {
+    dispatch(fetchPromoFilm());
+  }
 });
 
 export {Main};

@@ -8,9 +8,11 @@ import PageLogo from '../../shared/page-logo/page-logo';
 import MovieList from '../../shared/movie-list/movie-list';
 import {FilmShape, FilmsShape} from '../../../shapes';
 import {fetchFilmById, fetchFilmsList, fetchReviewsById} from '../../../store/api-actions';
+import {ActionCreator} from '../../../store/action';
 import LoadingScreen from '../../loading-screen/loading-screen';
 import UserBlock from '../../shared/user-block/user-block';
 import {AuthorizationStatus} from '../../../const';
+import {getAuthorizationStatus, getDataLoadedStatus, getFilm, getFilmLoadedStatus, getFilms, getReviewsLoadedStatus} from '../../../store/selectors';
 
 
 const MAX_SIMILAR_FILMS_COUNT = 4;
@@ -22,7 +24,7 @@ const Film = (props) => {
 
   useEffect(() => {
     onLoad(id);
-  }, []);
+  }, [id]);
 
   if (!isFilmLoaded || !isReviewsLoaded || !isDataLoaded) {
     return (
@@ -107,17 +109,18 @@ Film.propTypes = {
   onLoad: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({FILMS}) => ({
-  authorizationStatus: FILMS.authorizationStatus,
-  films: FILMS.films,
-  film: FILMS.film,
-  isDataLoaded: FILMS.isDataLoaded,
-  isFilmLoaded: FILMS.isFilmLoaded,
-  isReviewsLoaded: FILMS.isReviewsLoaded,
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  films: getFilms(state),
+  film: getFilm(state),
+  isDataLoaded: getDataLoadedStatus(state),
+  isFilmLoaded: getFilmLoadedStatus(state),
+  isReviewsLoaded: getReviewsLoadedStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onLoad(id) {
+    dispatch(ActionCreator.resetActiveTab());
     dispatch(fetchFilmsList());
     dispatch(fetchFilmById(id));
     dispatch(fetchReviewsById(id));

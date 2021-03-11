@@ -1,14 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import dayjs from 'dayjs';
 import {FilmShape, ReviewsShape} from '../../../shapes';
-import {Rating, RatingLevel} from '../../../const';
-
-export const TabTypes = {
-  OVERVIEW: `overview`,
-  DETAILS: `details`,
-  REVIEWS: `reviews`
-};
+import {Rating, RatingLevel, TabTypes} from '../../../const';
+import {getFilm, getReviews, getActiveTab} from '../../../store/selectors';
+import {ActionCreator} from '../../../store/action';
 
 const TabDetails = [
   {
@@ -62,9 +59,7 @@ const getMovieRatingLevel = (film) => {
 };
 
 const Tabs = (props) => {
-  const {film, reviews} = props;
-
-  const [activeTab, setActiveTab] = useState(TabTypes.OVERVIEW);
+  const {film, reviews, activeTab, setActiveTab} = props;
 
   const filmDurarion = getDuration(film);
 
@@ -169,14 +164,23 @@ const Tabs = (props) => {
 };
 
 Tabs.propTypes = {
+  activeTab: PropTypes.string.isRequired,
   film: FilmShape,
-  reviews: ReviewsShape
+  reviews: ReviewsShape,
+  setActiveTab: PropTypes.func,
 };
 
-const mapStateToProps = ({FILMS}) => ({
-  film: FILMS.film,
-  reviews: FILMS.reviews,
+const mapStateToProps = (state) => ({
+  film: getFilm(state),
+  reviews: getReviews(state),
+  activeTab: getActiveTab(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setActiveTab(tabId) {
+    dispatch(ActionCreator.setActiveTab(tabId));
+  },
 });
 
 export {Tabs};
-export default connect(mapStateToProps, null)(Tabs);
+export default connect(mapStateToProps, mapDispatchToProps)(Tabs);

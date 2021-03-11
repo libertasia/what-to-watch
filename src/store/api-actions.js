@@ -2,19 +2,27 @@ import {ActionCreator} from "./action";
 import {AuthorizationStatus, APIRoute} from "../const";
 import {adaptFilmToClient} from "../film-utils";
 
-export const fetchFilmsList = () => (dispatch, _getState, api) => (
+export const fetchFilmsList = () => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.setIsFilmsListLoading(true));
   api.get(APIRoute.FILMS)
     .then(({data}) => data.map(adaptFilmToClient))
-    .then((films) => dispatch(ActionCreator.loadFilms(films, true)))
-    .catch((error) => dispatch(ActionCreator.fetchFilmsListError(error)))
-);
+    .then((films) => {
+      dispatch(ActionCreator.loadFilms(films, true));
+      dispatch(ActionCreator.setIsFilmsListLoading(false));
+    })
+    .catch((error) => dispatch(ActionCreator.fetchFilmsListError(error)));
+};
 
-export const fetchPromoFilm = () => (dispatch, _getState, api) => (
+export const fetchPromoFilm = () => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.setIsPromoLoading(true));
   api.get(APIRoute.PROMO_FILM)
     .then(({data}) => adaptFilmToClient(data))
-    .then((film) => dispatch(ActionCreator.loadPromoFilm(film, true)))
-    .catch((error) => dispatch(ActionCreator.fetchPromoFilmError(error)))
-);
+    .then((film) => {
+      dispatch(ActionCreator.loadPromoFilm(film, true));
+      dispatch(ActionCreator.setIsPromoLoading(false));
+    })
+    .catch((error) => dispatch(ActionCreator.fetchPromoFilmError(error)));
+};
 
 export const fetchFavoriteFilmsList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FAVORITE_FILMS)
