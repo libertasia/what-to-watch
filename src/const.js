@@ -36,6 +36,7 @@ const AppRoute = {
 };
 
 const APIRoute = {
+  ERROR_404: `/404`,
   FAVORITE_FILMS: `/favorite`,
   FILMS: `/films`,
   LOGIN: `/login`,

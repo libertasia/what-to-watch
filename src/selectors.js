@@ -1,9 +1,10 @@
 import {createSelector} from 'reselect';
 import {getFilmsByGenre} from './film-utils';
+import {NameSpace} from './store/root-reducer';
 
-const getActiveGenre = (state) => state.activeGenre;
-const getFilms = (state) => state.films;
-const getVisibleFilmsCount = (state) => state.visibleFilmsCount;
+const getActiveGenre = (state) => state[NameSpace.VIEW].activeGenre;
+const getFilms = (state) => state[NameSpace.FILMS].films;
+const getVisibleFilmsCount = (state) => state[NameSpace.VIEW].visibleFilmsCount;
 
 export const getVisibleFilms = createSelector(
     [getActiveGenre, getFilms, getVisibleFilmsCount],

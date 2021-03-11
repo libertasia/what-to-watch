@@ -31,8 +31,8 @@ GenresList.propTypes = {
   onGenreClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({FILMS}) => ({
-  activeGenre: FILMS.activeGenre,
+const mapStateToProps = ({FILMS, VIEW}) => ({
+  activeGenre: VIEW.activeGenre,
   films: FILMS.films,
 });
 

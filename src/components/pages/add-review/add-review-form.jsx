@@ -68,10 +68,10 @@ AddReviewForm.propTypes = {
   isReviewFormDisabled: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({FILMS, ERRORS}) => ({
+const mapStateToProps = ({FILMS, ERRORS, VIEW}) => ({
   film: FILMS.film,
   errorMessage: ERRORS.errorMessage,
-  isReviewFormDisabled: FILMS.isReviewFormDisabled
+  isReviewFormDisabled: VIEW.isReviewFormDisabled
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,9 +1,7 @@
-import {ActionType} from './action';
-import {DEFAULT_GENRE, DEFAULT_VISIBLE_FILMS_COUNT, AuthorizationStatus} from '../const';
-import browserHistory from "../browser-history";
+import {ActionType} from '../action';
+import {AuthorizationStatus} from '../../const';
 
 const initialState = {
-  activeGenre: DEFAULT_GENRE,
   authorizationStatus: AuthorizationStatus.INIT,
   isDataLoaded: false,
   isPromoLoaded: false,
@@ -38,22 +36,10 @@ const initialState = {
     posterImage: ``,
     released: 0,
   },
-  visibleFilmsCount: DEFAULT_VISIBLE_FILMS_COUNT,
-  isReviewFormDisabled: false,
 };
 
-const reducer = (state = initialState, action) => {
+const dataReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.CHANGE_GENRE:
-      return {
-        ...state,
-        activeGenre: action.payload,
-      };
-    case ActionType.INCREASE_VISIBLE_FILMS_COUNT:
-      return {
-        ...state,
-        visibleFilmsCount: state.visibleFilmsCount + DEFAULT_VISIBLE_FILMS_COUNT,
-      };
     case ActionType.LOAD_FILMS:
       return {
         ...state,
@@ -88,56 +74,9 @@ const reducer = (state = initialState, action) => {
         ...state,
         authorizationStatus: action.payload,
       };
-    case ActionType.RESET_GENRE:
-      return {
-        ...state,
-        activeGenre: DEFAULT_GENRE,
-      };
-    case ActionType.RESET_VISIBLE_FILMS_COUNT:
-      return {
-        ...state,
-        visibleFilmsCount: DEFAULT_VISIBLE_FILMS_COUNT,
-      };
-    case ActionType.SET_IS_REVIEW_FORM_DISABLED:
-      return {
-        ...state,
-        isReviewFormDisabled: action.payload
-      };
   }
 
   return state;
 };
 
-const errorInitialState = {
-  error: null,
-};
-
-const errorReducer = (state = errorInitialState, action) => {
-  switch (action.type) {
-    case ActionType.FETCH_FILM_BY_ID_ERROR:
-      browserHistory.push(`/404`);
-      return state;
-  }
-
-  if (!action.payload) {
-    return state;
-  }
-
-  const {error} = action.payload;
-
-  if (error) {
-    return {
-      ...state,
-      error,
-      errorMessage: error.message,
-    };
-  } else {
-    return {
-      ...state,
-      error: null,
-      errorMessage: null,
-    };
-  }
-};
-
-export {reducer, errorReducer};
+export {dataReducer};

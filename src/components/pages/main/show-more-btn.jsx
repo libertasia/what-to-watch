@@ -26,9 +26,9 @@ ShowMoreBtn.propTypes = {
 };
 
 
-const mapStateToProps = ({FILMS}) => ({
-  allFilms: getAllFilmsByGenre(FILMS),
-  visibleFilmsCount: FILMS.visibleFilmsCount,
+const mapStateToProps = ({FILMS, VIEW}) => ({
+  allFilms: getAllFilmsByGenre({FILMS, VIEW}),
+  visibleFilmsCount: VIEW.visibleFilmsCount,
 });
 
 const mapDispatchToProps = (dispatch) => ({

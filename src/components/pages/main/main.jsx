@@ -113,11 +113,11 @@ Main.propTypes = {
   visibleFilms: FilmsShape,
 };
 
-const mapStateToProps = ({FILMS}) => ({
+const mapStateToProps = ({FILMS, VIEW}) => ({
   isDataLoaded: FILMS.isDataLoaded,
   isPromoLoaded: FILMS.isPromoLoaded,
   promo: FILMS.promo,
-  visibleFilms: getVisibleFilms(FILMS),
+  visibleFilms: getVisibleFilms({FILMS, VIEW}),
 });
 
 const mapDispatchToProps = (dispatch) => ({
