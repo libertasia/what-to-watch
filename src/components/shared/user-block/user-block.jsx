@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import PropTypes from 'prop-types';
 import {AppRoute, AuthorizationStatus} from '../../../const';
+import {getAuthorizationStatus} from '../../../store/selectors';
 
 const UserBlock = (props) => {
   const {authorizationStatus} = props;
@@ -31,8 +32,8 @@ UserBlock.propTypes = {
 };
 
 
-const mapStateToProps = ({FILMS}) => ({
-  authorizationStatus: FILMS.authorizationStatus,
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 export {UserBlock};

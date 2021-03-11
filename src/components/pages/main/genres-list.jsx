@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {FilmsShape} from '../../../shapes';
 import {getGenreList} from '../../../film-utils';
 import {ActionCreator} from '../../../store/action';
+import {getActiveGenre, getFilms} from '../../../store/selectors';
 
 const GenresList = (props) => {
   const {films, activeGenre, onGenreClick} = props;
@@ -31,9 +32,9 @@ GenresList.propTypes = {
   onGenreClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({FILMS, VIEW}) => ({
-  activeGenre: VIEW.activeGenre,
-  films: FILMS.films,
+const mapStateToProps = (state) => ({
+  activeGenre: getActiveGenre(state),
+  films: getFilms(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

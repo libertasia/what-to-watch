@@ -8,6 +8,7 @@ import AddReviewForm from './add-review-form';
 import {FilmShape} from '../../../shapes';
 import {fetchFilmById} from '../../../store/api-actions';
 import LoadingScreen from '../../loading-screen/loading-screen';
+import {getFilm, getFilmLoadedStatus} from '../../../store/selectors';
 
 const AddReview = (props) => {
   const {film, isFilmLoaded, onLoad} = props;
@@ -66,9 +67,9 @@ AddReview.propTypes = {
   onLoad: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({FILMS}) => ({
-  film: FILMS.film,
-  isFilmLoaded: FILMS.isFilmLoaded,
+const mapStateToProps = (state) => ({
+  film: getFilm(state),
+  isFilmLoaded: getFilmLoadedStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

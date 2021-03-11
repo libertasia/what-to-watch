@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {FilmShape} from '../../../shapes';
 import LoadingScreen from '../../loading-screen/loading-screen';
 import {fetchFilmById} from '../../../store/api-actions';
+import {getFilm, getFilmLoadedStatus} from '../../../store/selectors';
 
 const Player = (props) => {
   const {film, isFilmLoaded, onLoad} = props;
@@ -61,9 +62,9 @@ Player.propTypes = {
   onLoad: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({FILMS}) => ({
-  film: FILMS.film,
-  isFilmLoaded: FILMS.isFilmLoaded,
+const mapStateToProps = (state) => ({
+  film: getFilm(state),
+  isFilmLoaded: getFilmLoadedStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

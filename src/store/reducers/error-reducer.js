@@ -4,6 +4,7 @@ import {APIRoute} from '../../const';
 
 const errorInitialState = {
   error: null,
+  errorMessage: null,
 };
 
 const errorReducer = (state = errorInitialState, action) => {

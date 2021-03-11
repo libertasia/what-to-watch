@@ -7,7 +7,7 @@ import GenresList from './genres-list';
 import ShowMoreBtn from './show-more-btn';
 import LoadingScreen from '../../loading-screen/loading-screen';
 import UserBlock from '../../shared/user-block/user-block';
-import {getVisibleFilms} from '../../../selectors';
+import {getDataLoadedStatus, getPromo, getPromoLoadedStatus, getVisibleFilms} from '../../../store/selectors';
 import {ActionCreator} from '../../../store/action';
 import {fetchFilmsList, fetchPromoFilm} from "../../../store/api-actions";
 
@@ -113,11 +113,11 @@ Main.propTypes = {
   visibleFilms: FilmsShape,
 };
 
-const mapStateToProps = ({FILMS, VIEW}) => ({
-  isDataLoaded: FILMS.isDataLoaded,
-  isPromoLoaded: FILMS.isPromoLoaded,
-  promo: FILMS.promo,
-  visibleFilms: getVisibleFilms({FILMS, VIEW}),
+const mapStateToProps = (state) => ({
+  isDataLoaded: getDataLoadedStatus(state),
+  isPromoLoaded: getPromoLoadedStatus(state),
+  promo: getPromo(state),
+  visibleFilms: getVisibleFilms(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

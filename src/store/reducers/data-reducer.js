@@ -5,6 +5,8 @@ const initialState = {
   authorizationStatus: AuthorizationStatus.INIT,
   isDataLoaded: false,
   isPromoLoaded: false,
+  isFilmLoaded: false,
+  isReviewsLoaded: false,
   films: [],
   film: {
     backgroundColor: ``,
@@ -25,9 +27,7 @@ const initialState = {
     starring: [``],
     videoLink: ``
   },
-  isFilmLoaded: false,
   reviews: [],
-  isReviewsLoaded: false,
   favoriteFilms: [],
   promo: {
     backgroundImage: ``,

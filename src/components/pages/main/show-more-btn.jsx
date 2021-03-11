@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {ActionCreator} from '../../../store/action';
-import {getAllFilmsByGenre} from '../../../selectors';
+import {getAllFilmsByGenre, getVisibleFilmsCount} from '../../../store/selectors';
 import {FilmsShape} from '../../../shapes';
 
 const ShowMoreBtn = (props) => {
@@ -26,9 +26,9 @@ ShowMoreBtn.propTypes = {
 };
 
 
-const mapStateToProps = ({FILMS, VIEW}) => ({
-  allFilms: getAllFilmsByGenre({FILMS, VIEW}),
-  visibleFilmsCount: VIEW.visibleFilmsCount,
+const mapStateToProps = (state) => ({
+  allFilms: getAllFilmsByGenre(state),
+  visibleFilmsCount: getVisibleFilmsCount(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

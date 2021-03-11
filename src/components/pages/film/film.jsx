@@ -11,6 +11,7 @@ import {fetchFilmById, fetchFilmsList, fetchReviewsById} from '../../../store/ap
 import LoadingScreen from '../../loading-screen/loading-screen';
 import UserBlock from '../../shared/user-block/user-block';
 import {AuthorizationStatus} from '../../../const';
+import {getAuthorizationStatus, getDataLoadedStatus, getFilm, getFilmLoadedStatus, getFilms, getReviewsLoadedStatus} from '../../../store/selectors';
 
 
 const MAX_SIMILAR_FILMS_COUNT = 4;
@@ -107,13 +108,13 @@ Film.propTypes = {
   onLoad: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({FILMS}) => ({
-  authorizationStatus: FILMS.authorizationStatus,
-  films: FILMS.films,
-  film: FILMS.film,
-  isDataLoaded: FILMS.isDataLoaded,
-  isFilmLoaded: FILMS.isFilmLoaded,
-  isReviewsLoaded: FILMS.isReviewsLoaded,
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  films: getFilms(state),
+  film: getFilm(state),
+  isDataLoaded: getDataLoadedStatus(state),
+  isFilmLoaded: getFilmLoadedStatus(state),
+  isReviewsLoaded: getReviewsLoadedStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

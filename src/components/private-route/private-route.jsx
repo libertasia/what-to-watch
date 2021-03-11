@@ -4,6 +4,7 @@ import {Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {AuthorizationStatus, AppRoute} from '../../const';
 import LoadingScreen from '../loading-screen/loading-screen';
+import {getAuthorizationStatus} from '../../store/selectors';
 
 
 const PrivateRoute = ({render, path, exact, authorizationStatus}) => {
@@ -35,8 +36,8 @@ PrivateRoute.propTypes = {
   render: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({FILMS}) => ({
-  authorizationStatus: FILMS.authorizationStatus,
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 

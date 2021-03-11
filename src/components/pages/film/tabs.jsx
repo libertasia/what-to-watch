@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import dayjs from 'dayjs';
 import {FilmShape, ReviewsShape} from '../../../shapes';
 import {Rating, RatingLevel} from '../../../const';
+import {getFilm, getReviews} from '../../../store/selectors';
 
 export const TabTypes = {
   OVERVIEW: `overview`,
@@ -173,9 +174,9 @@ Tabs.propTypes = {
   reviews: ReviewsShape
 };
 
-const mapStateToProps = ({FILMS}) => ({
-  film: FILMS.film,
-  reviews: FILMS.reviews,
+const mapStateToProps = (state) => ({
+  film: getFilm(state),
+  reviews: getReviews(state),
 });
 
 export {Tabs};

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {commentPost} from '../../../store/api-actions';
 import {FilmShape} from '../../../shapes';
+import {getErrorMessage, getFilm, getReviewFormDisabledStatus} from '../../../store/selectors';
 
 const RATINGS_COUNT = 10;
 const MIN_REVIEW_LENGTH = 5;
@@ -68,10 +69,10 @@ AddReviewForm.propTypes = {
   isReviewFormDisabled: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({FILMS, ERRORS, VIEW}) => ({
-  film: FILMS.film,
-  errorMessage: ERRORS.errorMessage,
-  isReviewFormDisabled: VIEW.isReviewFormDisabled
+const mapStateToProps = (state) => ({
+  film: getFilm(state),
+  errorMessage: getErrorMessage(state),
+  isReviewFormDisabled: getReviewFormDisabledStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
