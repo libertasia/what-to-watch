@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {connect} from 'react-redux';
 import {useParams} from "react-router-dom";
 import PropTypes from 'prop-types';
 import {FilmShape} from '../../../shapes';
 import LoadingScreen from '../../loading-screen/loading-screen';
+import PlayButton from './play-button';
 import {fetchFilmById} from '../../../store/api-actions';
 import {getFilm, getFilmLoadedStatus} from '../../../store/selectors';
 
@@ -12,9 +13,25 @@ const Player = (props) => {
 
   const id = parseInt(useParams().id, 10);
 
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const videoRef = useRef();
+
   useEffect(() => {
     onLoad(id);
-  }, []);
+  }, [id]);
+
+  useEffect(() => {
+    if (!isFilmLoaded) {
+      return;
+    }
+    if (isPlaying) {
+      videoRef.current.play();
+      return;
+    }
+
+    videoRef.current.pause();
+  }, [isPlaying, isFilmLoaded]);
 
   if (!isFilmLoaded) {
     return (
@@ -22,10 +39,18 @@ const Player = (props) => {
     );
   }
 
+  const onPlayBtnClickHandler = () => {
+    setIsPlaying(!isPlaying);
+  };
+
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg">
-        <source src={film.videoLink} />
+      <video
+        src={film.videoLink}
+        ref={videoRef}
+        className="player__video"
+        poster={film.backgroundImage}
+        onClick={onPlayBtnClickHandler}>
       </video>
       <button type="button" className="player__exit">Exit</button>
       <div className="player__controls">
@@ -37,12 +62,10 @@ const Player = (props) => {
           <div className="player__time-value">1:30:29</div>
         </div>
         <div className="player__controls-row">
-          <button type="button" className="player__play">
-            <svg viewBox="0 0 19 19" width={19} height={19}>
-              <use xlinkHref="#play-s" />
-            </svg>
-            <span>Play</span>
-          </button>
+          <PlayButton
+            isPlaying={isPlaying}
+            onButtonClick={onPlayBtnClickHandler}
+          />
           <div className="player__name">Transpotting</div>
           <button type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width={27} height={27}>
