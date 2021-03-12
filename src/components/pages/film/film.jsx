@@ -13,6 +13,7 @@ import LoadingScreen from '../../loading-screen/loading-screen';
 import UserBlock from '../../shared/user-block/user-block';
 import {AuthorizationStatus} from '../../../const';
 import {getAuthorizationStatus, getDataLoadedStatus, getFilm, getFilmLoadedStatus, getFilms, getReviewsLoadedStatus} from '../../../store/selectors';
+import FavoriteButton from '../../shared/favorite-button/favorite-button';
 
 
 const MAX_SIMILAR_FILMS_COUNT = 4;
@@ -66,12 +67,9 @@ const Film = (props) => {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width={19} height={20}>
-                    <use xlinkHref="#add" />
-                  </svg>
-                  <span>My list</span>
-                </button>
+                {authorizationStatus === AuthorizationStatus.AUTH &&
+                  <FavoriteButton film={film} />
+                }
                 {authorizationStatus === AuthorizationStatus.AUTH &&
                   <Link to={hrefToAddReviewPage} className="btn movie-card__button">Add review</Link>
                 }
