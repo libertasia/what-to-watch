@@ -21,7 +21,8 @@ const PlayButton = (props) => {
       <button
         type="button"
         className="player__play"
-        onClick={onButtonClick}>
+        onClick={onButtonClick}
+      >
         <svg viewBox="0 0 19 19" width={19} height={19}>
           <use xlinkHref="#play-s"></use>
         </svg>
@@ -32,7 +33,7 @@ const PlayButton = (props) => {
 };
 
 PlayButton.propTypes = {
-  isPlay: PropTypes.bool.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
   onButtonClick: PropTypes.func.isRequired,
 };
 

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {MovieCardShape} from '../../../shapes';
-import {Link} from 'react-router-dom';
 import PreviewVideoPlayer from '../../shared/video-player/preview-video-player';
 
 const PREVIEW_DELAY = 1000;

@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {useParams} from "react-router-dom";
 import PropTypes from 'prop-types';
@@ -7,6 +8,7 @@ import LoadingScreen from '../../loading-screen/loading-screen';
 import PlayButton from './play-button';
 import {fetchFilmById} from '../../../store/api-actions';
 import {getFilm, getFilmLoadedStatus} from '../../../store/selectors';
+import {FULL_SIZE_SCREEN, SMALL_SIZE_SCREEN} from '../../../const';
 
 const Player = (props) => {
   const {film, isFilmLoaded, onLoad} = props;
@@ -14,8 +16,14 @@ const Player = (props) => {
   const id = parseInt(useParams().id, 10);
 
   const [isPlaying, setIsPlaying] = useState(false);
+  const [screenSize, setScreenSize] = useState(FULL_SIZE_SCREEN);
+  const [isFullScreen, setIsFullScreen] = useState(true);
 
   const videoRef = useRef();
+
+  const videoClass = (isFullScreen) ? `player__video` : ``;
+
+  const hrefToFilmPage = `/films/${film.id}`;
 
   useEffect(() => {
     onLoad(id);
@@ -39,8 +47,18 @@ const Player = (props) => {
     );
   }
 
-  const onPlayBtnClickHandler = () => {
+  const handlePlayBtnClick = () => {
     setIsPlaying(!isPlaying);
+  };
+
+  const handleFullScreenBtnClick = () => {
+    if (!isFullScreen) {
+      setScreenSize(FULL_SIZE_SCREEN);
+      setIsFullScreen(true);
+    } else {
+      setScreenSize(SMALL_SIZE_SCREEN);
+      setIsFullScreen(false);
+    }
   };
 
   return (
@@ -48,11 +66,15 @@ const Player = (props) => {
       <video
         src={film.videoLink}
         ref={videoRef}
-        className="player__video"
+        className={videoClass}
         poster={film.backgroundImage}
-        onClick={onPlayBtnClickHandler}>
+        width={screenSize.WIDTH}
+        height={screenSize.HEIGHT}
+        onClick={handlePlayBtnClick}>
       </video>
-      <button type="button" className="player__exit">Exit</button>
+      <Link to={hrefToFilmPage}>
+        <button type="button" className="player__exit">Exit</button>
+      </Link>
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
@@ -64,10 +86,14 @@ const Player = (props) => {
         <div className="player__controls-row">
           <PlayButton
             isPlaying={isPlaying}
-            onButtonClick={onPlayBtnClickHandler}
+            onButtonClick={handlePlayBtnClick}
           />
-          <div className="player__name">Transpotting</div>
-          <button type="button" className="player__full-screen">
+          <div className="player__name">{film.name}</div>
+          <button
+            type="button"
+            className="player__full-screen"
+            onClick={handleFullScreenBtnClick}
+          >
             <svg viewBox="0 0 27 27" width={27} height={27}>
               <use xlinkHref="#full-screen" />
             </svg>
