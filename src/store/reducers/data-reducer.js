@@ -86,6 +86,13 @@ const dataReducer = (state = initialState, action) => {
         ...state,
         authorizationStatus: action.payload,
       };
+    case ActionType.SET_FAVORITE_STATUS:
+      const filmToUpdate = action.payload;
+      return {
+        ...state,
+        promo: filmToUpdate.id === state.promo.id ? filmToUpdate : state.promo,
+        film: filmToUpdate.id === state.film.id ? filmToUpdate : state.film,
+      };
   }
 
   return state;

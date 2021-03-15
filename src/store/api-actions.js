@@ -75,3 +75,10 @@ export const commentPost = (id, rating, comment) => (dispatch, _getState, api) =
       dispatch(ActionCreator.setIsReviewFormDisabled(false));
     });
 };
+
+export const changeFavoriteStatus = (id, status) => (dispatch, _getState, api) => (
+  api.post(`/favorite/${id}/${status}`, {id, status})
+    .then(({data}) => adaptFilmToClient(data))
+    .then((film) => dispatch(ActionCreator.setFavoriteStatus(film)))
+    .catch(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)))
+);

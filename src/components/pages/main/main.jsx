@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {Link} from "react-router-dom";
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FilmsShape, PromoFilmShape} from '../../../shapes';
@@ -7,12 +8,14 @@ import GenresList from './genres-list';
 import ShowMoreBtn from './show-more-btn';
 import LoadingScreen from '../../loading-screen/loading-screen';
 import UserBlock from '../../shared/user-block/user-block';
-import {getDataLoadedStatus, getFilmsListLoadingStatus, getPromo, getPromoLoadedStatus, getPromoLoadingStatus, getVisibleFilms} from '../../../store/selectors';
+import FavoriteButton from '../../shared/favorite-button/favorite-button';
+import {getAuthorizationStatus, getDataLoadedStatus, getFilmsListLoadingStatus, getPromo, getPromoLoadedStatus, getPromoLoadingStatus, getVisibleFilms} from '../../../store/selectors';
 import {ActionCreator} from '../../../store/action';
 import {fetchFilmsList, fetchPromoFilm} from "../../../store/api-actions";
+import {AuthorizationStatus} from '../../../const';
 
 const Main = (props) => {
-  const {promo, visibleFilms, onLoad, isDataLoaded, isFilmsListLoading, isPromoLoaded, isPromoLoading, loadFilmsList, loadPromoFilm} = props;
+  const {authorizationStatus, promo, visibleFilms, onLoad, isDataLoaded, isFilmsListLoading, isPromoLoaded, isPromoLoading, loadFilmsList, loadPromoFilm} = props;
 
   useEffect(() => {
     onLoad();
@@ -34,6 +37,8 @@ const Main = (props) => {
   }
 
   const imgAltText = `${promo.name} poster`;
+
+  const hrefToPlayerPage = `/player/${promo.id}`;
 
   return (
     <React.Fragment>
@@ -64,18 +69,15 @@ const Main = (props) => {
                 <span className="movie-card__year">{promo.released}</span>
               </p>
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <Link to={hrefToPlayerPage} role="button" className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width={19} height={19}>
                     <use xlinkHref="#play-s" />
                   </svg>
                   <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width={19} height={20}>
-                    <use xlinkHref="#add" />
-                  </svg>
-                  <span>My list</span>
-                </button>
+                </Link>
+                {authorizationStatus === AuthorizationStatus.AUTH &&
+                  <FavoriteButton film={promo} />
+                }
               </div>
             </div>
           </div>
@@ -108,8 +110,9 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   isDataLoaded: PropTypes.bool.isRequired,
-  isFilmsListLoading: PropTypes.bool.isRequired,
+  isFilmsListLoading: PropTypes.bool,
   isPromoLoaded: PropTypes.bool.isRequired,
   isPromoLoading: PropTypes.bool.isRequired,
   onLoad: PropTypes.func.isRequired,
@@ -120,6 +123,7 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
   isDataLoaded: getDataLoadedStatus(state),
   isPromoLoaded: getPromoLoadedStatus(state),
   isFilmsListLoading: getFilmsListLoadingStatus(state),

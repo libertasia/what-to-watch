@@ -20,7 +20,8 @@ export const ActionType = {
   COMMENT_POST_ERROR: `data/commentPostError`,
   SET_IS_REVIEW_FORM_DISABLED: `view/setIsReviewFormDisabled`,
   RESET_ACTIVE_TAB: `view/resetActiveTab`,
-  SET_ACTIVE_TAB: `view/setActiveTab`
+  SET_ACTIVE_TAB: `view/setActiveTab`,
+  SET_FAVORITE_STATUS: `data/setFavoriteStatus`,
 };
 
 export const ActionCreator = {
@@ -107,5 +108,9 @@ export const ActionCreator = {
   setActiveTab: (activeTab) => ({
     type: ActionType.SET_ACTIVE_TAB,
     payload: activeTab,
+  }),
+  setFavoriteStatus: (film) => ({
+    type: ActionType.SET_FAVORITE_STATUS,
+    payload: film
   })
 };
