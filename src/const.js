@@ -4,15 +4,11 @@ const MAX_GENRES_COUNT = 9;
 
 const DEFAULT_VISIBLE_FILMS_COUNT = 8;
 
-const FULL_SIZE_SCREEN = {
-  WIDTH: `100%`,
-  HEIGHT: `100%`,
-};
+const NUMBER_OF_SECONDS_IN_HOUR = 3600;
 
-const SMALL_SIZE_SCREEN = {
-  WIDTH: `50%`,
-  HEIGHT: `50%`,
-};
+const NUMBER_OF_MINUTES_IN_HOUR = 60;
+
+const PLAYER_TOGGLER_WIDTH = 17;
 
 const AuthorizationStatus = {
   INIT: `INIT`,
@@ -60,4 +56,9 @@ const TabTypes = {
   REVIEWS: `reviews`,
 };
 
-export {DEFAULT_GENRE, MAX_GENRES_COUNT, DEFAULT_VISIBLE_FILMS_COUNT, AuthorizationStatus, Rating, RatingLevel, APIRoute, AppRoute, TabTypes, FULL_SIZE_SCREEN, SMALL_SIZE_SCREEN};
+const MouseEvent = {
+  MOUSE_MOVE: `mousemove`,
+  MOUSE_UP: `mouseup`,
+};
+
+export {DEFAULT_GENRE, MAX_GENRES_COUNT, DEFAULT_VISIBLE_FILMS_COUNT, AuthorizationStatus, Rating, RatingLevel, APIRoute, AppRoute, TabTypes, MouseEvent, NUMBER_OF_MINUTES_IN_HOUR, NUMBER_OF_SECONDS_IN_HOUR, PLAYER_TOGGLER_WIDTH};

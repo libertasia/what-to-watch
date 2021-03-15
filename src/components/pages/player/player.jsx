@@ -6,9 +6,11 @@ import PropTypes from 'prop-types';
 import {FilmShape} from '../../../shapes';
 import LoadingScreen from '../../loading-screen/loading-screen';
 import PlayButton from './play-button';
+import ProgressTogglerTimer from './progress-toggle-timer';
 import {fetchFilmById} from '../../../store/api-actions';
 import {getFilm, getFilmLoadedStatus} from '../../../store/selectors';
-import {FULL_SIZE_SCREEN, SMALL_SIZE_SCREEN} from '../../../const';
+import {getTimeInUserFormat} from '../../../film-utils';
+import {NUMBER_OF_SECONDS_IN_HOUR, PLAYER_TOGGLER_WIDTH} from '../../../const';
 
 const Player = (props) => {
   const {film, isFilmLoaded, onLoad} = props;
@@ -16,14 +18,17 @@ const Player = (props) => {
   const id = parseInt(useParams().id, 10);
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [screenSize, setScreenSize] = useState(FULL_SIZE_SCREEN);
-  const [isFullScreen, setIsFullScreen] = useState(true);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [inProgress, setProgress] = useState(0);
+  const [time, setTimer] = useState(getTimeInUserFormat(0, false));
 
   const videoRef = useRef();
 
-  const videoClass = (isFullScreen) ? `player__video` : ``;
-
   const hrefToFilmPage = `/films/${film.id}`;
+
+  const gap = 130;
+
+  let hasHours = false;
 
   useEffect(() => {
     onLoad(id);
@@ -53,36 +58,65 @@ const Player = (props) => {
 
   const handleFullScreenBtnClick = () => {
     if (!isFullScreen) {
-      setScreenSize(FULL_SIZE_SCREEN);
+      videoRef.current.requestFullscreen();
       setIsFullScreen(true);
     } else {
-      setScreenSize(SMALL_SIZE_SCREEN);
+      videoRef.current.exitFullscreen();
       setIsFullScreen(false);
     }
+  };
+
+  const handleEndVideo = () => {
+    videoRef.current.pause();
+    videoRef.current.currentTime = 0;
+    setIsPlaying(!isPlaying);
+  };
+
+  const handleCanPlay = () => {
+    hasHours = (videoRef.current.duration / NUMBER_OF_SECONDS_IN_HOUR) >= 1;
+    setTimer(getTimeInUserFormat(videoRef.current.currentTime, hasHours));
+    setIsPlaying(true);
+  };
+
+  const handleTimeUpdate = () => {
+    const progress = (Math.floor(videoRef.current.currentTime) / Math.floor(videoRef.current.duration)) * 100;
+
+    setTimer(getTimeInUserFormat(videoRef.current.currentTime, hasHours));
+    setProgress(Math.floor(progress));
+  };
+
+  const handleProgressClick = (evt) => {
+    const posX = evt.clientX - PLAYER_TOGGLER_WIDTH;
+    const timePos = (posX * 100) / (window.screen.availWidth - gap);
+
+    setProgress(Math.floor(timePos));
+    videoRef.current.currentTime = (timePos * Math.round(videoRef.current.duration)) / 100;
+    setTimer(getTimeInUserFormat(videoRef.current.currentTime, hasHours));
   };
 
   return (
     <div className="player">
       <video
+        muted={false}
         src={film.videoLink}
         ref={videoRef}
-        className={videoClass}
+        className="player__video"
         poster={film.backgroundImage}
-        width={screenSize.WIDTH}
-        height={screenSize.HEIGHT}
-        onClick={handlePlayBtnClick}>
+        onClick={handlePlayBtnClick}
+        onCanPlay={handleCanPlay}
+        onTimeUpdate={handleTimeUpdate}
+        onEnded={handleEndVideo}
+      >
       </video>
       <Link to={hrefToFilmPage}>
         <button type="button" className="player__exit">Exit</button>
       </Link>
       <div className="player__controls">
-        <div className="player__controls-row">
-          <div className="player__time">
-            <progress className="player__progress" value={30} max={100} />
-            <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
-          </div>
-          <div className="player__time-value">1:30:29</div>
-        </div>
+        <ProgressTogglerTimer
+          progress={inProgress}
+          timer={time}
+          onProgressClickHandler={handleProgressClick}
+        />
         <div className="player__controls-row">
           <PlayButton
             isPlaying={isPlaying}
