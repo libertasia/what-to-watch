@@ -10,7 +10,13 @@ import ProgressTogglerTimer from './progress-toggle-timer';
 import {fetchFilmById} from '../../../store/api-actions';
 import {getFilm, getFilmLoadedStatus} from '../../../store/selectors';
 import {getTimeInUserFormat} from '../../../film-utils';
-import {NUMBER_OF_SECONDS_IN_HOUR, PLAYER_TOGGLER_WIDTH} from '../../../const';
+import {NUMBER_OF_SECONDS_IN_HOUR} from '../../../const';
+
+const GAP = 130;
+
+const PLAYER_TOGGLER_WIDTH = 17;
+
+const PERCENTAGE_MULTIPLIER = 100;
 
 const Player = (props) => {
   const {film, isFilmLoaded, onLoad} = props;
@@ -21,14 +27,11 @@ const Player = (props) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [inProgress, setProgress] = useState(0);
   const [time, setTimer] = useState(getTimeInUserFormat(0, false));
+  const [hasHours, setHasHours] = useState(false);
 
   const videoRef = useRef();
 
   const hrefToFilmPage = `/films/${film.id}`;
-
-  const gap = 130;
-
-  let hasHours = false;
 
   useEffect(() => {
     onLoad(id);
@@ -73,13 +76,14 @@ const Player = (props) => {
   };
 
   const handleCanPlay = () => {
-    hasHours = (videoRef.current.duration / NUMBER_OF_SECONDS_IN_HOUR) >= 1;
+    const isFilmHasHours = (videoRef.current.duration / NUMBER_OF_SECONDS_IN_HOUR) >= 1;
+    setHasHours(isFilmHasHours);
     setTimer(getTimeInUserFormat(videoRef.current.currentTime, hasHours));
     setIsPlaying(true);
   };
 
   const handleTimeUpdate = () => {
-    const progress = (Math.floor(videoRef.current.currentTime) / Math.floor(videoRef.current.duration)) * 100;
+    const progress = (Math.floor(videoRef.current.currentTime) / Math.floor(videoRef.current.duration)) * PERCENTAGE_MULTIPLIER;
 
     setTimer(getTimeInUserFormat(videoRef.current.currentTime, hasHours));
     setProgress(Math.floor(progress));
@@ -87,10 +91,10 @@ const Player = (props) => {
 
   const handleProgressClick = (evt) => {
     const posX = evt.clientX - PLAYER_TOGGLER_WIDTH;
-    const timePos = (posX * 100) / (window.screen.availWidth - gap);
+    const timePos = (posX * PERCENTAGE_MULTIPLIER) / (window.screen.availWidth - GAP);
 
     setProgress(Math.floor(timePos));
-    videoRef.current.currentTime = (timePos * Math.round(videoRef.current.duration)) / 100;
+    videoRef.current.currentTime = (timePos * Math.round(videoRef.current.duration)) / PERCENTAGE_MULTIPLIER;
     setTimer(getTimeInUserFormat(videoRef.current.currentTime, hasHours));
   };
 
