@@ -88,17 +88,18 @@ describe(`View-Reducer work correctly`, () => {
     expect(viewReducer(state, resetVisibleFilmsCountAction))
       .toEqual({visibleFilmsCount: DEFAULT_VISIBLE_FILMS_COUNT, otherFiled: `shouldNotChange`});
   });
-  // WIP
-  // it(`Reducer should change isReviewFormDisabled status by a given value`, () => {
-  //   const state = {
-  //     visibleFilmsCount: 23,
-  //     otherFiled: `shouldNotChange`,
-  //   };
-  //   const resetVisibleFilmsCountAction = {
-  //     type: ActionType.RESET_VISIBLE_FILMS_COUNT,
-  //   };
+  it(`Reducer should change isReviewFormDisabled status by a given value`, () => {
+    const state = {
+      isReviewFormDisabled: false,
+      otherFiled: `shouldNotChange`,
+    };
+    const isDisabled = true;
+    const setIsReviewFormDisabledAction = {
+      type: ActionType.SET_IS_REVIEW_FORM_DISABLED,
+      payload: isDisabled,
+    };
 
-  //   expect(viewReducer(state, resetVisibleFilmsCountAction))
-  //     .toEqual({visibleFilmsCount: DEFAULT_VISIBLE_FILMS_COUNT, otherFiled: `shouldNotChange`});
-  // });
+    expect(viewReducer(state, setIsReviewFormDisabledAction))
+      .toEqual({isReviewFormDisabled: isDisabled, otherFiled: `shouldNotChange`});
+  });
 });
