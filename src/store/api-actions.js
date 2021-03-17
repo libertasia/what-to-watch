@@ -4,7 +4,7 @@ import {adaptFilmToClient} from "../film-utils";
 
 export const fetchFilmsList = () => (dispatch, _getState, api) => {
   dispatch(ActionCreator.setIsFilmsListLoading(true));
-  api.get(APIRoute.FILMS)
+  return api.get(APIRoute.FILMS)
     .then(({data}) => data.map(adaptFilmToClient))
     .then((films) => {
       dispatch(ActionCreator.loadFilms(films, true));
