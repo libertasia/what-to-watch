@@ -8,8 +8,6 @@ const NUMBER_OF_SECONDS_IN_HOUR = 3600;
 
 const NUMBER_OF_MINUTES_IN_HOUR = 60;
 
-const PLAYER_TOGGLER_WIDTH = 17;
-
 const AuthorizationStatus = {
   INIT: `INIT`,
   AUTH: `AUTH`,
@@ -61,4 +59,4 @@ const MouseEvent = {
   MOUSE_UP: `mouseup`,
 };
 
-export {DEFAULT_GENRE, MAX_GENRES_COUNT, DEFAULT_VISIBLE_FILMS_COUNT, AuthorizationStatus, Rating, RatingLevel, APIRoute, AppRoute, TabTypes, MouseEvent, NUMBER_OF_MINUTES_IN_HOUR, NUMBER_OF_SECONDS_IN_HOUR, PLAYER_TOGGLER_WIDTH};
+export {DEFAULT_GENRE, MAX_GENRES_COUNT, DEFAULT_VISIBLE_FILMS_COUNT, AuthorizationStatus, Rating, RatingLevel, APIRoute, AppRoute, TabTypes, MouseEvent, NUMBER_OF_MINUTES_IN_HOUR, NUMBER_OF_SECONDS_IN_HOUR};

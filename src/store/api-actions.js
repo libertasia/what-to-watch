@@ -4,7 +4,7 @@ import {adaptFilmToClient} from "../film-utils";
 
 export const fetchFilmsList = () => (dispatch, _getState, api) => {
   dispatch(ActionCreator.setIsFilmsListLoading(true));
-  api.get(APIRoute.FILMS)
+  return api.get(APIRoute.FILMS)
     .then(({data}) => data.map(adaptFilmToClient))
     .then((films) => {
       dispatch(ActionCreator.loadFilms(films, true));
@@ -15,7 +15,7 @@ export const fetchFilmsList = () => (dispatch, _getState, api) => {
 
 export const fetchPromoFilm = () => (dispatch, _getState, api) => {
   dispatch(ActionCreator.setIsPromoLoading(true));
-  api.get(APIRoute.PROMO_FILM)
+  return api.get(APIRoute.PROMO_FILM)
     .then(({data}) => adaptFilmToClient(data))
     .then((film) => {
       dispatch(ActionCreator.loadPromoFilm(film, true));
@@ -65,7 +65,7 @@ export const logout = () => (dispatch, _getState, api) => (
 
 export const commentPost = (id, rating, comment) => (dispatch, _getState, api) => {
   dispatch(ActionCreator.setIsReviewFormDisabled(true));
-  api.post(`/comments/${id}`, {rating, comment})
+  return api.post(`/comments/${id}`, {rating, comment})
     .then(() => {
       dispatch(ActionCreator.redirectToRoute(`/films/${id}`));
       dispatch(ActionCreator.setIsReviewFormDisabled(false));

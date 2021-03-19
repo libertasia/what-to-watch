@@ -112,7 +112,7 @@ const Main = (props) => {
 Main.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   isDataLoaded: PropTypes.bool.isRequired,
-  isFilmsListLoading: PropTypes.bool,
+  isFilmsListLoading: PropTypes.bool.isRequired,
   isPromoLoaded: PropTypes.bool.isRequired,
   isPromoLoading: PropTypes.bool.isRequired,
   onLoad: PropTypes.func.isRequired,

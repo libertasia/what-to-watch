@@ -44,7 +44,7 @@ const AddReviewForm = (props) => {
           {
             ratingValues.map((value) => (
               <React.Fragment key={`star-${value}`}>
-                <input className="rating__input" id={`star-${value}`} type="radio" name="rating" value={value} disabled={isReviewFormDisabled}/>
+                <input className="rating__input" id={`star-${value}`} type="radio" name="rating" value={value} disabled={isReviewFormDisabled} data-testid="rating"/>
                 <label className="rating__label" htmlFor={`star-${value}`}>Rating {value}</label>
               </React.Fragment>
             ))
