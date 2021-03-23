@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import {FavoriteButton} from './favorite-button';
+import {mockFilm} from '../../../test-mocks';
 
 const mockStore = configureStore({});
 const store = {
@@ -16,16 +17,10 @@ const store = {
 };
 describe(`FavoriteButton should render correctly`, () => {
   it(`FavoriteButton should render correctly`, () => {
-
-    const mockfFilm = {
-      id: 1,
-      isFavorite: true,
-    };
-
     render(
         <Provider store={mockStore(store)}>
           <FavoriteButton
-            film = {mockfFilm}
+            film = {mockFilm}
             onClick={jest.fn()}
           />
         </Provider>
@@ -36,17 +31,13 @@ describe(`FavoriteButton should render correctly`, () => {
   it(`Click on FavoriteButton works`, () => {
     const favoriteButtonClickHandler = jest.fn();
     favoriteButtonClickHandler.mockImplementation(
-        () => (mockfFilm.isFavorite = false)
+        () => (mockFilm.isFavorite = false)
     );
-    const mockfFilm = {
-      id: 1,
-      isFavorite: true,
-    };
 
     render(
         <Provider store={mockStore(store)}>
           <FavoriteButton
-            film = {mockfFilm}
+            film = {mockFilm}
             onClick={favoriteButtonClickHandler}
           />
         </Provider>
@@ -55,6 +46,6 @@ describe(`FavoriteButton should render correctly`, () => {
     expect(screen.getByText(/My list/i)).toBeInTheDocument();
     userEvent.click(screen.getByRole(`button`));
     expect(favoriteButtonClickHandler).toBeCalled();
-    expect(mockfFilm.isFavorite).toBe(false);
+    expect(mockFilm.isFavorite).toBe(false);
   });
 });

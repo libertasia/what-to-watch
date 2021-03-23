@@ -68,4 +68,4 @@ const getTimeInUserFormat = (time, hours) => {
   }
 };
 
-export {getFilmsByGenre, getGenreList, adaptFilmToClient, getTimeInUserFormat};
+export {getFilmsByGenre, getGenreList, adaptFilmToClient, getTimeInUserFormat, getNumber};

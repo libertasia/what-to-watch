@@ -2,9 +2,9 @@ const mockFilms = [
   {
     id: 1,
     name: `The Grand Budapest Hotel`,
-    posterImage: `http://picsum.photos/248/152?r=${Math.random()}`,
-    previewImage: `http://picsum.photos/248/152?r=${Math.random()}`,
-    backgroundImage: `http://picsum.photos/248/152?r=${Math.random()}`,
+    posterImage: `https://i.picsum.photos/id/604/248/152.jpg?hmac=Yu4rnPqlL8pPa8b7cdPSosfFApQXtQmy56BW52elqto`,
+    previewImage: `https://i.picsum.photos/id/604/248/152.jpg?hmac=Yu4rnPqlL8pPa8b7cdPSosfFApQXtQmy56BW52elqto`,
+    backgroundImage: `https://i.picsum.photos/id/604/248/152.jpg?hmac=Yu4rnPqlL8pPa8b7cdPSosfFApQXtQmy56BW52elqto`,
     backgroundColor: `#ffffff`,
     videoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
@@ -16,14 +16,14 @@ const mockFilms = [
     runTime: 99,
     genre: `Comedy`,
     released: 2014,
-    isFavorite: false
+    isFavorite: true
   },
   {
     id: 2,
     name: `Stand By Me`,
-    posterImage: `http://picsum.photos/248/152?r=${Math.random()}`,
-    previewImage: `http://picsum.photos/248/152?r=${Math.random()}`,
-    backgroundImage: `http://picsum.photos/248/152?r=${Math.random()}`,
+    posterImage: `https://i.picsum.photos/id/604/248/152.jpg?hmac=Yu4rnPqlL8pPa8b7cdPSosfFApQXtQmy56BW52elqto`,
+    previewImage: `https://i.picsum.photos/id/604/248/152.jpg?hmac=Yu4rnPqlL8pPa8b7cdPSosfFApQXtQmy56BW52elqto`,
+    backgroundImage: `https://i.picsum.photos/id/604/248/152.jpg?hmac=Yu4rnPqlL8pPa8b7cdPSosfFApQXtQmy56BW52elqto`,
     backgroundColor: `#ffffff`,
     videoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
@@ -35,14 +35,14 @@ const mockFilms = [
     runTime: 89,
     genre: `Drama`,
     released: 1986,
-    isFavorite: false
+    isFavorite: true
   },
   {
     id: 3,
     name: `Amelie`,
-    posterImage: `http://picsum.photos/248/152?r=${Math.random()}`,
-    previewImage: `http://picsum.photos/248/152?r=${Math.random()}`,
-    backgroundImage: `http://picsum.photos/248/152?r=${Math.random()}`,
+    posterImage: `https://i.picsum.photos/id/604/248/152.jpg?hmac=Yu4rnPqlL8pPa8b7cdPSosfFApQXtQmy56BW52elqto`,
+    previewImage: `https://i.picsum.photos/id/604/248/152.jpg?hmac=Yu4rnPqlL8pPa8b7cdPSosfFApQXtQmy56BW52elqto`,
+    backgroundImage: `https://i.picsum.photos/id/604/248/152.jpg?hmac=Yu4rnPqlL8pPa8b7cdPSosfFApQXtQmy56BW52elqto`,
     backgroundColor: `#ffffff`,
     videoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
@@ -52,18 +52,18 @@ const mockFilms = [
     director: `Jean-Pierre Jeunet`,
     starring: [`Audrey Tautou`, `Mathieu Kassovitz`, `Jamel Debbouze`],
     runTime: 120,
-    genre: `Romance`,
+    genre: `Drama`,
     released: 2001,
-    isFavorite: false
+    isFavorite: true
   },
 ];
 
 const mockFilm = {
   id: 6,
   name: `The Exorcist`,
-  posterImage: `http://picsum.photos/248/152?r=${Math.random()}`,
-  previewImage: `http://picsum.photos/248/152?r=${Math.random()}`,
-  backgroundImage: `http://picsum.photos/248/152?r=${Math.random()}`,
+  posterImage: `https://i.picsum.photos/id/604/248/152.jpg?hmac=Yu4rnPqlL8pPa8b7cdPSosfFApQXtQmy56BW52elqto`,
+  previewImage: `https://i.picsum.photos/id/604/248/152.jpg?hmac=Yu4rnPqlL8pPa8b7cdPSosfFApQXtQmy56BW52elqto`,
+  backgroundImage: `https://i.picsum.photos/id/604/248/152.jpg?hmac=Yu4rnPqlL8pPa8b7cdPSosfFApQXtQmy56BW52elqto`,
   backgroundColor: `#ffffff`,
   videoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   previewVideoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,

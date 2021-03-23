@@ -35,7 +35,7 @@ const MovieCard = (props) => {
   };
 
   return (
-    <article className="small-movie-card catalog__movies-card" onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} data-id={film.id}>
+    <article className="small-movie-card catalog__movies-card" onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} data-id={film.id} data-testid="movie-card">
       <Link to={hrefToFilmPage}>
         <div className="small-movie-card__image">
           <PreviewVideoPlayer

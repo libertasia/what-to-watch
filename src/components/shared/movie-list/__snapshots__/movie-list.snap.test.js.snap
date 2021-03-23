@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageLogo should render correctly 1`] = `
+<div>
+  <div
+    class="catalog__movies-list"
+  >
+    <article
+      class="small-movie-card catalog__movies-card"
+      data-id="1"
+    >
+      <a
+        href="/films/1"
+      >
+        <div
+          class="small-movie-card__image"
+        >
+          <video
+            alt="The Grand Budapest Hotel"
+            height="175"
+            poster="http://picsum.photos/248/152?r=0.006649299967240507"
+            src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+            width="280"
+          />
+        </div>
+      </a>
+      <h3
+        class="small-movie-card__title"
+      >
+        <a
+          class="small-movie-card__link"
+          href="/films/1"
+        >
+          The Grand Budapest Hotel
+        </a>
+      </h3>
+    </article>
+    <article
+      class="small-movie-card catalog__movies-card"
+      data-id="2"
+    >
+      <a
+        href="/films/2"
+      >
+        <div
+          class="small-movie-card__image"
+        >
+          <video
+            alt="Stand By Me"
+            height="175"
+            poster="http://picsum.photos/248/152?r=0.8000857967591901"
+            src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+            width="280"
+          />
+        </div>
+      </a>
+      <h3
+        class="small-movie-card__title"
+      >
+        <a
+          class="small-movie-card__link"
+          href="/films/2"
+        >
+          Stand By Me
+        </a>
+      </h3>
+    </article>
+    <article
+      class="small-movie-card catalog__movies-card"
+      data-id="3"
+    >
+      <a
+        href="/films/3"
+      >
+        <div
+          class="small-movie-card__image"
+        >
+          <video
+            alt="Amelie"
+            height="175"
+            poster="http://picsum.photos/248/152?r=0.9224182818790891"
+            src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+            width="280"
+          />
+        </div>
+      </a>
+      <h3
+        class="small-movie-card__title"
+      >
+        <a
+          class="small-movie-card__link"
+          href="/films/3"
+        >
+          Amelie
+        </a>
+      </h3>
+    </article>
+  </div>
+</div>
+`;

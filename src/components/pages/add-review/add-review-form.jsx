@@ -38,13 +38,13 @@ const AddReviewForm = (props) => {
   const ratingValues = Array.from({length: RATINGS_COUNT}, (_, i) => i + 1);
 
   return (
-    <form action="#" className="add-review__form" onSubmit={handleReviewSubmit}>
+    <form action="#" className="add-review__form" onSubmit={handleReviewSubmit} data-testid="submit-form">
       <div className="rating">
         <div className="rating__stars" onChange={setRating}>
           {
             ratingValues.map((value) => (
               <React.Fragment key={`star-${value}`}>
-                <input className="rating__input" id={`star-${value}`} type="radio" name="rating" value={value} disabled={isReviewFormDisabled} data-testid="rating"/>
+                <input className="rating__input" id={`star-${value}`} type="radio" name="rating" value={value} disabled={isReviewFormDisabled}/>
                 <label className="rating__label" htmlFor={`star-${value}`}>Rating {value}</label>
               </React.Fragment>
             ))

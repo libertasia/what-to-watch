@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should ProgressTogglerTimer render correctly 1`] = `
+<div>
+  <div
+    class="player__controls-row"
+  >
+    <div
+      class="player__time"
+    >
+      <progress
+        class="player__progress"
+        max="100"
+        value="0"
+      />
+      <div
+        class="player__toggler"
+        style="left: 0%;"
+      >
+        Toggler
+      </div>
+    </div>
+    <div
+      class="player__time-value"
+    >
+      05:05
+    </div>
+  </div>
+</div>
+`;
