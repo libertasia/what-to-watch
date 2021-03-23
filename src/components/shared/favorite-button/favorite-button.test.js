@@ -20,7 +20,7 @@ describe(`FavoriteButton should render correctly`, () => {
     render(
         <Provider store={mockStore(store)}>
           <FavoriteButton
-            film = {mockFilm}
+            film={mockFilm}
             onClick={jest.fn()}
           />
         </Provider>
