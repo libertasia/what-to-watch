@@ -9,13 +9,13 @@ import ShowMoreBtn from './show-more-btn';
 import LoadingScreen from '../../loading-screen/loading-screen';
 import UserBlock from '../../shared/user-block/user-block';
 import FavoriteButton from '../../shared/favorite-button/favorite-button';
-import {getAuthorizationStatus, getDataLoadedStatus, getFilmsListLoadingStatus, getPromo, getPromoLoadedStatus, getPromoLoadingStatus, getVisibleFilms} from '../../../store/selectors';
+import {getAuthorizationStatus, getDataLoadedStatus, getFilmsListLoadingStatus, getPromo, getPromoLoadedStatus, getPromoLoadingStatus, getVisibleFilms, getErrorMessage} from '../../../store/selectors';
 import {ActionCreator} from '../../../store/action';
 import {fetchFilmsList, fetchPromoFilm} from "../../../store/api-actions";
 import {AuthorizationStatus} from '../../../const';
 
 const Main = (props) => {
-  const {authorizationStatus, promo, visibleFilms, onLoad, isDataLoaded, isFilmsListLoading, isPromoLoaded, isPromoLoading, loadFilmsList, loadPromoFilm} = props;
+  const {authorizationStatus, promo, visibleFilms, onLoad, isDataLoaded, isFilmsListLoading, isPromoLoaded, isPromoLoading, loadFilmsList, loadPromoFilm, errorMessage} = props;
 
   useEffect(() => {
     onLoad();
@@ -31,9 +31,15 @@ const Main = (props) => {
   }, [isDataLoaded, isPromoLoaded, isFilmsListLoading, isPromoLoading]);
 
   if (!isDataLoaded || !isPromoLoaded) {
-    return (
-      <LoadingScreen />
-    );
+    if (!errorMessage) {
+      return (
+        <LoadingScreen />
+      );
+    } else {
+      return (
+        `${errorMessage}`
+      );
+    }
   }
 
   const imgAltText = `${promo.name} poster`;
@@ -120,6 +126,7 @@ Main.propTypes = {
   loadPromoFilm: PropTypes.func.isRequired,
   promo: PromoFilmShape,
   visibleFilms: FilmsShape,
+  errorMessage: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
@@ -130,6 +137,7 @@ const mapStateToProps = (state) => ({
   isPromoLoading: getPromoLoadingStatus(state),
   promo: getPromo(state),
   visibleFilms: getVisibleFilms(state),
+  errorMessage: getErrorMessage(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

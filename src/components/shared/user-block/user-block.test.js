@@ -9,8 +9,8 @@ import {AuthorizationStatus} from '../../../const';
 
 const mockStore = configureStore({});
 
-describe(`UserBlock should render correctly`, () => {
-  it(`UserBlock should render correctly if AuthorizationStatus is NO_AUTH`, () => {
+describe(`UserBlock`, () => {
+  it(`renders correctly when AuthorizationStatus is NO_AUTH`, () => {
     const store = {
       FILMS: {
         authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -27,7 +27,7 @@ describe(`UserBlock should render correctly`, () => {
 
     expect(screen.getByText(/Sign in/i)).toBeInTheDocument();
   });
-  it(`UserBlock should render correctly if AuthorizationStatus is AUTH`, () => {
+  it(`renders correctly when AuthorizationStatus is AUTH`, () => {
     const store = {
       FILMS: {
         authorizationStatus: AuthorizationStatus.AUTH,

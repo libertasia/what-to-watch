@@ -10,8 +10,8 @@ import userEvent from '@testing-library/user-event';
 const mockStore = configureStore({});
 const history = createMemoryHistory();
 
-describe(`Test PlayButton`, () => {
-  it(`Should PlayButton render correctly if isPlaying is false`, () => {
+describe(`PlayButton`, () => {
+  it(`renders correctly when isPlaying is false`, () => {
     const isPlaying = false;
 
     render(
@@ -25,7 +25,7 @@ describe(`Test PlayButton`, () => {
     expect(screen.getByText(/Play/i)).toBeInTheDocument();
   });
 
-  it(`Should PlayButton render correctly isPlaying is true`, () => {
+  it(`renders correctly when isPlaying is true`, () => {
     const isPlaying = true;
 
     render(
@@ -39,7 +39,7 @@ describe(`Test PlayButton`, () => {
     expect(screen.getByText(/Pause/i)).toBeInTheDocument();
   });
 
-  it(`When user click 'PlayButton' should be called handler`, () => {
+  it(`when clicked should be called handler`, () => {
     const onPlayButtonClickHandler = jest.fn();
 
     render(

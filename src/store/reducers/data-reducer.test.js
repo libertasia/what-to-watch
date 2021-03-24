@@ -3,8 +3,8 @@ import {ActionType} from '../action';
 import {AuthorizationStatus} from '../../const';
 import {mockFilms, mockFilm, mockReviews} from '../../test-mocks';
 
-describe(`Data-Reducer work correctly`, () => {
-  it(`Reducer without additional parameters should return initial state`, () => {
+describe(`Data-Reducer`, () => {
+  it(`without additional parameters should return initial state`, () => {
     const initialState = {
       authorizationStatus: AuthorizationStatus.INIT,
       isDataLoaded: false,
@@ -48,7 +48,7 @@ describe(`Data-Reducer work correctly`, () => {
       .toEqual(initialState);
   });
 
-  it(`Reducer should update films and isDataLoaded status by a given value`, () => {
+  it(`should update films and isDataLoaded status by a given value`, () => {
     const state = {
       films: [],
       isDataLoaded: false,
@@ -61,7 +61,7 @@ describe(`Data-Reducer work correctly`, () => {
     expect(dataReducer(state, loadFilmsAction))
       .toEqual({films: mockFilms, isDataLoaded: true});
   });
-  it(`Reducer should change isFilmsListLoading status by a given value`, () => {
+  it(`should change isFilmsListLoading status by a given value`, () => {
     const state = {
       isFilmsListLoading: false,
       otherFiled: `shouldNotChange`,
@@ -74,7 +74,7 @@ describe(`Data-Reducer work correctly`, () => {
     expect(dataReducer(state, setIsFilmsListLoadingAction))
       .toEqual({isFilmsListLoading: true, otherFiled: `shouldNotChange`});
   });
-  it(`Reducer should update promo Film and isPromoLoaded status by a given value`, () => {
+  it(`should update promo Film and isPromoLoaded status by a given value`, () => {
     const state = {
       promo: {},
       isPromoLoaded: false,
@@ -87,7 +87,7 @@ describe(`Data-Reducer work correctly`, () => {
     expect(dataReducer(state, loadPromoFilmAction))
       .toEqual({promo: mockFilm, isPromoLoaded: true});
   });
-  it(`Reducer should change isPromoLoading status by a given value`, () => {
+  it(`should change isPromoLoading status by a given value`, () => {
     const state = {
       isPromoLoading: false,
       otherFiled: `shouldNotChange`,
@@ -100,7 +100,7 @@ describe(`Data-Reducer work correctly`, () => {
     expect(dataReducer(state, setIsPromoLoadingAction))
       .toEqual({isPromoLoading: true, otherFiled: `shouldNotChange`});
   });
-  it(`Reducer should update favoriteFilms by a given value`, () => {
+  it(`should update favoriteFilms by a given value`, () => {
     const state = {
       favoriteFilms: [],
     };
@@ -112,7 +112,7 @@ describe(`Data-Reducer work correctly`, () => {
     expect(dataReducer(state, loadFavoriteFilmsListAction))
       .toEqual({favoriteFilms: mockFilms});
   });
-  it(`Reducer should update Film and isFilmLoaded status by a given value`, () => {
+  it(`should update Film and isFilmLoaded status by a given value`, () => {
     const state = {
       film: {},
       isFilmLoaded: false,
@@ -125,7 +125,7 @@ describe(`Data-Reducer work correctly`, () => {
     expect(dataReducer(state, loadFilmAction))
       .toEqual({film: mockFilm, isFilmLoaded: true});
   });
-  it(`Reducer should update reviews and isReviewsLoaded status by a given value`, () => {
+  it(`should update reviews and isReviewsLoaded status by a given value`, () => {
     const state = {
       reviews: [],
       isReviewsLoaded: false,
@@ -138,7 +138,7 @@ describe(`Data-Reducer work correctly`, () => {
     expect(dataReducer(state, loadReviewsAction))
       .toEqual({reviews: mockReviews, isReviewsLoaded: true});
   });
-  it(`Reducer should update authorizationStatus by a given value`, () => {
+  it(`should update authorizationStatus by a given value`, () => {
     const state = {authorizationStatus: AuthorizationStatus.INIT};
     const requiredAuthorizationAction = {
       type: ActionType.REQUIRED_AUTHORIZATION,
@@ -148,7 +148,7 @@ describe(`Data-Reducer work correctly`, () => {
     expect(dataReducer(state, requiredAuthorizationAction))
       .toEqual({authorizationStatus: AuthorizationStatus.AUTH});
   });
-  it(`Reducer should update film/promo film by a given value`, () => {
+  it(`should update film/promo film by a given value`, () => {
     const state = {
       film: {id: 6},
       promo: {id: 6},

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tabs should render correctly Tabs should render correctly if active tab is Details 1`] = `
+exports[`Tabs renders correctly if active tab is Details 1`] = `
 <div>
   <div
     class="movie-card__desc"
@@ -139,7 +139,7 @@ exports[`Tabs should render correctly Tabs should render correctly if active tab
 </div>
 `;
 
-exports[`Tabs should render correctly Tabs should render correctly if active tab is Overview 1`] = `
+exports[`Tabs renders correctly if active tab is Overview 1`] = `
 <div>
   <div
     class="movie-card__desc"
@@ -237,7 +237,7 @@ exports[`Tabs should render correctly Tabs should render correctly if active tab
 </div>
 `;
 
-exports[`Tabs should render correctly Tabs should render correctly if active tab is Reviews 1`] = `
+exports[`Tabs renders correctly if active tab is Reviews 1`] = `
 <div>
   <div
     class="movie-card__desc"

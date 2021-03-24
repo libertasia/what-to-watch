@@ -23,7 +23,7 @@ const store = {
   }
 };
 
-it(`AddReview should be render correctly`, () => {
+it(`AddReview renders correctly`, () => {
   const history = createMemoryHistory();
   render(
       <Provider store={mockStore(store)}>

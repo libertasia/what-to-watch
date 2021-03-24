@@ -5,14 +5,14 @@ import {createMemoryHistory} from 'history';
 import {Player} from './player';
 import {mockFilm} from '../../../test-mocks';
 
-describe(`Test Player`, () => {
+describe(`Player`, () => {
   beforeAll(() => {
     window.HTMLMediaElement.prototype.play = () => {};
     window.HTMLMediaElement.prototype.pause = () => {};
 
   });
 
-  it(`Player should be render correctly`, () => {
+  it(`renders correctly`, () => {
     const history = createMemoryHistory();
     const {container} = render(
         <Router history={history}>
@@ -24,7 +24,7 @@ describe(`Test Player`, () => {
         </Router>
     );
 
-    expect(screen.getByTestId(`fullScreenBtn`)).toBeInTheDocument();
+    expect(screen.getByTestId(`full-screen_btn`)).toBeInTheDocument();
     expect(container.querySelector(`video`)).toBeInTheDocument();
     expect(screen.getByText(`Exit`)).toBeInTheDocument();
     expect(screen.getByText(`Full screen`)).toBeInTheDocument();

@@ -1,8 +1,8 @@
 import {errorReducer} from './error-reducer';
 import {ActionType} from '../action';
 
-describe(`Error-Reducer work correctly`, () => {
-  it(`Reducer without additional parameters should return initial state`, () => {
+describe(`Error-Reducer`, () => {
+  it(`without additional parameters should return initial state`, () => {
     const initialState = {
       error: null,
       errorMessage: null,
@@ -11,7 +11,7 @@ describe(`Error-Reducer work correctly`, () => {
       .toEqual(initialState);
   });
 
-  it(`Reducer should update state by a given value`, () => {
+  it(`should update state by a given value`, () => {
     const state = {
       error: null,
       errorMessage: null,

@@ -6,8 +6,8 @@ import {APIRoute, AppRoute, AuthorizationStatus} from '../const';
 
 const api = createAPI(() => {});
 
-describe(`Async operation work correctly`, () => {
-  it(`Should make a correct API call to /films`, () => {
+describe(`Async operation`, () => {
+  it(`should make a correct API call to /films`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const filmsLoader = fetchFilmsList();
@@ -76,7 +76,7 @@ describe(`Async operation work correctly`, () => {
       });
     });
   });
-  it(`Should make a correct API call to /films/promo`, () => {
+  it(`should make a correct API call to /films/promo`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const promoLoader = fetchPromoFilm();
@@ -145,7 +145,7 @@ describe(`Async operation work correctly`, () => {
     });
   });
 
-  it(`Should make a correct API call to /favorite`, () => {
+  it(`should make a correct API call to /favorite`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const favoriteFilmsLoader = fetchFavoriteFilmsList();
@@ -203,7 +203,7 @@ describe(`Async operation work correctly`, () => {
       });
     });
   });
-  it(`Should make a correct API call to /films/:id`, () => {
+  it(`should make a correct API call to /films/:id`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const id = 1;
@@ -263,7 +263,7 @@ describe(`Async operation work correctly`, () => {
       });
     });
   });
-  it(`Should make a correct API call to /comments/:id`, () => {
+  it(`should make a correct API call to /comments/:id`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const id = 1;
@@ -285,7 +285,7 @@ describe(`Async operation work correctly`, () => {
       });
     });
   });
-  it(`Should make a correct API call to /login`, () => {
+  it(`should make a correct API call to /login`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const checkAuthLoader = checkAuth();
@@ -303,7 +303,7 @@ describe(`Async operation work correctly`, () => {
         });
       });
   });
-  it(`Should make a correct API call to /login`, () => {
+  it(`should make a correct API call to /login`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const fakeUser = {email: `test@test.ru`, password: `123456`};
@@ -328,7 +328,7 @@ describe(`Async operation work correctly`, () => {
         });
       });
   });
-  it(`Should make a correct API call to /logout`, () => {
+  it(`should make a correct API call to /logout`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const logoutLoader = logout();
@@ -346,7 +346,7 @@ describe(`Async operation work correctly`, () => {
         });
       });
   });
-  it(`Should make a correct API call to /comments/:id`, () => {
+  it(`should make a correct API call to /comments/:id`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const id = 1;
@@ -375,7 +375,7 @@ describe(`Async operation work correctly`, () => {
         });
       });
   });
-  it(`Should make a correct API call to /favorite/:id/:status`, () => {
+  it(`should make a correct API call to /favorite/:id/:status`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const id = 1;

@@ -18,7 +18,7 @@ const store = {
   }
 };
 
-it(`GenresList should render correctly`, () => {
+it(`GenresList renders correctly`, () => {
   const history = createMemoryHistory();
   const {container} = render(
       <Provider store={mockStore(store)}>

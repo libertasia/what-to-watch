@@ -6,7 +6,7 @@ import configureStore from 'redux-mock-store';
 import {createMemoryHistory} from 'history';
 import {Provider} from 'react-redux';
 import {SignIn} from './sign-in';
-import {AuthorizationStatus} from '../../../const';
+import {AppRoute, AuthorizationStatus} from '../../../const';
 
 const mockStore = configureStore({});
 const store = {
@@ -15,11 +15,11 @@ const store = {
   }
 };
 
-describe(`SignIn should render correctly`, () => {
-  it(`Render 'SignIn' when user navigate to '/login' url`, () => {
+describe(`SignIn`, () => {
+  it(`renders correctly when user navigate to '/login' url`, () => {
     const testAuthorizationStatus = AuthorizationStatus.NO_AUTH;
     const history = createMemoryHistory();
-    history.push(`/login`);
+    history.push(AppRoute.LOGIN);
 
     render(
         <Provider store={mockStore(store)}>
@@ -32,7 +32,7 @@ describe(`SignIn should render correctly`, () => {
         </Provider>
     );
 
-    expect(screen.getByTestId(/signInBtn/i)).toBeInTheDocument();
+    expect(screen.getByTestId(`sign-in_btn`)).toBeInTheDocument();
     expect(screen.getByLabelText(/Email address/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
 
@@ -43,10 +43,10 @@ describe(`SignIn should render correctly`, () => {
     expect(screen.getByDisplayValue(/123456/i)).toBeInTheDocument();
   });
 
-  it(`SignIn should render correctly when AuthorizationStatus is AUTH_ERROR`, () => {
+  it(`renders correctly when AuthorizationStatus is AUTH_ERROR`, () => {
     const testAuthorizationStatus = AuthorizationStatus.AUTH_ERROR;
     const history = createMemoryHistory();
-    history.push(`/login`);
+    history.push(AppRoute.LOGIN);
 
     render(
         <Provider store={mockStore(store)}>
@@ -59,7 +59,7 @@ describe(`SignIn should render correctly`, () => {
         </Provider>
     );
     expect(screen.getByText(/We can’t recognize this email and password combination. Please try again./i)).toBeInTheDocument();
-    expect(screen.getByTestId(/signInBtn/i)).toBeInTheDocument();
+    expect(screen.getByTestId(`sign-in_btn`)).toBeInTheDocument();
     expect(screen.getByLabelText(/Email address/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
 
@@ -70,14 +70,14 @@ describe(`SignIn should render correctly`, () => {
     expect(screen.getByDisplayValue(/123456/i)).toBeInTheDocument();
   });
 
-  it(`Click on SignInBtn works`, () => {
+  it(`works correctly when clicked`, () => {
     const testAuthorizationStatus = AuthorizationStatus.NO_AUTH;
     const history = createMemoryHistory();
     let user = {
       login: null,
       password: null,
     };
-    history.push(`/login`);
+    history.push(AppRoute.LOGIN);
     const SignInBtnClickHandler = jest.fn();
     SignInBtnClickHandler.mockImplementation(
         () => (user = {
@@ -98,7 +98,7 @@ describe(`SignIn should render correctly`, () => {
         </Provider>
     );
 
-    expect(screen.getByTestId(/signInBtn/i)).toBeInTheDocument();
+    expect(screen.getByTestId(`sign-in_btn`)).toBeInTheDocument();
     expect(screen.getByLabelText(/Email address/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
 
@@ -108,7 +108,7 @@ describe(`SignIn should render correctly`, () => {
     expect(screen.getByDisplayValue(/testUser/i)).toBeInTheDocument();
     expect(screen.getByDisplayValue(/123456/i)).toBeInTheDocument();
 
-    fireEvent.submit(screen.getByTestId(`sign-in-form`));
+    fireEvent.submit(screen.getByTestId(`sign-in_form`));
     expect(SignInBtnClickHandler).toBeCalled();
     expect(user.login).toBe(`testUser`);
     expect(user.password).toBe(`123456`);
