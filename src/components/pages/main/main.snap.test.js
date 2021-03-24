@@ -7,7 +7,6 @@ import {createMemoryHistory} from 'history';
 import {Main} from './main';
 import {mockFilm, mockFilms, mockReviews} from '../../../test-mocks';
 import {AuthorizationStatus, TabTypes} from '../../../const';
-import { number } from 'prop-types';
 
 const mockStore = configureStore({});
 const store = {
@@ -26,7 +25,7 @@ const store = {
     activeTab: TabTypes.OVERVIEW,
   },
   ERRORS: {
-    errorMessage: number,
+    errorMessage: null,
   }
 };
 it(`MainScreen renders correctly`, () => {
