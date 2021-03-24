@@ -2,13 +2,13 @@ import React from 'react';
 import {render} from '@testing-library/react';
 import PreviewVideoPlayer from './preview-video-player';
 
-describe(`Test PreviewVideoPlayer`, () => {
+describe(`PreviewVideoPlayer`, () => {
   beforeAll(() => {
     window.HTMLMediaElement.prototype.play = () => {};
     window.HTMLMediaElement.prototype.load = () => {};
   });
 
-  it(`PreviewVideoPlayer should be render correctly`, () => {
+  it(`renders correctly`, () => {
     const mockPath = `mock-path`;
     const mockPosterImage = `http://picsum.photos/248/152?r=${Math.random()}`;
     const mockAltText = `Some Film`;

@@ -15,8 +15,8 @@ const store = {
     }
   }
 };
-describe(`FavoriteButton should render correctly`, () => {
-  it(`FavoriteButton should render correctly`, () => {
+describe(`FavoriteButton`, () => {
+  it(`renders correctly`, () => {
     render(
         <Provider store={mockStore(store)}>
           <FavoriteButton
@@ -28,7 +28,7 @@ describe(`FavoriteButton should render correctly`, () => {
 
     expect(screen.getByText(/My list/i)).toBeInTheDocument();
   });
-  it(`Click on FavoriteButton works`, () => {
+  it(`works correctly when clicked`, () => {
     const favoriteButtonClickHandler = jest.fn();
     favoriteButtonClickHandler.mockImplementation(
         () => (mockFilm.isFavorite = false)
@@ -44,7 +44,7 @@ describe(`FavoriteButton should render correctly`, () => {
     );
 
     expect(screen.getByText(/My list/i)).toBeInTheDocument();
-    userEvent.click(screen.getByRole(`button`));
+    userEvent.click(screen.getByTestId(`favorite_btn`));
     expect(favoriteButtonClickHandler).toBeCalled();
     expect(mockFilm.isFavorite).toBe(false);
   });

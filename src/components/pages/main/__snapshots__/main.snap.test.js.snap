@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MainScreen should render correctly 1`] = `
+exports[`MainScreen renders correctly 1`] = `
 <div>
   <section
     class="movie-card"
@@ -125,7 +125,7 @@ exports[`MainScreen should render correctly 1`] = `
             </a>
             <button
               class="btn btn--list movie-card__button"
-              data-testid="favoriteBtn"
+              data-testid="favorite_btn"
               type="button"
             >
               <svg

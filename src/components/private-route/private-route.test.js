@@ -9,13 +9,13 @@ import PrivateRoute from './private-route';
 
 const mockStore = configureStore({});
 let history;
-describe(`Test PrivateRouter`, () => {
+describe(`PrivateRouter`, () => {
   beforeEach(() => {
     history = createMemoryHistory();
     history.push(`/private`);
   });
 
-  it(`Should be render LoadingScreen when authorizationStatus is INIT`, () => {
+  it(`should render LoadingScreen when authorizationStatus is INIT`, () => {
     const store = mockStore({
       FILMS: {authorizationStatus: AuthorizationStatus.INIT}
     });
@@ -38,7 +38,7 @@ describe(`Test PrivateRouter`, () => {
     expect(screen.queryByText(/Public Route/i)).not.toBeInTheDocument();
   });
 
-  it(`Should be render component for public route, when user not authorized`, () => {
+  it(`should render component for public route, when user is not authorized`, () => {
     const store = mockStore({
       FILMS: {authorizationStatus: AuthorizationStatus.NO_AUTH}
     });
@@ -60,7 +60,7 @@ describe(`Test PrivateRouter`, () => {
     expect(screen.queryByText(/Private Route/i)).not.toBeInTheDocument();
   });
 
-  it(`Should be render component for private route, when user authorized`, () => {
+  it(`should render component for private route, when user authorized`, () => {
     const store = mockStore({
       FILMS: {authorizationStatus: AuthorizationStatus.AUTH}
     });

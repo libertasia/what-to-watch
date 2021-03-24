@@ -7,6 +7,7 @@ import {createMemoryHistory} from 'history';
 import {Main} from './main';
 import {mockFilm, mockFilms, mockReviews} from '../../../test-mocks';
 import {AuthorizationStatus, TabTypes} from '../../../const';
+import { number } from 'prop-types';
 
 const mockStore = configureStore({});
 const store = {
@@ -23,9 +24,12 @@ const store = {
   },
   VIEW: {
     activeTab: TabTypes.OVERVIEW,
+  },
+  ERRORS: {
+    errorMessage: number,
   }
 };
-it(`MainScreen should render correctly`, () => {
+it(`MainScreen renders correctly`, () => {
   const history = createMemoryHistory();
   const {container} = render(
       <Provider store={mockStore(store)}>
@@ -41,6 +45,7 @@ it(`MainScreen should render correctly`, () => {
             isPromoLoading={false}
             loadFilmsList={jest.fn()}
             loadPromoFilm={jest.fn()}
+            errorMessage={null}
           />
         </Router>
       </Provider>

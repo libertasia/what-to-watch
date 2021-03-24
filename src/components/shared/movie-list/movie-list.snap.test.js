@@ -5,7 +5,7 @@ import {render} from '@testing-library/react';
 import MovieList from './movie-list';
 import {mockFilms} from '../../../test-mocks';
 
-it(`PageLogo should render correctly`, () => {
+it(`MovieList renders correctly`, () => {
   const history = createMemoryHistory();
   const {container} = render(
       <Router history={history}>

@@ -2,8 +2,8 @@ import {viewReducer} from './view-reducer';
 import {ActionType} from '../action';
 import {DEFAULT_GENRE, DEFAULT_VISIBLE_FILMS_COUNT, TabTypes} from '../../const';
 
-describe(`View-Reducer work correctly`, () => {
-  it(`Reducer without additional parameters should return initial state`, () => {
+describe(`View-Reducer`, () => {
+  it(`without additional parameters should return initial state`, () => {
     const initialState = {
       activeGenre: DEFAULT_GENRE,
       activeTab: TabTypes.OVERVIEW,
@@ -14,7 +14,7 @@ describe(`View-Reducer work correctly`, () => {
       .toEqual(initialState);
   });
 
-  it(`Reducer should change activeGenre by a given value`, () => {
+  it(`should change activeGenre by a given value`, () => {
     const state = {
       activeGenre: DEFAULT_GENRE,
       otherFiled: `shouldNotChange`,
@@ -27,7 +27,7 @@ describe(`View-Reducer work correctly`, () => {
     expect(viewReducer(state, changeGenreAction))
       .toEqual({activeGenre: `someGenre`, otherFiled: `shouldNotChange`});
   });
-  it(`Reducer should increase visibleFilmsCount by a constant value`, () => {
+  it(`should increase visibleFilmsCount by a constant value`, () => {
     const state = {
       visibleFilmsCount: DEFAULT_VISIBLE_FILMS_COUNT,
       otherFiled: `shouldNotChange`,
@@ -39,7 +39,7 @@ describe(`View-Reducer work correctly`, () => {
     expect(viewReducer(state, increaseVisibleFilmsCountAction))
       .toEqual({visibleFilmsCount: state.visibleFilmsCount + DEFAULT_VISIBLE_FILMS_COUNT, otherFiled: `shouldNotChange`});
   });
-  it(`Reducer should reset activeGenre to a default value`, () => {
+  it(`should reset activeGenre to a default value`, () => {
     const state = {
       activeGenre: `someGenre`,
       otherFiled: `shouldNotChange`,
@@ -51,7 +51,7 @@ describe(`View-Reducer work correctly`, () => {
     expect(viewReducer(state, resetGenreAction))
       .toEqual({activeGenre: DEFAULT_GENRE, otherFiled: `shouldNotChange`});
   });
-  it(`Reducer should reset activeTab to a default value`, () => {
+  it(`should reset activeTab to a default value`, () => {
     const state = {
       activeTab: `someTitle`,
       otherFiled: `shouldNotChange`,
@@ -63,7 +63,7 @@ describe(`View-Reducer work correctly`, () => {
     expect(viewReducer(state, resetActiveTabAction))
       .toEqual({activeTab: TabTypes.OVERVIEW, otherFiled: `shouldNotChange`});
   });
-  it(`Reducer should set activeTab by a given value`, () => {
+  it(`should set activeTab by a given value`, () => {
     const state = {
       activeTab: `someTitle`,
       otherFiled: `shouldNotChange`,
@@ -76,7 +76,7 @@ describe(`View-Reducer work correctly`, () => {
     expect(viewReducer(state, setActiveTabAction))
       .toEqual({activeTab: `newTitle`, otherFiled: `shouldNotChange`});
   });
-  it(`Reducer should reset visibleFilmsCount to a default value`, () => {
+  it(`should reset visibleFilmsCount to a default value`, () => {
     const state = {
       visibleFilmsCount: 23,
       otherFiled: `shouldNotChange`,
@@ -88,7 +88,7 @@ describe(`View-Reducer work correctly`, () => {
     expect(viewReducer(state, resetVisibleFilmsCountAction))
       .toEqual({visibleFilmsCount: DEFAULT_VISIBLE_FILMS_COUNT, otherFiled: `shouldNotChange`});
   });
-  it(`Reducer should change isReviewFormDisabled status by a given value`, () => {
+  it(`should change isReviewFormDisabled status by a given value`, () => {
     const state = {
       isReviewFormDisabled: false,
       otherFiled: `shouldNotChange`,

@@ -4,7 +4,7 @@ import {createMemoryHistory} from 'history';
 import {render} from '@testing-library/react';
 import PageLogo from './page-logo';
 
-it(`PageLogo should render correctly`, () => {
+it(`PageLogo renders correctly`, () => {
   const history = createMemoryHistory();
   const {container} = render(
       <Router history={history}>

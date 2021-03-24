@@ -24,8 +24,8 @@ const store = {
   }
 };
 
-describe(`Test AddReviewForm`, () => {
-  it(`AddReviewForm should be render correctly`, () => {
+describe(`AddReviewForm`, () => {
+  it(`renders correctly`, () => {
     const history = createMemoryHistory();
     render(
         <Provider store={mockStore(store)}>
@@ -41,11 +41,11 @@ describe(`Test AddReviewForm`, () => {
     );
 
     expect(screen.getByText(`Post`)).toBeInTheDocument();
-    userEvent.type(screen.getByPlaceholderText(`Review text`), `test comment`);
+    userEvent.type(screen.getByTestId(`add-review_textarea`), `test comment`);
     expect(screen.getByDisplayValue(/test comment/i)).toBeInTheDocument();
   });
 
-  it(`Click on SubmitBtn works`, () => {
+  it(`is submitted when Submit btn is clicked`, () => {
     const history = createMemoryHistory();
     const SubmitBtnClickHandler = jest.fn();
     let isReviewFormDisabled = false;
@@ -67,9 +67,9 @@ describe(`Test AddReviewForm`, () => {
     );
 
     expect(screen.getByText(`Post`)).toBeInTheDocument();
-    userEvent.type(screen.getByPlaceholderText(`Review text`), `test comment`);
+    userEvent.type(screen.getByTestId(`add-review_textarea`), `test comment`);
     expect(screen.getByDisplayValue(/test comment/i)).toBeInTheDocument();
-    fireEvent.submit(screen.getByTestId(`submit-form`));
+    fireEvent.submit(screen.getByTestId(`add-review_form`));
     expect(SubmitBtnClickHandler).toBeCalled();
     expect(isReviewFormDisabled).toBe(true);
   });

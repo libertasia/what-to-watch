@@ -16,8 +16,8 @@ const store = {
     visibleFilmsCount: DEFAULT_VISIBLE_FILMS_COUNT,
   }
 };
-describe(`ShowMoreBtn should render correctly`, () => {
-  it(`ShowMoreBtn should render correctly`, () => {
+describe(`ShowMoreBtn`, () => {
+  it(`renders correctly`, () => {
     render(
         <Provider store={mockStore(store)}>
           <ShowMoreBtn
@@ -30,7 +30,7 @@ describe(`ShowMoreBtn should render correctly`, () => {
 
     expect(screen.getByText(/Show more/i)).toBeInTheDocument();
   });
-  it(`Click on ShowMoreBtn works`, () => {
+  it(`works correctly when clicked`, () => {
     const ShowMoreBtnClickHandler = jest.fn();
 
     render(

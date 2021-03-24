@@ -8,7 +8,7 @@ import ProgressTogglerTimer from './progress-toggle-timer';
 
 const mockStore = configureStore({});
 
-it(`Should ProgressTogglerTimer render correctly`, () => {
+it(`ProgressTogglerTimer renders correctly`, () => {
   const history = createMemoryHistory();
   const progress = 0;
   const timer = `05:05`;

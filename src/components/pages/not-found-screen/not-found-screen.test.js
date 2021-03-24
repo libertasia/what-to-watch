@@ -4,7 +4,7 @@ import {createMemoryHistory} from 'history';
 import {render} from '@testing-library/react';
 import NotFoundScreen from './not-found-screen';
 
-it(`NotFoundScreen should render correctly`, () => {
+it(`NotFoundScreen renders correctly`, () => {
   const history = createMemoryHistory();
   const {getByText} = render(
       <Router history={history}>

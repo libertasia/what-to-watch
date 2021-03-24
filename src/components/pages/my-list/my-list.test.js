@@ -13,7 +13,7 @@ const store = {
     favoriteFilms: mockFilms,
   }
 };
-it(`MyList should render correctly`, () => {
+it(`MyList renders correctly`, () => {
   const history = createMemoryHistory();
   render(
       <Provider store={mockStore(store)}>

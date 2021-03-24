@@ -16,8 +16,8 @@ const store = {
     activeTab: TabTypes.OVERVIEW,
   }
 };
-describe(`Tabs should render correctly`, () => {
-  it(`Tabs should render correctly if active tab is Overview`, () => {
+describe(`Tabs`, () => {
+  it(`renders correctly if active tab is Overview`, () => {
     const history = createMemoryHistory();
     const {container} = render(
         <Provider store={mockStore(store)}>
@@ -34,7 +34,7 @@ describe(`Tabs should render correctly`, () => {
 
     expect(container).toMatchSnapshot();
   });
-  it(`Tabs should render correctly if active tab is Details`, () => {
+  it(`renders correctly if active tab is Details`, () => {
     const history = createMemoryHistory();
     const {container} = render(
         <Provider store={mockStore(store)}>
@@ -51,7 +51,7 @@ describe(`Tabs should render correctly`, () => {
 
     expect(container).toMatchSnapshot();
   });
-  it(`Tabs should render correctly if active tab is Reviews`, () => {
+  it(`renders correctly if active tab is Reviews`, () => {
     const history = createMemoryHistory();
     const {container} = render(
         <Provider store={mockStore(store)}>
@@ -68,24 +68,4 @@ describe(`Tabs should render correctly`, () => {
 
     expect(container).toMatchSnapshot();
   });
-  // it(`Click on FavoriteButton works`, () => {
-  //   const favoriteButtonClickHandler = jest.fn();
-  //   favoriteButtonClickHandler.mockImplementation(
-  //       () => (mockFilm.isFavorite = false)
-  //   );
-
-  //   render(
-  //       <Provider store={mockStore(store)}>
-  //         <FavoriteButton
-  //           film = {mockFilm}
-  //           onClick={favoriteButtonClickHandler}
-  //         />
-  //       </Provider>
-  //   );
-
-  //   expect(screen.getByText(/My list/i)).toBeInTheDocument();
-  //   userEvent.click(screen.getByRole(`button`));
-  //   expect(favoriteButtonClickHandler).toBeCalled();
-  //   expect(mockFilm.isFavorite).toBe(false);
-  // });
 });

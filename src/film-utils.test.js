@@ -2,14 +2,14 @@ import {getFilmsByGenre, getGenreList, adaptFilmToClient, getTimeInUserFormat, g
 import {DEFAULT_GENRE} from './const';
 import {mockFilms, mockFilm} from './test-mocks';
 
-describe(`FilmUtils work correctly`, () => {
-  it(`getFilmsByGenre work correctly`, () => {
+describe(`FilmUtils work correctly.`, () => {
+  it(`Function getFilmsByGenre works correctly`, () => {
     const genre = DEFAULT_GENRE;
     const expectedResult = mockFilms;
 
     expect(getFilmsByGenre(mockFilms, genre)).toEqual(expectedResult);
   });
-  it(`getFilmsByGenre work correctly`, () => {
+  it(`Function getFilmsByGenre works correctly`, () => {
     const genre = `Drama`;
     const expectedResult = [{
       id: 2,
@@ -52,12 +52,12 @@ describe(`FilmUtils work correctly`, () => {
 
     expect(getFilmsByGenre(mockFilms, genre)).toEqual(expectedResult);
   });
-  it(`getGenreList work correctly`, () => {
+  it(`Function getGenreList works correctly`, () => {
     const expectedResult = [DEFAULT_GENRE, `Comedy`, `Drama`];
 
     expect(getGenreList(mockFilms)).toEqual(expectedResult);
   });
-  it(`adaptFilmToClient work correctly`, () => {
+  it(`Function adaptFilmToClient works correctly`, () => {
     const film = {
       "id": 6,
       "name": `The Exorcist`,
@@ -81,19 +81,16 @@ describe(`FilmUtils work correctly`, () => {
 
     expect(adaptFilmToClient(film)).toEqual(expectedResult);
   });
-  it(`getNumber work correctly`, () => {
-    const number = 4;
-    const expectedResult = `04`;
+  it(`Function getNumber works correctly`, () => {
+    const number1 = 4;
+    const expectedResult1 = `04`;
+    const number2 = 23;
+    const expectedResult2 = `23`;
 
-    expect(getNumber(number)).toEqual(expectedResult);
+    expect(getNumber(number1)).toEqual(expectedResult1);
+    expect(getNumber(number2)).toEqual(expectedResult2);
   });
-  it(`getNumber work correctly`, () => {
-    const number = 23;
-    const expectedResult = `23`;
-
-    expect(getNumber(number)).toEqual(expectedResult);
-  });
-  it(`getTimeInUserFormat work correctly`, () => {
+  it(`Function getTimeInUserFormat works correctly`, () => {
     const timeHour = 45678;
     const timeNoHour = 564;
     const expectedResultHours = `12:41:18`;

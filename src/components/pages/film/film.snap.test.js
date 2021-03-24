@@ -23,7 +23,7 @@ const store = {
     activeTab: TabTypes.OVERVIEW,
   }
 };
-it(`Film should render correctly`, () => {
+it(`Film renders correctly`, () => {
   const history = createMemoryHistory();
   const {container} = render(
       <Provider store={mockStore(store)}>
