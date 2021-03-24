@@ -1,0 +1,396 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tabs should render correctly Tabs should render correctly if active tab is Details 1`] = `
+<div>
+  <div
+    class="movie-card__desc"
+  >
+    <nav
+      class="movie-nav movie-card__nav"
+    >
+      <ul
+        class="movie-nav__list"
+      >
+        <li
+          class="movie-nav__item "
+          data-id="overview"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Overview
+          </a>
+        </li>
+        <li
+          class="movie-nav__item movie-nav__item--active"
+          data-id="details"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Details
+          </a>
+        </li>
+        <li
+          class="movie-nav__item "
+          data-id="reviews"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Reviews
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div
+      class="movie-card__text movie-card__row"
+    >
+      <div
+        class="movie-card__text-col"
+      >
+        <p
+          class="movie-card__details-item"
+        >
+          <strong
+            class="movie-card__details-name"
+          >
+            Director
+          </strong>
+          <span
+            class="movie-card__details-value"
+          >
+            William Friedkin
+          </span>
+        </p>
+        <p
+          class="movie-card__details-item"
+        >
+          <strong
+            class="movie-card__details-name"
+          >
+            Starring
+          </strong>
+          <span
+            class="movie-card__details-value"
+          >
+            Linda Blair,
+            <br />
+            Ellen Burstyn,
+            <br />
+            Jason Miller,
+            <br />
+            Max von Sydow,
+            <br />
+          </span>
+        </p>
+      </div>
+      <div
+        class="movie-card__text-col"
+      >
+        <p
+          class="movie-card__details-item"
+        >
+          <strong
+            class="movie-card__details-name"
+          >
+            Run Time
+          </strong>
+          <span
+            class="movie-card__details-value"
+          >
+            2h 8m
+          </span>
+        </p>
+        <p
+          class="movie-card__details-item"
+        >
+          <strong
+            class="movie-card__details-name"
+          >
+            Genre
+          </strong>
+          <span
+            class="movie-card__details-value"
+          >
+            Thriller
+          </span>
+        </p>
+        <p
+          class="movie-card__details-item"
+        >
+          <strong
+            class="movie-card__details-name"
+          >
+            Released
+          </strong>
+          <span
+            class="movie-card__details-value"
+          >
+            1973
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Tabs should render correctly Tabs should render correctly if active tab is Overview 1`] = `
+<div>
+  <div
+    class="movie-card__desc"
+  >
+    <nav
+      class="movie-nav movie-card__nav"
+    >
+      <ul
+        class="movie-nav__list"
+      >
+        <li
+          class="movie-nav__item movie-nav__item--active"
+          data-id="overview"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Overview
+          </a>
+        </li>
+        <li
+          class="movie-nav__item "
+          data-id="details"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Details
+          </a>
+        </li>
+        <li
+          class="movie-nav__item "
+          data-id="reviews"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Reviews
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div
+      class="movie-rating"
+    >
+      <div
+        class="movie-rating__score"
+      >
+        8.8
+      </div>
+      <p
+        class="movie-rating__meta"
+      >
+        <span
+          class="movie-rating__level"
+        >
+          Very good
+        </span>
+        <span
+          class="movie-rating__count"
+        >
+          174
+           ratings
+        </span>
+      </p>
+    </div>
+    <div
+      class="movie-card__text"
+    >
+      <p>
+        An actress notices dangerous changes in the behavior and physical make-up of her 12-year-old daughter. Meanwhile, a young priest begins to doubt his faith while dealing with his mother's sickness.
+      </p>
+      <p
+        class="movie-card__director"
+      >
+        <strong>
+          Director: 
+          William Friedkin
+        </strong>
+      </p>
+      <p
+        class="movie-card__starring"
+      >
+        <strong>
+          Starring: 
+          Linda Blair, Ellen Burstyn, Jason Miller, Max von Sydow
+           and other
+        </strong>
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Tabs should render correctly Tabs should render correctly if active tab is Reviews 1`] = `
+<div>
+  <div
+    class="movie-card__desc"
+  >
+    <nav
+      class="movie-nav movie-card__nav"
+    >
+      <ul
+        class="movie-nav__list"
+      >
+        <li
+          class="movie-nav__item "
+          data-id="overview"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Overview
+          </a>
+        </li>
+        <li
+          class="movie-nav__item "
+          data-id="details"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Details
+          </a>
+        </li>
+        <li
+          class="movie-nav__item movie-nav__item--active"
+          data-id="reviews"
+        >
+          <a
+            class="movie-nav__link"
+            href="#"
+          >
+            Reviews
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div
+      class="movie-card__reviews movie-card__row"
+    >
+      <div
+        class="movie-card__reviews-col"
+      >
+        <div
+          class="review"
+        >
+          <blockquote
+            class="review__quote"
+          >
+            <p
+              class="review__text"
+            >
+              This movie is just plain bad. There must be some big payola going round this awards season. Badly written, average acting at best, all the characters are unrelatable and inlikeable. 2 hours of my life wasted.
+            </p>
+            <footer
+              class="review__details"
+            >
+              <cite
+                class="review__author"
+              >
+                Emely
+              </cite>
+              <time
+                class="review__date"
+                datetime="2021-01-27T13:18:14.644Z"
+              >
+                January 27, 2021
+              </time>
+            </footer>
+          </blockquote>
+          <div
+            class="review__rating"
+          >
+            9.8
+          </div>
+        </div>
+        <div
+          class="review"
+        >
+          <blockquote
+            class="review__quote"
+          >
+            <p
+              class="review__text"
+            >
+              This movie is perfect in all its categories: credits, sound track, production, casting, writing, photography, editing, acting, and direction.
+I was amazed with the freedom of the use of the camera. This movie will change the way movies are made. Slow-mo, stills, black and white, and color were all used to brilliant effect.
+            </p>
+            <footer
+              class="review__details"
+            >
+              <cite
+                class="review__author"
+              >
+                Zak
+              </cite>
+              <time
+                class="review__date"
+                datetime="2021-01-27T13:18:14.644Z"
+              >
+                January 27, 2021
+              </time>
+            </footer>
+          </blockquote>
+          <div
+            class="review__rating"
+          >
+            8.4
+          </div>
+        </div>
+        <div
+          class="review"
+        >
+          <blockquote
+            class="review__quote"
+          >
+            <p
+              class="review__text"
+            >
+              This movie really touched my heart, it really is the best movie of the year and everyone should see this masterpiece.
+            </p>
+            <footer
+              class="review__details"
+            >
+              <cite
+                class="review__author"
+              >
+                Emely
+              </cite>
+              <time
+                class="review__date"
+                datetime="2021-02-06T13:18:14.644Z"
+              >
+                February 6, 2021
+              </time>
+            </footer>
+          </blockquote>
+          <div
+            class="review__rating"
+          >
+            5.7
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

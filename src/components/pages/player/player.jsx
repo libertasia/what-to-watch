@@ -131,6 +131,7 @@ const Player = (props) => {
             type="button"
             className="player__full-screen"
             onClick={handleFullScreenBtnClick}
+            data-testid="fullScreenBtn"
           >
             <svg viewBox="0 0 27 27" width={27} height={27}>
               <use xlinkHref="#full-screen" />

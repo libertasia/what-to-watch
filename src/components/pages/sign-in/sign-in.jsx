@@ -27,7 +27,7 @@ const SignIn = ({onSubmit, authorizationStatus}) => {
         <h1 className="page-title user-page__title">Sign in</h1>
       </header>
       <div className="sign-in user-page__content">
-        <form action="#" className="sign-in__form" onSubmit={handleSubmit}>
+        <form action="#" className="sign-in__form" onSubmit={handleSubmit} data-testid="sign-in-form">
           {authorizationStatus === AuthorizationStatus.AUTH_ERROR &&
             <div className="sign-in__message">
               <p>We can’t recognize this email <br /> and password combination. Please try again.</p>
@@ -44,7 +44,7 @@ const SignIn = ({onSubmit, authorizationStatus}) => {
             </div>
           </div>
           <div className="sign-in__submit">
-            <button className="sign-in__btn" type="submit">Sign in</button>
+            <button className="sign-in__btn" type="submit" data-testid="signInBtn">Sign in</button>
           </div>
         </form>
       </div>

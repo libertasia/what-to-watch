@@ -1,0 +1,28 @@
+import React from 'react';
+import {render} from '@testing-library/react';
+import PreviewVideoPlayer from './preview-video-player';
+
+describe(`Test PreviewVideoPlayer`, () => {
+  beforeAll(() => {
+    window.HTMLMediaElement.prototype.play = () => {};
+    window.HTMLMediaElement.prototype.load = () => {};
+  });
+
+  it(`PreviewVideoPlayer should be render correctly`, () => {
+    const mockPath = `mock-path`;
+    const mockPosterImage = `http://picsum.photos/248/152?r=${Math.random()}`;
+    const mockAltText = `Some Film`;
+    const {container} = render(
+        <PreviewVideoPlayer
+          isPlaying={true}
+          src={mockPath}
+          poster={mockPosterImage}
+          width={280}
+          height={175}
+          alt={mockAltText}
+        />
+    );
+
+    expect(container.querySelector(`video`)).toBeInTheDocument();
+  });
+});

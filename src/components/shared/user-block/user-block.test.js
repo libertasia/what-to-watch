@@ -8,21 +8,40 @@ import UserBlock from './user-block';
 import {AuthorizationStatus} from '../../../const';
 
 const mockStore = configureStore({});
-const store = {
-  FILMS: {
-    authorizationStatus: AuthorizationStatus.NO_AUTH,
-  }
-};
 
-it(`UserBlock should render correctly`, () => {
-  const history = createMemoryHistory();
-  render(
-      <Provider store={mockStore(store)}>
-        <Router history={history}>
-          <UserBlock />
-        </Router>
-      </Provider>
-  );
+describe(`UserBlock should render correctly`, () => {
+  it(`UserBlock should render correctly if AuthorizationStatus is NO_AUTH`, () => {
+    const store = {
+      FILMS: {
+        authorizationStatus: AuthorizationStatus.NO_AUTH,
+      }
+    };
+    const history = createMemoryHistory();
+    render(
+        <Provider store={mockStore(store)}>
+          <Router history={history}>
+            <UserBlock />
+          </Router>
+        </Provider>
+    );
 
-  expect(screen.getByText(/Sign in/i)).toBeInTheDocument();
+    expect(screen.getByText(/Sign in/i)).toBeInTheDocument();
+  });
+  it(`UserBlock should render correctly if AuthorizationStatus is AUTH`, () => {
+    const store = {
+      FILMS: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+      }
+    };
+    const history = createMemoryHistory();
+    render(
+        <Provider store={mockStore(store)}>
+          <Router history={history}>
+            <UserBlock />
+          </Router>
+        </Provider>
+    );
+
+    expect(screen.queryByText(/Sign in/i)).not.toBeInTheDocument();
+  });
 });
