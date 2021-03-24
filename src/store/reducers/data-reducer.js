@@ -1,3 +1,4 @@
+import {ActionType} from '../action';
 import {AuthorizationStatus} from '../../const';
 
 const initialState = {
